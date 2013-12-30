@@ -3,41 +3,51 @@
 namespace kosssi\MyAlbumsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File;
+use Vlabs\MediaBundle\Entity\BaseFile as VlabsFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
  */
-class Image
+class Image extends VlabsFile
 {
     /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
-
-    /**
-     * @Assert\File(
-     *     maxSize="10M",
-     *     mimeTypes={"image/png", "image/jpeg", "image/pjpeg"}
-     * )
+     * @var string $path
      *
-     * @var File $image
+     * @ORM\Column(name="path", type="string", length=255)
+     * @Assert\Image()
      */
-    protected $image;
+    protected $path;
 
     /**
-     * @ORM\Column(type="string", length=255, name="image_name")
-     *
-     * @var string $imageName
+     * @param mixed $album
      */
-    protected $imageName;
+    public function setAlbum($album)
+    {
+        $this->album = $album;
+    }
 
     /**
-     * @ORM\ManyToOne(targetEntity="Album", inversedBy="images")
-     * @ORM\JoinColumn(name="album_id", referencedColumnName="id")
+     * @return mixed
      */
-    protected $category;
+    public function getAlbum()
+    {
+        return $this->album;
+    }
+
+    /**
+     * @param mixed $path
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
 }

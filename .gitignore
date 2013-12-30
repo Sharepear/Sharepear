@@ -10,3 +10,4 @@
 /bin/
 /composer.phar
 app/data/data.db3
+web/files
