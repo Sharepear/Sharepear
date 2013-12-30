@@ -52,10 +52,3 @@ doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
-
-vich_uploader:
-    db_driver: orm
-    mappings:
-        product_image:
-            uri_prefix: /images/products
-            upload_destination: %kernel.root_dir%/../web/images/products

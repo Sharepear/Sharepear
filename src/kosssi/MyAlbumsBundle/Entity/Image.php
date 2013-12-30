@@ -5,11 +5,9 @@ namespace kosssi\MyAlbumsBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity
- * @Vich\Uploadable
  */
 class Image
 {
@@ -25,7 +23,6 @@ class Image
      *     maxSize="10M",
      *     mimeTypes={"image/png", "image/jpeg", "image/pjpeg"}
      * )
-     * @Vich\UploadableField(mapping="product_image", fileNameProperty="imageName")
      *
      * @var File $image
      */
