@@ -1,0 +1,5 @@
+kosssi_my_albums:
+    resource: "@kosssiMyAlbumsBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
