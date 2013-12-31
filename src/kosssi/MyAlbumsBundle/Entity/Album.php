@@ -2,10 +2,9 @@
 
 namespace kosssi\MyAlbumsBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Vlabs\MediaBundle\Annotation\Vlabs;
-use Vlabs\MediaBundle\Entity\BaseFile as VlabsFile;
 
 /**
  * @ORM\Entity
@@ -16,6 +15,8 @@ class Album
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @var integer
      */
     protected $id;
 
@@ -27,17 +28,12 @@ class Album
     protected $name;
 
     /**
-     * @var VlabsFile
-     *
-     * @ORM\OneToOne(targetEntity="Image", cascade={"persist", "remove"}, orphanRemoval=true))
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="image", referencedColumnName="id")
-     * })
-     *
-     * @Vlabs\Media(identifier="image_entity", upload_dir="files/images")
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="album")
      * @Assert\Valid()
+     *
+     * @var ArrayCollection
      */
-    private $image;
+    private $images;
 
     /**
      * @param mixed $id
@@ -56,22 +52,6 @@ class Album
     }
 
     /**
-     * @param \Vlabs\MediaBundle\Entity\BaseFile $image
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-    }
-
-    /**
-     * @return \Vlabs\MediaBundle\Entity\BaseFile
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
      * @param mixed $name
      */
     public function setName($name)
@@ -85,5 +65,21 @@ class Album
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @param ArrayCollection $images
+     */
+    public function setImages($images)
+    {
+        $this->images = $images;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getImages()
+    {
+        return $this->images;
     }
 }

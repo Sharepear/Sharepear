@@ -16,7 +16,10 @@ class AlbumType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('image', 'vlabs_file')
+            ->add('images', 'collection', array(
+                'type'      => 'vlabs_file',
+                'allow_add' => true,
+            ))
         ;
     }
     

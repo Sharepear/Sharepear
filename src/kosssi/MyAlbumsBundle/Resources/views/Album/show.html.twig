@@ -14,8 +14,16 @@
                 <td>{{ entity.name }}</td>
             </tr>
             <tr>
-                <th>Image</th>
-                <td><img src="{{ entity.image|vlabs_media('default') }}" alt="{{ entity.name }}"></td>
+                <th>Images</th>
+                <td>
+                    <ul>
+                        {% for image in entity.images %}
+                            <li>
+                                <img src="{{ image|vlabs_media('default') }}" alt="{{ image.name }}">
+                            </li>
+                        {% endif %}
+                    </ul>
+                </td>
             </tr>
         </tbody>
     </table>

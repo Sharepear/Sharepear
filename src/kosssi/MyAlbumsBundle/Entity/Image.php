@@ -20,6 +20,12 @@ class Image extends VlabsFile
     protected $path;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Album", inversedBy="images")
+     * @ORM\JoinColumn(name="album_id", referencedColumnName="id")
+     */
+    protected $album;
+
+    /**
      * @param mixed $album
      */
     public function setAlbum($album)
