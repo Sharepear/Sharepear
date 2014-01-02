@@ -5,7 +5,7 @@
     "private": true,
     "dependencies": {
         "grunt": "~0.4",
-        "grunt-contrib-symlink": "~0.2",
+        "grunt-symlink": "~0.4",
         "grunt-contrib-less": "~0.6",
         "grunt-contrib-cssmin": "~0.7",
         "grunt-contrib-coffee": "~0.8",
