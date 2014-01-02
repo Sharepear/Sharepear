@@ -19,6 +19,7 @@ class AlbumType extends AbstractType
             ->add('images', 'collection', array(
                 'type'      => 'vlabs_file',
                 'allow_add' => true,
+                'data_class' => 'kosssi\MyAlbumsBundle\Entity\Album',
             ))
         ;
     }
