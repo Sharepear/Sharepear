@@ -11,3 +11,6 @@
 /composer.phar
 app/data/data.db3
 web/files
+bower_components
+node_modules
+web/built
