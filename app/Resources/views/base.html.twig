@@ -3,14 +3,11 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <link href="/built/all.min.css" rel="stylesheet">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
     </head>
     <body>
         {% block body %}{% endblock %}
-        {% javascripts '@kosssiMyAlbumsBundle/Resources/public/js/*' %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
+        <script src="/built/all.min.js"></script>
     </body>
 </html>

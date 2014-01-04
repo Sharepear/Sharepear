@@ -1,1 +1,9 @@
-Hello {{ name }}!
+{% extends '::base.html.twig' %}
+
+
+{% block body -%}
+    Hello {{ name }}!
+
+    <button id="submit-all">Submit all files</button>
+    <form action="/target" class="dropzone" id="my-dropzone"></form>
+{% endblock %}
