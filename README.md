@@ -11,6 +11,10 @@ Au niveau javascript :
 - jQuery : http://www.jquery.com
 - DropzoneJS : http://www.dropzonejs.com
 
+Au niveau PHP :
+- OneupUploaderBundle : https://github.com/1up-lab/OneupUploaderBundle
+- LiipImagineBundle : https://github.com/liip/LiipImagineBundle
+
 ## Installation
 
 ```
@@ -35,4 +39,4 @@ app/console doctrine:schema:create
 
 ## Commande Grunt
 
- - grunt watch : pour compiler automatiquement les fichiers LESS et COFFEE
+- grunt watch : pour compiler automatiquement les fichiers LESS et COFFEE

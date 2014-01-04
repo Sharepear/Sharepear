@@ -6,3 +6,7 @@ kosssi_my_albums:
 oneup_uploader:
     resource: .
     type: uploader
+
+_imagine:
+    resource: .
+    type:     imagine
