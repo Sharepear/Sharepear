@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new kosssi\MyAlbumsBundle\kosssiMyAlbumsBundle(),
             new Vlabs\MediaBundle\VlabsMediaBundle(),
+            new Oneup\UploaderBundle\OneupUploaderBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
