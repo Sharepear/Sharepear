@@ -14,3 +14,5 @@ web/files
 bower_components
 node_modules
 web/built
+web/images
+app/data

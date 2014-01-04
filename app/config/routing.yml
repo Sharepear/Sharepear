@@ -3,3 +3,6 @@ kosssi_my_albums:
     type:     annotation
     prefix:   /
 
+oneup_uploader:
+    resource: .
+    type: uploader

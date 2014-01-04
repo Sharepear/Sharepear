@@ -17,7 +17,6 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new kosssi\MyAlbumsBundle\kosssiMyAlbumsBundle(),
-            new Vlabs\MediaBundle\VlabsMediaBundle(),
             new Oneup\UploaderBundle\OneupUploaderBundle(),
         );
 

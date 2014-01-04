@@ -25,6 +25,11 @@ module.exports = function(grunt) {
                 dest: 'web/bundles/app',
                 relativeSrc: '../../app/Resources/public/',
                 options: {type: 'dir'}
+            },
+            dropzone_image: {
+                dest: 'web/images/spritemap.png',
+                relativeSrc: '../../bower_components/dropzone/downloads/images/spritemap.png',
+                options: {type: 'file'}
             }
         },
 

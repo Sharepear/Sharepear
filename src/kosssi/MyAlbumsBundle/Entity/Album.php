@@ -35,6 +35,11 @@ class Album
      */
     private $images;
 
+    public function __constructor()
+    {
+        $this->images = new ArrayCollection();
+    }
+
     /**
      * @param mixed $id
      */
@@ -52,15 +57,19 @@ class Album
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
+     *
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
@@ -69,10 +78,14 @@ class Album
 
     /**
      * @param ArrayCollection $images
+     *
+     * @return $this
      */
-    public function setImages($images)
+    public function setImages(ArrayCollection $images)
     {
         $this->images = $images;
+
+        return $this;
     }
 
     /**
@@ -81,5 +94,29 @@ class Album
     public function getImages()
     {
         return $this->images;
+    }
+
+    /**
+     * @param $image
+     *
+     * @return $this
+     */
+    public function addImage($image)
+    {
+        $this->images->add($image);
+
+        return $this;
+    }
+
+    /**
+     * @param $image
+     *
+     * @return $this
+     */
+    public function removeImage($image)
+    {
+        $this->images->removeElement($image);
+
+        return $this;
     }
 }

@@ -23,6 +23,7 @@ framework:
         handler_id:  ~
     fragments:       ~
     http_method_override: true
+    translator: ~
 
 # Twig Configuration
 twig:
@@ -53,9 +54,9 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
 
-vlabs_media:
-    image_cache:
-        cache_dir: files/cache
-    mapping:
-        image_entity:
-          class: kosssi\MyAlbumsBundle\Entity\Image
+oneup_uploader:
+    mappings:
+        album:
+            frontend: dropzone
+            storage:
+              directory: "%kernel.root_dir%/data/uploads/album"

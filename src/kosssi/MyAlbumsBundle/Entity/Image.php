@@ -3,27 +3,35 @@
 namespace kosssi\MyAlbumsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Vlabs\MediaBundle\Entity\BaseFile as VlabsFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
  */
-class Image extends VlabsFile
+class Image
 {
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
     /**
      * @var string $path
      *
      * @ORM\Column(name="path", type="string", length=255)
      * @Assert\Image()
      */
-    protected $path;
+    private $path;
 
     /**
      * @ORM\ManyToOne(targetEntity="Album", inversedBy="images")
      * @ORM\JoinColumn(name="album_id", referencedColumnName="id")
      */
-    protected $album;
+    private $album;
 
     /**
      * @param mixed $album
@@ -42,7 +50,23 @@ class Image extends VlabsFile
     }
 
     /**
-     * @param mixed $path
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param string $path
      */
     public function setPath($path)
     {
@@ -50,7 +74,7 @@ class Image extends VlabsFile
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getPath()
     {
