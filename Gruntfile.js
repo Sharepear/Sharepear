@@ -63,15 +63,17 @@ module.exports = function(grunt) {
             js: {
                 src: [
                     'bower_components/jquery/jquery.js',
+                    'bower_components/dropzone/downloads/dropzone.js',
                     'web/built/*/js/*.js',
-                    'web/built/*/js/*/*.js',
+                    'web/built/*/js/*/*.js'
                 ],
                 dest: 'web/built/all.js'
             },
             css: {
                 src: [
+                    'bower_components/dropzone/downloads/css/*.css',
                     'web/built/*/css/*.css',
-                    'web/built/*/css/*/*.css',
+                    'web/built/*/css/*/*.css'
                 ],
                 dest: 'web/built/all.css'
             }

@@ -9,6 +9,6 @@
     ],
     "dependencies": {
         "jquery": "2.0.3",
-        "fine-uploader": "4.1.1"
+        "dropzone": "3.8.2"
     }
 }
