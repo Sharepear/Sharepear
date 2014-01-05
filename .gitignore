@@ -15,4 +15,5 @@ bower_components
 node_modules
 web/built
 web/images
+web/uploads
 app/data

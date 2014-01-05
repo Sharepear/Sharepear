@@ -58,5 +58,3 @@ oneup_uploader:
     mappings:
         album:
             frontend: dropzone
-            storage:
-              directory: "%kernel.root_dir%/data/uploads/album"

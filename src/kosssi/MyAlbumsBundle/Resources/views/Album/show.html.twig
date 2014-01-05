@@ -19,10 +19,19 @@
                     <ul>
                         {% for image in entity.images %}
                             <li>
-                                <img src="{{ image|vlabs_media('default') }}" alt="{{ image.name }}">
+                                <img src="{{ image.path }}" alt="{{ image.id }}">
                             </li>
-                        {% endif %}
+                        {% endfor %}
                     </ul>
+                </td>
+            </tr>
+            <tr>
+                <th>Add Images</th>
+                <td>
+                    <button id="submit-all">Submit all files</button>
+                    <form action="{{ oneup_uploader_endpoint('album') }}" class="dropzone" id="my-dropzone">
+                        <input type="hidden" name="album_id" value="{{ entity.id }}">
+                    </form>
                 </td>
             </tr>
         </tbody>
