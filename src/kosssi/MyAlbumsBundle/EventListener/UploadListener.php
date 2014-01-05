@@ -48,7 +48,7 @@ class UploadListener
         $this->imageHelper->rotateAccordingExif($file);
 
         $image = new Image();
-        $image->setPath($event->getFile()->getPath());
+        $image->setPath('/uploads/album/' . $event->getFile()->getFilename());
         $this->em->persist($image);
 
         if ($album = $this->albumRepository->findOneById($event->getRequest()->get('album_id'))) {

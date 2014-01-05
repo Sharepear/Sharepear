@@ -1,53 +1,45 @@
 {% extends '::base.html.twig' %}
 
+{% block title %}{{ entity.name }}{% endblock %}
+
 {% block body -%}
-    <h1>Album</h1>
-
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ entity.name }}</td>
-            </tr>
-            <tr>
-                <th>Images</th>
-                <td>
-                    <ul>
-                        {% for image in entity.images %}
-                            <li>
-                                <img src="{{ image.path }}" alt="{{ image.id }}">
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <th>Add Images</th>
-                <td>
-                    <button id="submit-all">Submit all files</button>
-                    <form action="{{ oneup_uploader_endpoint('album') }}" class="dropzone" id="my-dropzone">
-                        <input type="hidden" name="album_id" value="{{ entity.id }}">
-                    </form>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('album') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('album_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    <section class="container">
+        <h1>{{ entity.name }}</h1>
+        <ul class="album">
+            {% for image in entity.images %}
+                <li class="clearfix"
+                    data-xs="{{ image.path | imagine_filter('xs') }}"
+                    data-s="{{ image.path | imagine_filter('s') }}"
+                    data-m="{{ image.path | imagine_filter('m') }}"
+                    data-l="{{ image.path | imagine_filter('l') }}"
+                    data-xl="{{ image.path | imagine_filter('xl') }}"
+                    data-xxl="{{ image.path | imagine_filter('xxl') }}"
+                        >
+                    <noscript>
+                        <img alt="" src="{{ image.path | imagine_filter('m') }}" />
+                    </noscript>
+                </li>
+            {% endfor %}
+        </ul>
+        <ul class="actions">
+            <li>
+                <form action="{{ oneup_uploader_endpoint('album') }}" class="dropzone" id="my-dropzone">
+                    <input type="hidden" name="album_id" value="{{ entity.id }}">
+                </form>
+            </li>
+            <li>
+                <a href="{{ path('album') }}">
+                    Back to the list
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('album_edit', { 'id': entity.id }) }}">
+                    Edit
+                </a>
+            </li>
+            <li>
+                {{ form(delete_form) }}
+            </li>
+        </ul>
+    </section>
 {% endblock %}

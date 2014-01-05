@@ -58,3 +58,24 @@ oneup_uploader:
     mappings:
         album:
             frontend: dropzone
+
+liip_imagine:
+    filter_sets:
+        xs:
+            filters:
+                relative_resize: { widen: 300 }
+        s:
+            filters:
+                relative_resize: { widen: 480 }
+        m:
+            filters:
+                relative_resize: { widen: 768 }
+        l:
+            filters:
+                relative_resize: { widen: 992 }
+        xl:
+            filters:
+                relative_resize: { widen: 1382 }
+        xxl:
+            filters:
+                relative_resize: { widen: 1600 }
