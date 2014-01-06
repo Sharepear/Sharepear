@@ -20,6 +20,10 @@
         <!-- helper -->
         <service id="kosssi_my_albums.helper.image" class="%kosssi_my_albums.helper.image.class%">
             <argument type="service" id="liip_imagine" />
+            <argument type="service" id="liip_imagine.controller" />
+            <call method="setRequest">
+                <argument type="service" id="request_stack" />
+            </call>
         </service>
 
         <!-- listener -->

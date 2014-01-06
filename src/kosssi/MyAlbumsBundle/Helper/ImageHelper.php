@@ -2,25 +2,42 @@
 
 namespace kosssi\MyAlbumsBundle\Helper;
 
-use Imagine\Gd\Imagine;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class ImageHelper
 {
     /**
-     * @var Imagine
+     * @var \Imagine\Gd\Imagine
      */
     private $imagine;
 
-    public function __construct($imagine)
+    /**
+     * @var \Liip\ImagineBundle\Controller\ImagineController
+     */
+    private $imagineControler;
+
+    /**
+     * @var \Sensio\Bundle\FrameworkExtraBundle\Request
+     */
+    private $request;
+
+    public function __construct($imagine, $imagineControler)
     {
         $this->imagine = $imagine;
+        $this->imagineControler = $imagineControler;
+    }
+
+    public function setRequest(RequestStack $request_stack)
+    {
+        $this->request = $request_stack->getCurrentRequest();
     }
 
     public function rotateAccordingExif(File $file)
     {
         $extension = strtolower($file->getExtension());
         $path = $file->getPathname();
+        $image = $this->imagine->open($path);
 
         //exif only supports jpg in our supported file types
         if ($extension == "jpg" || $extension == "jpeg") {
@@ -30,8 +47,6 @@ class ImageHelper
 
             //get the orientation
             $orientation = $exif['Orientation'];
-
-            $image = $this->imagine->open($file->getPathName());
 
             //determine what orientation the image was taken at
             switch($orientation) {
@@ -65,8 +80,14 @@ class ImageHelper
                     $image->rotate(-90);
                     break;
             }
+        }
+        $image->save($path);
 
-            $image->save($path);
+        // generate cache
+        $webPath = '/uploads/album/' . $file->getFilename();
+        foreach (['xs', 's', 'm', 'l', 'xl', 'xxl'] as $filter) {
+            //$webPath = $this->cacheManager->getBrowserPath($webPath, $filter, true);
+            $this->imagineControler->filterAction($this->request, $webPath, $filter);
         }
     }
 }

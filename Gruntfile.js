@@ -79,6 +79,7 @@ module.exports = function(grunt) {
                     'bower_components/outlayer/item.js',
                     'bower_components/outlayer/outlayer.js',
                     'bower_components/masonry/masonry.js',
+                    'bower_components/imagesloaded/imagesloaded.js',
                 ],
                 dest: 'web/built/bower.js'
             },

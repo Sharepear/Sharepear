@@ -1,5 +1,4 @@
-albumMasonry = new Masonry("#album")
-albumMasonry.bindResize()
-
-$(document).ready ->
-    albumMasonry.resize()
+container = document.querySelector('#album');
+imagesLoaded container, ->
+    albumMasonry = new Masonry("#album")
+    albumMasonry.bindResize()
