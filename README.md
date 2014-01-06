@@ -3,6 +3,8 @@ MyAlbums
 
 Status : WIP
 
+Board : https://waffle.io/chlorius/MyAlbums
+
 # Developpement
 
 ## Librairies utilisées
