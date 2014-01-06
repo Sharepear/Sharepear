@@ -34,15 +34,25 @@
 
     li {
         list-style: none;
-        margin: 4px;
-        padding: 0;
+        padding: 5px;
         border-width: 0;
         width: 20%;
-        height: 20%;
         float: left;
         background: none no-repeat center;
         background-size: cover;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
+
+        img {
+            width: 100%;
+        }
     }
 }
+
+@media only screen and                         (min-width: 1601px) {.album {li {width: 100% / 7;}}}
+@media only screen and (max-width: 1600px) and (min-width: 1383px) {.album {li {width: 100% / 6;}}}
+@media only screen and (max-width: 1382px) and (min-width: 993px)  {.album {li {width: 100% / 5;}}}
+@media only screen and (max-width: 992px)  and (min-width: 769px)  {.album {li {width: 100% / 4;}}}
+@media only screen and (max-width: 768px)  and (min-width: 481px)  {.album {li {width: 100% / 3;}}}
+@media only screen and (max-width: 480px)  and (min-width: 301px)  {.album {li {width: 100% / 2;}}}
+@media only screen and (max-width: 300px)                          {.album {li {width: 100%;}}}

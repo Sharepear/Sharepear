@@ -3,8 +3,9 @@ class Album
     selector:  ''
     pictures:  []
     sizes:     []
+    createImage: false
 
-    constructor: (@container, @selector, @sizes) ->
+    constructor: (@container, @selector, @sizes, @createImage) ->
         @pictures = $(@container).find(@selector)
         @screenSizeChange()
         $(window).resize =>
@@ -15,12 +16,6 @@ class Album
         height = $(@pictures).first().height()
         maxSize = Math.min width, height
 
-        typeAffichage == ''
-        if maxSize == height
-            typeAffichage = 'portrait'
-        else
-            typeAffichage = 'paysage'
-
         sizeName = ''
         for size in @sizes
             sizeName = size.name  if size.value > maxSize and sizeName == ''
@@ -29,7 +24,11 @@ class Album
 
     setSize: (picture, sizeName) ->
         picture = $(picture)
-        picture.css "background-image", "url(" + picture.data(sizeName) + ")"
+        url = picture.data(sizeName)
+        if @createImage
+            picture.html($('<img src="' + url + '" alt="" />'))
+        else
+            picture.css "background-image", "url(" + url + ")"
 
 album = new Album(".album", "li", [
     name: "xs"
@@ -49,4 +48,4 @@ album = new Album(".album", "li", [
 ,
     name: "xxl"
     value: 1600
-])
+], true)

@@ -10,6 +10,7 @@
     "dependencies": {
         "jquery": "2.0.3",
         "dropzone": "3.8.2",
-        "font-awesome": "*"
+        "font-awesome": "*",
+        "masonry": "*"
     }
 }

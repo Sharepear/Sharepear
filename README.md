@@ -12,10 +12,16 @@ Board : https://waffle.io/chlorius/MyAlbums
 Au niveau javascript :
 - jQuery : http://www.jquery.com
 - DropzoneJS : http://www.dropzonejs.com
+- Masonry : http://masonry.desandro.com
 
 Au niveau PHP :
 - OneupUploaderBundle : https://github.com/1up-lab/OneupUploaderBundle
 - LiipImagineBundle : https://github.com/liip/LiipImagineBundle
+
+Design :
+- http://tympanus.net/codrops/2012/11/06/gamma-gallery-a-responsive-image-gallery-experiment/
+- http://tympanus.net/codrops/2013/07/02/loading-effects-for-grid-items-with-css-animations/
+- http://tympanus.net/codrops/2012/06/18/3d-thumbnail-hover-effects/
 
 ## Installation
 
@@ -41,4 +47,5 @@ app/console doctrine:schema:create
 
 ## Commande Grunt
 
-- grunt watch : pour compiler automatiquement les fichiers LESS et COFFEE
+- grunt init : pour initialiser l'ensemble des taches
+- grunt watch : pour compiler automatiquement les fichiers LESS et COFFEE en dev

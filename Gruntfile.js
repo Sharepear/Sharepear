@@ -65,18 +65,40 @@ module.exports = function(grunt) {
         },
 
         concat: {
-            js: {
+            bowerjs: {
                 src: [
                     'bower_components/jquery/jquery.js',
                     'bower_components/dropzone/downloads/dropzone.js',
+                    'bower_components/eventEmitter/EventEmitter.js',
+                    'bower_components/eventie/eventie.js',
+                    'bower_components/doc-ready/doc-ready.js',
+                    'bower_components/get-style-property/get-style-property.js',
+                    'bower_components/get-size/get-size.js',
+                    'bower_components/jquery-bridget/jquery.bridget.js',
+                    'bower_components/matches-selector/matches-selector.js',
+                    'bower_components/outlayer/item.js',
+                    'bower_components/outlayer/outlayer.js',
+                    'bower_components/masonry/masonry.js',
+                ],
+                dest: 'web/built/bower.js'
+            },
+            js: {
+                src: [
+                    'web/built/bower.js',
                     'web/built/*/js/*.js',
                     'web/built/*/js/*/*.js'
                 ],
                 dest: 'web/built/all.js'
             },
-            css: {
+            bowercss: {
                 src: [
                     'bower_components/dropzone/downloads/css/*.css',
+                ],
+                dest: 'web/built/bower.css'
+            },
+            css: {
+                src: [
+                    'web/built/bower.css',
                     'web/built/*/css/*.css',
                     'web/built/*/css/*/*.css'
                 ],
@@ -97,11 +119,10 @@ module.exports = function(grunt) {
     });
 
     // Default task(s).
-    grunt.registerTask('default', ['css', 'javascript']);
+    grunt.registerTask('default', ['concat:bowercss', 'css', 'concat:bowerjs', 'javascript']);
     grunt.registerTask('css', ['less:discovering', 'less', 'concat:css', 'cssmin']);
     grunt.registerTask('javascript', ['coffee:discovering', 'coffee', 'concat:js', 'uglify']);
-    grunt.registerTask('assets:install', ['symlink']);
-    grunt.registerTask('deploy', ['assets:install', 'default']);
+    grunt.registerTask('init', ['symlink', 'default']);
     grunt.registerTask('less:discovering', 'This is a function', function() {
         // LESS Files management
         // Source LESS files are located inside : bundles/[bundle]/less/

@@ -5,7 +5,7 @@
 {% block body -%}
     <section class="container">
         <h1>{{ entity.name }}</h1>
-        <ul class="album">
+        <ul id="album" class="album">
             {% for image in entity.images %}
                 <li class="clearfix"
                     data-xs="{{ image.path | imagine_filter('xs') }}"
