@@ -28,13 +28,14 @@ Design :
 ```
 git clone git@github.com:chlorius/MyAlbums.git
 cd MyAlbums
+cp app/config/parameter.yml.dist app/config/parameter.yml
 composer install
 npm install
 bower install
 app/console doctrine:database:create
 app/console doctrine:schema:create
 app/console assets:install --symlink
-grunt deploy
+grunt init
 ```
 
 ## Réinitialiser
