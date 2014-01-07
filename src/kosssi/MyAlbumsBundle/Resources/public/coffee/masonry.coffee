@@ -1,4 +1,6 @@
 container = document.querySelector('#album');
 imagesLoaded container, ->
-    albumMasonry = new Masonry("#album")
-    albumMasonry.bindResize()
+    #$("#loader").remove()
+    #$('#album').show()
+    #albumMasonry = new Masonry("#album")
+    #albumMasonry.bindResize()
