@@ -1,10 +1,10 @@
-{% extends '::base.html.twig' %}
+{% extends 'kosssiMyAlbumsBundle::base.html.twig' %}
 
 {% block title %}{{ entity.name }}{% endblock %}
 
-{% block body -%}
-    <section class="container">
-        <h1>{{ entity.name }}</h1>
+{% block section_attr %} class="container"{% endblock %}
+{% block section_content %}
+    {% if entity.images|length > 0 %}
         <div id="loader">
             <div>
                 <p></p>
@@ -35,25 +35,25 @@
                 </li>
             {% endfor %}
         </ul>
-        <ul class="actions">
-            <li>
-                <form action="{{ oneup_uploader_endpoint('album') }}" class="dropzone" id="my-dropzone">
-                    <input type="hidden" name="album_id" value="{{ entity.id }}">
-                </form>
-            </li>
-            <li>
-                <a href="{{ path('album') }}">
-                    Back to the list
-                </a>
-            </li>
-            <li>
-                <a href="{{ path('album_edit', { 'id': entity.id }) }}">
-                    Edit
-                </a>
-            </li>
-            <li>
-                {{ form(delete_form) }}
-            </li>
-        </ul>
-    </section>
+    {% endif %}
+    <ul class="actions">
+        <li>
+            <form action="{{ oneup_uploader_endpoint('album') }}" class="dropzone" id="my-dropzone">
+                <input type="hidden" name="album_id" value="{{ entity.id }}">
+            </form>
+        </li>
+        <li>
+            <a href="{{ path('album') }}">
+                Back to the list
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('album_edit', { 'id': entity.id }) }}">
+                Edit
+            </a>
+        </li>
+        <li>
+            {{ form(delete_form) }}
+        </li>
+    </ul>
 {% endblock %}

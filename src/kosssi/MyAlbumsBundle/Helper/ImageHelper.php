@@ -82,12 +82,5 @@ class ImageHelper
             }
         }
         $image->save($path);
-
-        // generate cache
-        $webPath = '/uploads/album/' . $file->getFilename();
-        foreach (['xs', 's', 'm', 'l', 'xl', 'xxl'] as $filter) {
-            //$webPath = $this->cacheManager->getBrowserPath($webPath, $filter, true);
-            $this->imagineControler->filterAction($this->request, $webPath, $filter);
-        }
     }
 }

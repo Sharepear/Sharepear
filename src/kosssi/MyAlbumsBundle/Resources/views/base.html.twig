@@ -1,0 +1,23 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    {% block header %}
+        <header{% block header_attr %}{% endblock %}>
+            {% block header_content %}
+                <h1>{{ block('title') }}</h1>
+            {% endblock %}
+        </header>
+    {% endblock %}
+    {% block section %}
+        <section{% block section_attr %}{% endblock %}>
+            {% block section_content %}
+            {% endblock %}
+        </section>
+    {% endblock %}
+    {% block footer %}
+        <footer{% block footer_attr %}{% endblock %}>
+            {% block footer_content %}
+            {% endblock %}
+        </footer>
+    {% endblock %}
+{% endblock %}

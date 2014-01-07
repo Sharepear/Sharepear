@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-    grunt.loadNpmTasks('grunt-symlink');
+    grunt.loadNpmTasks('grunt-contrib-symlink');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-coffee');
@@ -22,14 +22,16 @@ module.exports = function(grunt) {
         symlink: {
             // app/Resources/public/ doit être disponible via web/bundles/app/
             app: {
-                dest: 'web/bundles/app',
-                relativeSrc: '../../app/Resources/public/',
-                options: {type: 'dir'}
+                src: 'app/Resources/public/',
+                dest: 'web/bundles/app'
             },
             dropzone_image: {
-                dest: 'web/images/spritemap.png',
-                relativeSrc: '../../bower_components/dropzone/downloads/images/spritemap.png',
-                options: {type: 'file'}
+                src: 'bower_components/dropzone/downloads/images/spritemap.png',
+                dest: 'web/images/spritemap.png'
+            },
+            fontawesome_font: {
+                src: 'bower_components/font-awesome/fonts/',
+                dest: 'web/fonts'
             }
         },
 
@@ -94,6 +96,7 @@ module.exports = function(grunt) {
             bowercss: {
                 src: [
                     'bower_components/dropzone/downloads/css/*.css',
+                    'bower_components/font-awesome/css/font-awesome.css'
                 ],
                 dest: 'web/built/bower.css'
             },
