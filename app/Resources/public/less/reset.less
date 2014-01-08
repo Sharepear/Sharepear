@@ -1,0 +1,39 @@
+@import "mixin.less";
+@import "variables.less";
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+*, *:before, *:after {
+    margin: 0;
+    padding: 0;
+    .box-sizing(border-box);
+}
+
+a, a:active, a:focus {
+    outline:none;
+}
+
+.clearfix:before, .clearfix:after {
+    display: table;
+    clear: both;
+    content: "";
+}
+
+.hidden {
+    display: none;
+}
+
+body {
+    background-color: @backgroundColor;
+    overflow: hidden;
+}
+
+.container {
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}

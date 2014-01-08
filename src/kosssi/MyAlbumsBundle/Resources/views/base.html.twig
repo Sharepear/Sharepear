@@ -4,8 +4,42 @@
     {% block header %}
         <header{% block header_attr %}{% endblock %}>
             {% block header_content %}
-                <a href=""><i class="fa fa-home"></i></a>
+                <a href="{{ path('album') }}"><i class="fa fa-home"></i></a>
                 <h1>{{ block('title') }}</h1>
+                {% spaceless %}
+                    <div class="actions">
+                        <a href="">
+                            <i class="fa fa-download"></i>
+                        </a>
+                        <a href="" class="show-upload" title="{{ "Add photos" | trans({}, "album") }}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-picture-o fa-stack-2x"></i>
+                                <i class="fa fa-plus fa-stack-1x inverse"></i>
+                            </span>
+                            <span class="fa-lg" style="display: none">
+                                <i class="fa fa-minus"></i>
+                            </span>
+                        </a>
+                        <div class="upload">
+                            <form action="{{ oneup_uploader_endpoint('album') }}" class="dropzone" id="my-dropzone">
+                                <input type="hidden" name="album_id" value="{{ entity.id }}">
+                                <span data-description="{{ "Drop files here to upload" | trans({}, "album") }}"></span>
+                            </form>
+                        </div>
+                        <a href="" title="{{ "Create a photo album" | trans({}, "album") }}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-book fa-stack-2x"></i>
+                                <i class="fa fa-plus fa-stack-1x inverse"></i>
+                            </span>
+                        </a>
+                        <span class="remove-album">
+                            <a href="">
+                                <i class="fa fa-times-circle-o"></i>
+                            </a>
+                            {{ form(delete_form) }}
+                        </span>
+                    </div>
+                {% endspaceless %}
             {% endblock %}
         </header>
     {% endblock %}

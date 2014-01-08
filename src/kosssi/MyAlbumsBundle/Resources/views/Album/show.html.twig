@@ -36,24 +36,4 @@
             {% endfor %}
         </ul>
     {% endif %}
-    <ul class="actions">
-        <li>
-            <form action="{{ oneup_uploader_endpoint('album') }}" class="dropzone" id="my-dropzone">
-                <input type="hidden" name="album_id" value="{{ entity.id }}">
-            </form>
-        </li>
-        <li>
-            <a href="{{ path('album') }}">
-                Back to the list
-            </a>
-        </li>
-        <li>
-            <a href="{{ path('album_edit', { 'id': entity.id }) }}">
-                Edit
-            </a>
-        </li>
-        <li>
-            {{ form(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}

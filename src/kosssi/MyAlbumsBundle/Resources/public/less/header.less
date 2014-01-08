@@ -1,30 +1,69 @@
-@import "../../app/less/mixin.less";
+@import "../../app/less/variables.less";
 
 header {
     display: block;
-    height: 40px;
-    padding: 5px 10px;
-    margin: 0;
-    .box-sizing(border-box);
+    height: @headerSize;
+    padding: 0 10px;
+    background-color: @highlightBackgroundColor;
 
     h1 {
-        .box-sizing(border-box);
-        margin: 0;
-        padding: 0;
-        height: 30px;
-        line-height: 30px;
+        padding: 10px;
+        height: @headerSize;
+        line-height: 20px;
         font-size: 20px;
         display: inline-block;
+        color: @writeColor;
     }
 
     a {
-        padding: 10px;
+        display: inline-block;
         color: white;
 
         .fa {
+            padding: 10px;
+            height: @headerSize;
             font-size: 20px;
             line-height: 20px;
-            height: 20px;
+            text-align: center;
+        }
+
+        .fa-lg {
+            text-align: center;
+        }
+    }
+
+    .remove-album form {
+        display: none;
+    }
+
+    .actions {
+        float: right;
+
+        a:hover {
+            color: @flashColor;
+        }
+
+        .fa-lg {
+            height: @headerSize;
+            margin-top: -6px;
+
+            &:hover {
+                .fa-stack-2x {
+                    display: none;
+                }
+
+                .fa-stack-1x {
+                    display: block;
+                }
+            }
+
+            .fa-stack-2x {
+                display: block;
+            }
+
+            .fa-stack-1x {
+                display: none;
+            }
         }
     }
 }

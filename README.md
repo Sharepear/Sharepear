@@ -22,6 +22,8 @@ Design :
 - http://tympanus.net/codrops/2012/11/06/gamma-gallery-a-responsive-image-gallery-experiment/
 - http://tympanus.net/codrops/2013/07/02/loading-effects-for-grid-items-with-css-animations/
 - http://tympanus.net/codrops/2012/06/18/3d-thumbnail-hover-effects/
+- http://tympanus.net/codrops/2013/04/19/responsive-multi-level-menu/
+- http://tympanus.net/codrops/2013/08/13/multi-level-push-menu/
 
 ## Installation
 

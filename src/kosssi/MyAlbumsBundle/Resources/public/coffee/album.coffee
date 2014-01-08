@@ -49,3 +49,7 @@ album = new Album(".album", "li", [
     name: "xxl"
     value: 1600
 ], true)
+
+$(".remove-album a").click (e) ->
+    e.preventDefault();
+    $(".remove-album button").click()

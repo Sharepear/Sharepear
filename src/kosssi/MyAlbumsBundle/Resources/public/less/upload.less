@@ -1,0 +1,55 @@
+@import "../../app/less/variables.less";
+
+.show-upload {
+    span {
+        width: 43px;
+        display: inline-block;
+    }
+}
+
+.upload {
+    z-index: 100;
+    display: none;
+
+    &.show {
+        display: block;
+    }
+
+    position: fixed;
+    top: @headerSize;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: @backgroundColor;
+    padding: 20px;
+
+    .dropzone {
+        background-color: @color2;
+        border-radius: 20px;
+        border: 6px dashed @highlightBackgroundColor;
+        width: 100%;
+        height: 100%;
+        background-image: none;
+        overflow: auto;
+
+        > span:after {
+            content: attr(data-description);
+            vertical-align: middle;
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            color: @backgroundColor;
+            position: fixed;
+            top: 50%;
+            bottom: 40px;
+            left: 60px;
+            right: 60px;
+            pointer-events: none;
+
+        }
+
+        .dz-message {
+            display: none;
+        }
+    }
+}
