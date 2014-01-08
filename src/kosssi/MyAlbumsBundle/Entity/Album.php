@@ -28,7 +28,7 @@ class Album
     protected $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Image", mappedBy="album")
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="album", cascade={"remove"})
      * @Assert\Valid()
      *
      * @var ArrayCollection
