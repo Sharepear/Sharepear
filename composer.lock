@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "cb5005ce626150e5f2f240ab4196a9f3",
+    "hash": "a1dac40eaff907693f594da2dbcc62be",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1036,6 +1036,39 @@
             "time": "2013-12-19 09:40:25"
         },
         {
+            "name": "paranoiq/php-zip",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paranoiq/PHPZip.git",
+                "reference": "044a0fcefb8af58193e98f3e22f679de2fb5515d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paranoiq/PHPZip/zipball/044a0fcefb8af58193e98f3e22f679de2fb5515d",
+                "reference": "044a0fcefb8af58193e98f3e22f679de2fb5515d",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1"
+            ],
+            "authors": [
+                {
+                    "name": "A. Grandt",
+                    "email": "php@grandt.com"
+                }
+            ],
+            "description": "A pair of PHP classes to generate zip files",
+            "time": "2013-11-06 10:03:31"
+        },
+        {
             "name": "psr/log",
             "version": "1.0.0",
             "source": {
@@ -1499,16 +1532,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.4.0",
+            "version": "v2.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "2e47d2edd45080c046bc32dd2ca5c64f31086366"
+                "reference": "377a5fb23bfdc2fb616610b7b7ab7cc9a50e614d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/2e47d2edd45080c046bc32dd2ca5c64f31086366",
-                "reference": "2e47d2edd45080c046bc32dd2ca5c64f31086366",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/377a5fb23bfdc2fb616610b7b7ab7cc9a50e614d",
+                "reference": "377a5fb23bfdc2fb616610b7b7ab7cc9a50e614d",
                 "shasum": ""
             },
             "require": {
@@ -1568,7 +1601,7 @@
                 "doctrine/orm": "~2.2,>=2.2.3",
                 "ircmaxell/password-compat": "1.0.*",
                 "monolog/monolog": "~1.3",
-                "ocramius/proxy-manager": ">=0.3.1,<0.5-dev",
+                "ocramius/proxy-manager": ">=0.3.1,<0.6-dev",
                 "propel/propel1": "1.6.*"
             },
             "type": "library",
@@ -1608,7 +1641,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2013-12-03 15:23:03"
+            "time": "2014-01-05 02:12:11"
         },
         {
             "name": "twig/extensions",
@@ -1716,7 +1749,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "oneup/uploader-bundle": 20,
-        "liip/imagine-bundle": 20
+        "liip/imagine-bundle": 20,
+        "paranoiq/php-zip": 20
     },
     "platform": {
         "php": ">=5.3.3"
