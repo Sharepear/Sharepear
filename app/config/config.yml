@@ -79,3 +79,7 @@ liip_imagine:
         xxl:
             filters:
                 relative_resize: { widen: 1600 }
+
+#doctrine:
+#    orm:
+#        entity_listener_resolver: kosssi_my_albums.listener.resolver
