@@ -23,13 +23,19 @@
     background-color: @backgroundColor;
     padding: 20px;
 
-    .dropzone {
-        background-color: @color2;
-        border-radius: 20px;
+    > div {
         border: 6px dashed @highlightBackgroundColor;
+        padding: 20px;
+        border-radius: 20px;
+        background-color: @color2;
+        height: 100%;
+    }
+
+    .dropzone {
         width: 100%;
         height: 100%;
-        background-image: none;
+        background: none transparent;
+        border: none;
         overflow: auto;
 
         > span:after {
