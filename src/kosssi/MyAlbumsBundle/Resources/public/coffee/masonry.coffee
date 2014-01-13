@@ -7,4 +7,4 @@ $(document).ready ->
             albumMasonry = new Masonry("#album")
             albumMasonry.bindResize()
     else
-        $(".show-upload").click().remove()
+        $(".show-upload").click()
