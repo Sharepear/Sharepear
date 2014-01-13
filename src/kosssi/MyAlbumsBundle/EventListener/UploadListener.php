@@ -45,10 +45,11 @@ class UploadListener
         $response = $event->getResponse();
 
         // rotate
-        $this->imageHelper->rotateAccordingExif($file);
+        $imagine = $this->imageHelper->rotateAccordingExif($file);
 
         $image = new Image();
-        $image->setPath('/uploads/album/' . $event->getFile()->getFilename());
+        $image->setPath('/uploads/album/' . $file->getFilename());
+        $image->setOrientation($this->imageHelper->getOrientation($imagine));
         $this->em->persist($image);
 
         if ($album = $this->albumRepository->findOneById($event->getRequest()->get('album_id'))) {

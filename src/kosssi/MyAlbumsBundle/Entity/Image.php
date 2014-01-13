@@ -10,6 +10,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Image
 {
+    const ORIENTATION_LANDSCAPE = "landscape";
+    const ORIENTATION_PORTRAIT = "portrait";
+
     /**
      * @var integer $id
      *
@@ -32,6 +35,13 @@ class Image
      * @ORM\JoinColumn(name="album_id", referencedColumnName="id")
      */
     private $album;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="orientation", type="string", length=255)
+     */
+    private $orientation;
 
     /**
      * @param mixed $album
@@ -79,5 +89,21 @@ class Image
     public function getPath()
     {
         return $this->path;
+    }
+
+    /**
+     * @param string $orientation
+     */
+    public function setOrientation($orientation)
+    {
+        $this->orientation = $orientation;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOrientation()
+    {
+        return $this->orientation;
     }
 }

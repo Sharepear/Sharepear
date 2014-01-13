@@ -28,6 +28,7 @@
                     data-l="{{ image.path | imagine_filter('l') }}"
                     data-xl="{{ image.path | imagine_filter('xl') }}"
                     data-xxl="{{ image.path | imagine_filter('xxl') }}"
+                    data-orientation="{{ image.orientation }}"
                         >
                     <noscript>
                         <img alt="" src="{{ image.path | imagine_filter('m') }}" />
