@@ -1,36 +1,38 @@
 class Album
     container: ''
     selector:  ''
+    elements:  []
     pictures:  []
     sizes:     []
     createImage: false
 
     constructor: (@container, @selector, @sizes, @createImage) ->
-        @pictures = $(@container).find(@selector)
+        @elements = $(@container).find(@selector)
         @screenSizeChange()
         $(window).resize =>
             @screenSizeChange()
 
     screenSizeChange: ->
-        width = $(@pictures).first().width()
-        height = $(@pictures).first().height()
+        width = $(@elements).first().width()
+        height = $(@elements).first().height()
         maxSize = Math.min width, height
 
         sizeName = ''
         for size in @sizes
             sizeName = size.name  if size.value > maxSize and sizeName == ''
 
-        @setSize(picture, sizeName) for picture in @pictures
+        @setSize(element, sizeName) for element in @elements
 
-    setSize: (picture, sizeName) ->
-        picture = $(picture)
-        url = picture.data(sizeName)
-        if @createImage
-            picture.html($('<img src="' + url + '" alt="" />'))
+    setSize: (element, sizeName) ->
+        element = $(element)
+        url = element.data(sizeName)
+        picture = element.find('img')
+        if picture.length == 0
+            element.append($('<img src="' + url + '" alt="" />'))
         else
-            picture.css "background-image", "url(" + url + ")"
+            picture.first().attr('src', url);
 
-album = new Album(".album", "li", [
+album = new Album(".album", "> li", [
     name: "xs"
     value: 300
 ,

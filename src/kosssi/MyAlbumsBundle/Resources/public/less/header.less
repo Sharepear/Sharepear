@@ -16,6 +16,12 @@ header {
         color: @writeColor;
     }
 
+    .remove-album form {
+        display: none;
+    }
+}
+
+.actions {
     a {
         display: inline-block;
         color: white;
@@ -33,38 +39,30 @@ header {
         }
     }
 
-    .remove-album form {
-        display: none;
+    a:hover {
+        color: @flashColor;
     }
 
-    .actions {
-        float: right;
+    .fa-lg {
+        height: @headerSize;
+        margin-top: -6px;
 
-        a:hover {
-            color: @flashColor;
-        }
-
-        .fa-lg {
-            height: @headerSize;
-            margin-top: -6px;
-
-            &:hover {
-                .fa-stack-2x {
-                    display: none;
-                }
-
-                .fa-stack-1x {
-                    display: block;
-                }
-            }
-
+        &:hover {
             .fa-stack-2x {
-                display: block;
+                display: none;
             }
 
             .fa-stack-1x {
-                display: none;
+                display: block;
             }
+        }
+
+        .fa-stack-2x {
+            display: block;
+        }
+
+        .fa-stack-1x {
+            display: none;
         }
     }
 }

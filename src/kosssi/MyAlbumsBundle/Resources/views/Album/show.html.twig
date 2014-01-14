@@ -30,9 +30,13 @@
                     data-xxl="{{ image.path | imagine_filter('xxl') }}"
                     data-orientation="{{ image.orientation }}"
                         >
-                    <noscript>
-                        <img alt="" src="{{ image.path | imagine_filter('m') }}" />
-                    </noscript>
+                    <ul class="actions">
+                        <li title="Tourner à gauche"><a href=""><i class="fa fa-rotate-left"></i></a></li>
+                        <li title="Tourner à droite"><a href=""><i class="fa fa-rotate-right"></i></a></li>
+                        <li title="Plein écran"><a href=""><i class="fa fa-arrows-alt"></i></a></li>
+                        <li title="Ajouter des photos"><a href=""><i class="fa fa-picture-o"></i></a></li>
+                        <li title="Supprimer"><a href=""><i class="fa fa-times-circle-o"></i></a></li>
+                    </ul>
                 </li>
             {% endfor %}
         </ul>

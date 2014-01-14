@@ -4,10 +4,12 @@
     {% block header %}
         <header{% block header_attr %}{% endblock %}>
             {% block header_content %}
-                <a href="{{ path('album') }}"><i class="fa fa-home"></i></a>
+                <div class="actions left">
+                    <a href="{{ path('album') }}"><i class="fa fa-home"></i></a>
+                </div>
                 <h1>{{ block('title') }}</h1>
                 {% spaceless %}
-                    <div class="actions">
+                    <div class="actions right">
                         <a href="">
                             <i class="fa fa-download"></i>
                         </a>
