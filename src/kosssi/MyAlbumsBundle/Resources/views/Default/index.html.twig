@@ -1,8 +1,0 @@
-{% extends '::base.html.twig' %}
-
-{% block body -%}
-    Hello {{ name }}!
-
-    <button id="submit-all">Submit all files</button>
-    <form action="{{ oneup_uploader_endpoint('album') }}" class="dropzone" id="my-dropzone"></form>
-{% endblock %}

@@ -5,7 +5,7 @@
         <header{% block header_attr %}{% endblock %}>
             {% block header_content %}
                 <div class="actions left">
-                    <a href="{{ path('album') }}"><i class="fa fa-home"></i></a>
+                    <a href="{{ path('homepage') }}"><i class="fa fa-home"></i></a>
                 </div>
                 <h1>{{ block('title') }}</h1>
                 {% spaceless %}
@@ -25,7 +25,7 @@
                         <div class="upload">
                             <div>
                                 <form action="{{ oneup_uploader_endpoint('album') }}" class="dropzone" id="my-dropzone">
-                                    <input type="hidden" name="album_id" value="{{ entity.id }}">
+                                    <input type="hidden" name="album_id" value="{% if album is defined %}{{ album.id }}{% endif %}">
                                     <span data-description="{{ "Drop files here to upload" | trans({}, "album") }}"></span>
                                 </form>
                             </div>
@@ -36,12 +36,14 @@
                                 <i class="fa fa-plus fa-stack-1x inverse"></i>
                             </span>
                         </a>
-                        <span class="remove-album">
-                            <a href="">
-                                <i class="fa fa-times-circle-o"></i>
-                            </a>
-                            {{ form(delete_form) }}
-                        </span>
+                        {% if entity is defined %}
+                            <span class="remove-album">
+                                <a href="">
+                                    <i class="fa fa-times-circle-o"></i>
+                                </a>
+                                {{ form(delete_form) }}
+                            </span>
+                        {% endif %}
                     </div>
                 {% endspaceless %}
             {% endblock %}

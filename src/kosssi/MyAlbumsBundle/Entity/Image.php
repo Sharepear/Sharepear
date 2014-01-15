@@ -23,6 +23,13 @@ class Image
     private $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
      * @var string $path
      *
      * @ORM\Column(name="path", type="string", length=255)
@@ -31,7 +38,7 @@ class Image
     private $path;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Album", inversedBy="images")
+     * @ORM\ManyToOne(targetEntity="Image", inversedBy="images")
      * @ORM\JoinColumn(name="album_id", referencedColumnName="id")
      */
     private $album;
@@ -44,6 +51,14 @@ class Image
     private $orientation;
 
     /**
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="album", cascade={"remove"})
+     * @Assert\Valid()
+     *
+     * @var ArrayCollection
+     */
+    private $images;
+
+    /**
      * @param mixed $album
      */
     public function setAlbum($album)
@@ -52,7 +67,7 @@ class Image
     }
 
     /**
-     * @return Album
+     * @return Image
      */
     public function getAlbum()
     {
@@ -105,5 +120,61 @@ class Image
     public function getOrientation()
     {
         return $this->orientation;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $images
+     */
+    public function setImages($images)
+    {
+        $this->images = $images;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * @param $image
+     *
+     * @return $this
+     */
+    public function addImage($image)
+    {
+        $this->images->add($image);
+
+        return $this;
+    }
+
+    /**
+     * @param $image
+     *
+     * @return $this
+     */
+    public function removeImage($image)
+    {
+        $this->images->removeElement($image);
+
+        return $this;
     }
 }

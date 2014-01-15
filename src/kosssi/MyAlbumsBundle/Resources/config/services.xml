@@ -32,7 +32,7 @@
         <!--</service>-->
         <service id="kosssi_my_albums.listener.upload" class="%kosssi_my_albums.listener.upload.class%">
             <argument type="service" id="doctrine.orm.entity_manager" />
-            <argument type="service" id="kosssi_my_albums.repository.album" />
+            <argument type="service" id="kosssi_my_albums.repository.image" />
             <argument type="service" id="kosssi_my_albums.helper.image" />
             <tag name="kernel.event_listener" event="oneup_uploader.post_persist" method="onUpload" />
         </service>

@@ -24,17 +24,17 @@ class UploadListener
     /**
      * @var AlbumRepository
      */
-    private $albumRepository;
+    private $imageRepository;
 
     /**
      * @var ImageHelper
      */
     private $imageHelper;
 
-    public function __construct($em, $albumRepository, $imageHelper)
+    public function __construct($em, $imageRepository, $imageHelper)
     {
         $this->em = $em;
-        $this->albumRepository = $albumRepository;
+        $this->imageRepository = $imageRepository;
         $this->imageHelper = $imageHelper;
     }
 
@@ -48,11 +48,12 @@ class UploadListener
         $imagine = $this->imageHelper->rotateAccordingExif($file);
 
         $image = new Image();
+        $image->setName($file->getFilename());
         $image->setPath('/uploads/album/' . $file->getFilename());
         $image->setOrientation($this->imageHelper->getOrientation($imagine));
         $this->em->persist($image);
 
-        if ($album = $this->albumRepository->findOneById($event->getRequest()->get('album_id'))) {
+        if ($album = $this->imageRepository->findOneById($event->getRequest()->get('album_id'))) {
             $response['AlbumId'] = $album->getId();
             $image->setAlbum($album);
             $album->addImage($image);

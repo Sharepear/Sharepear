@@ -25,13 +25,16 @@ class ImageController extends Controller
      */
     public function deleteAction(Image $image)
     {
-        $album = $image->getAlbum();
-
         $em = $this->getDoctrine()->getManager();
         $em->remove($image);
         $em->flush();
 
-        return $this->redirect($this->generateUrl('album_show', array('id' => $album->getId())));
+
+        if ($album = $image->getAlbum()) {
+            return $this->redirect($this->generateUrl('album_show', array('id' => $album->getId())));
+        } else {
+            return $this->redirect($this->generateUrl('homepage'));
+        }
     }
 
     /**
@@ -69,6 +72,10 @@ class ImageController extends Controller
         $em->persist($image);
         $em->flush();
 
-        return $this->redirect($this->generateUrl('album_show', array('id' => $image->getAlbum()->getId())));
+        if ($album = $image->getAlbum()) {
+            return $this->redirect($this->generateUrl('album_show', array('id' => $album->getId())));
+        } else {
+            return $this->redirect($this->generateUrl('homepage'));
+        }
     }
 }
