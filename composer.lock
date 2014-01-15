@@ -728,16 +728,16 @@
         },
         {
             "name": "jdorn/sql-formatter",
-            "version": "v1.2.16",
+            "version": "v1.2.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jdorn/sql-formatter.git",
-                "reference": "8859d664737492d313c34796731b35eca851b362"
+                "reference": "64990d96e0959dff8e059dfcdc1af130728d92bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jdorn/sql-formatter/zipball/8859d664737492d313c34796731b35eca851b362",
-                "reference": "8859d664737492d313c34796731b35eca851b362",
+                "url": "https://api.github.com/repos/jdorn/sql-formatter/zipball/64990d96e0959dff8e059dfcdc1af130728d92bc",
+                "reference": "64990d96e0959dff8e059dfcdc1af130728d92bc",
                 "shasum": ""
             },
             "require": {
@@ -774,7 +774,7 @@
                 "highlight",
                 "sql"
             ],
-            "time": "2013-11-27 22:51:13"
+            "time": "2014-01-12 16:20:24"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -976,12 +976,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/1up-lab/OneupUploaderBundle.git",
-                "reference": "16cfcc0006f64ad89908fe34d77265c554ae1b8e"
+                "reference": "1b6eb43ee3f5c4d8aa97f94f4a909dd0c74702f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/1up-lab/OneupUploaderBundle/zipball/16cfcc0006f64ad89908fe34d77265c554ae1b8e",
-                "reference": "16cfcc0006f64ad89908fe34d77265c554ae1b8e",
+                "url": "https://api.github.com/repos/1up-lab/OneupUploaderBundle/zipball/1b6eb43ee3f5c4d8aa97f94f4a909dd0c74702f4",
+                "reference": "1b6eb43ee3f5c4d8aa97f94f4a909dd0c74702f4",
                 "shasum": ""
             },
             "require": {
@@ -1033,7 +1033,7 @@
                 "plupload",
                 "upload"
             ],
-            "time": "2013-12-19 09:40:25"
+            "time": "2014-01-09 15:01:14"
         },
         {
             "name": "paranoiq/php-zip",
