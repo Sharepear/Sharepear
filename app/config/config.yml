@@ -53,6 +53,7 @@ doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
+        entity_listener_resolver: kosssi_my_albums.listener.resolver
 
 oneup_uploader:
     mappings:
@@ -79,7 +80,3 @@ liip_imagine:
         xxl:
             filters:
                 relative_resize: { widen: 1600 }
-
-#doctrine:
-#    orm:
-#        entity_listener_resolver: kosssi_my_albums.listener.resolver

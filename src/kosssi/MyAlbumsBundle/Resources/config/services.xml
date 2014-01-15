@@ -1,15 +1,16 @@
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
         <!-- helper -->
         <parameter key="kosssi_my_albums.helper.image.class">kosssi\MyAlbumsBundle\Helper\ImageHelper</parameter>
 
         <!-- listener -->
-        <!--<parameter key="kosssi_my_albums.listener.resolver.class">kosssi\MyAlbumsBundle\EntityListener\ListenerResolver</parameter>-->
+        <parameter key="kosssi_my_albums.listener.resolver.class">kosssi\MyAlbumsBundle\Entity\ListenerResolver</parameter>
+        <parameter key="kosssi_my_albums.listener.image.class">kosssi\MyAlbumsBundle\Entity\ImageListener</parameter>
         <parameter key="kosssi_my_albums.listener.upload.class">kosssi\MyAlbumsBundle\EventListener\UploadListener</parameter>
 
         <!-- repository -->
@@ -28,8 +29,11 @@
         </service>
 
         <!-- listener -->
-        <!--<service id="kosssi_my_albums.listener.resolver" class="kosssi_my_albums.listener.resolver.class">-->
-        <!--</service>-->
+        <service id="kosssi_my_albums.listener.resolver" class="%kosssi_my_albums.listener.resolver.class%">
+            <argument type="service" id="service_container"/>
+        </service>
+        <service id="kosssi_my_albums.listener.image" class="%kosssi_my_albums.listener.image.class%">
+        </service>
         <service id="kosssi_my_albums.listener.upload" class="%kosssi_my_albums.listener.upload.class%">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="kosssi_my_albums.repository.image" />
