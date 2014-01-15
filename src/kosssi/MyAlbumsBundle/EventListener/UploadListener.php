@@ -43,12 +43,13 @@ class UploadListener
         /** @var \Symfony\Component\HttpFoundation\File\File $file */
         $file = $event->getFile();
         $response = $event->getResponse();
+        $originalName = $event->getRequest()->files->all()['file']->getClientOriginalName();
 
         // rotate
         $imagine = $this->imageHelper->rotateAccordingExif($file);
 
         $image = new Image();
-        $image->setName($file->getFilename());
+        $image->setName(pathinfo($originalName, PATHINFO_FILENAME));
         $image->setPath('/uploads/album/' . $file->getFilename());
         $image->setOrientation($this->imageHelper->getOrientation($imagine));
         $this->em->persist($image);
