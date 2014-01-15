@@ -52,7 +52,7 @@ class Image
     }
 
     /**
-     * @return mixed
+     * @return Album
      */
     public function getAlbum()
     {
