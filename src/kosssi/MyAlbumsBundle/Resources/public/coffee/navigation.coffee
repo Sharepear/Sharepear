@@ -18,8 +18,8 @@ class Navigation
         @current.addClass('current');
         if autoplay
             @play
-        $(window).keydown (event) =>
-            @keyDown event
+        #$(window).keydown (event) =>
+        #    @keyDown event
 
     keyDown: (event) ->
         keyCode = event.keyCode or event.which

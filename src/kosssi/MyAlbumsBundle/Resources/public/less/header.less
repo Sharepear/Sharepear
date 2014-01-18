@@ -7,17 +7,33 @@ header {
     padding: 0 10px;
     background-color: @highlightBackgroundColor;
 
-    h1 {
-        padding: 10px;
+    h1, input {
         height: @headerSize;
-        line-height: 20px;
+        line-height: @headerSize;
         font-size: 20px;
         display: inline-block;
         color: @writeColor;
+        border-width: 0;
+        background-color: transparent;
+        font-weight: bold;
+        overflow: hidden;
+        width: 50%;
     }
 
     .remove-album form {
         display: none;
+    }
+
+    .edit-album {
+        display: inline;
+
+        h1 {display: inline-block;}
+        input {display: none;}
+
+        &:hover, &.change {
+            h1 {display: none;}
+            input {display: inline-block;}
+        }
     }
 }
 
