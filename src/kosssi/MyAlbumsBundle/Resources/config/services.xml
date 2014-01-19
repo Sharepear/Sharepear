@@ -33,6 +33,8 @@
             <argument type="service" id="service_container"/>
         </service>
         <service id="kosssi_my_albums.listener.image" class="%kosssi_my_albums.listener.image.class%">
+            <argument type="service" id="liip_imagine.cache.manager"/>
+            <argument type="service" id="filesystem"/>
         </service>
         <service id="kosssi_my_albums.listener.upload" class="%kosssi_my_albums.listener.upload.class%">
             <argument type="service" id="doctrine.orm.entity_manager" />

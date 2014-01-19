@@ -5,9 +5,8 @@ namespace kosssi\MyAlbumsBundle\EventListener;
 use Doctrine\ORM\EntityManager;
 use kosssi\MyAlbumsBundle\Entity\Image;
 use kosssi\MyAlbumsBundle\Helper\ImageHelper;
-use kosssi\MyAlbumsBundle\Repository\AlbumRepository;
+use kosssi\MyAlbumsBundle\Repository\ImageRepository;
 use Oneup\UploaderBundle\Event\PostPersistEvent;
-use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Class UploadListener
@@ -22,7 +21,7 @@ class UploadListener
     private $em;
 
     /**
-     * @var AlbumRepository
+     * @var ImageRepository
      */
     private $imageRepository;
 
