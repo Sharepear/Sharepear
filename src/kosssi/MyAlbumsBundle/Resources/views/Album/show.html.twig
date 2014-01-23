@@ -5,21 +5,8 @@
 {% block section_attr %} class="container"{% endblock %}
 {% block section_content %}
     {% if images|length > 0 %}
-        <div id="loader">
-            <div>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-            </div>
-        </div>
-        <ul id="album" class="album" style="display: none;">
+        <ul id="albumShow" class="album"></ul>
+        <ul id="album" class="album">
             {% for image in images %}
                 <li class="clearfix"
                     data-xs="{{ image.path | imagine_filter('xs') }}"
