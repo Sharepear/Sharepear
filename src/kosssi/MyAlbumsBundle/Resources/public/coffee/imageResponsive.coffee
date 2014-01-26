@@ -17,7 +17,7 @@ class ImageResponsive
             if size.value > maxSize and sizeName == ''
                 sizeName = size.name
         if sizeName == ''
-            return sizes[sizes.length - 1].name
+            return @sizes[@sizes.length - 1].name
         else
             return sizeName
 

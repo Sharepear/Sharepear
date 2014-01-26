@@ -1,0 +1,52 @@
+@import "../../app/less/variables.less";
+
+.actions {
+    li {
+        list-style-type: none;
+        display: inline-block;
+    }
+
+    a {
+        display: inline-block;
+        color: white;
+
+        .fa {
+            padding: 10px;
+            height: @headerSize;
+            font-size: 20px;
+            line-height: 20px;
+            text-align: center;
+        }
+
+        .fa-lg {
+            text-align: center;
+        }
+    }
+
+    a:hover {
+        color: @flashColor;
+    }
+
+    .fa-lg {
+        height: @headerSize;
+        margin-top: -6px;
+
+        &:hover {
+            .fa-stack-2x {
+                display: none;
+            }
+
+            .fa-stack-1x {
+                display: block;
+            }
+        }
+
+        .fa-stack-2x {
+            display: block;
+        }
+
+        .fa-stack-1x {
+            display: none;
+        }
+    }
+}
