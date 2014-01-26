@@ -29,7 +29,6 @@ class ImageController extends Controller
         $em->remove($image);
         $em->flush();
 
-
         if ($album = $image->getAlbum()) {
             return $this->redirect($this->generateUrl('album_show', array('id' => $album->getId())));
         } else {

@@ -1,5 +1,5 @@
 $(document).ready ->
-    container = $('#album');
+    container = $('#albumList');
     containerShow = $("#albumShow")
     containerShow.masonry()
     if container.length > 0

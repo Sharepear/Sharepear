@@ -5,6 +5,9 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
+        <!-- Form -->
+        <parameter key="kosssi_my_albums.form.type.album_name.class">kosssi\MyAlbumsBundle\Form\Type\AlbumNameType</parameter>
+
         <!-- helper -->
         <parameter key="kosssi_my_albums.helper.image.class">kosssi\MyAlbumsBundle\Helper\ImageHelper</parameter>
 
@@ -19,6 +22,11 @@
     </parameters>
 
     <services>
+        <!-- Form -->
+        <service id="kosssi_my_albums.form.type.album_name" class="%kosssi_my_albums.form.type.album_name.class%">
+            <tag name="form.type" alias="album_name" />
+        </service>
+
         <!-- helper -->
         <service id="kosssi_my_albums.helper.image" class="%kosssi_my_albums.helper.image.class%">
             <argument type="service" id="liip_imagine" />

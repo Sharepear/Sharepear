@@ -10,14 +10,7 @@
                         <a href="{{ path('album_show', {'id': album.album.id}) }}"><i class="fa fa-chevron-left"></i></a>
                     {% endif %}
                 </div>
-                {% if album is defined -%}
-                    <form class="edit-album" action="{{ path('album_edit', {'id': album.id}) }}" method="post">
-                        <h1>{{ block('title') }}</h1>
-                        <input type="text" name="title" value="{{ block('title') }}" />
-                    </form>
-                {% else %}
-                    <h1>{{ block('title') }}</h1>
-                {% endif %}
+                <h1>{{ block('title') }}</h1>
                 {% spaceless %}
                     <div class="actions right">
                         <a href="">

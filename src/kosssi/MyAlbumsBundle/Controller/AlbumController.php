@@ -41,32 +41,41 @@ class AlbumController extends Controller
         $imageRepository = $this->get('kosssi_my_albums.repository.image');
         $images = $imageRepository->findBy(array('album' => $album));
 
-        return compact('album', 'images');
+        $form = $this->createForm('album_name', $album);
+
+        return array(
+            'album'  => $album,
+            'images' => $images,
+            'form'   => $form->createView(),
+        );
     }
 
     /**
-     * Edit album
+     * Edit album name
      *
      * @param Request $request
      * @param Image   $album
      *
-     * @Route("/album/edit/{id}", name="album_edit")
+     * @Route("/album/name/edit/{id}", name="album_name_edit")
      *
-     * @return string
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function editAction(Request $request, Image $album)
+    public function nameEditAction(Request $request, Image $album)
     {
-        $title = '';
+        $form = $this->createForm('album_name', $album);
+        $form->handleRequest($request);
 
-        if ($title = $request->get('title')) {
-            $album->setName($title);
-
-            // save entity
+        if ($form->isValid()) {
+            /** @var \Doctrine\Common\Persistence\ObjectManager $em */
             $em = $this->getDoctrine()->getManager();
             $em->persist($album);
             $em->flush();
         }
 
-        return new Response($title);
+        if ($request->isXmlHttpRequest()) {
+            return new Response($album->getName());
+        } else {
+            return $this->redirect($this->generateUrl('album_show', array('id' => $album->getId())));
+        }
     }
 }

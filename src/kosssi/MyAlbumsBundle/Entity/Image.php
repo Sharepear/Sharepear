@@ -16,7 +16,7 @@ class Image
     const ORIENTATION_PORTRAIT = "portrait";
 
     /**
-     * @var integer $id
+     * @var integer
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -28,18 +28,23 @@ class Image
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     *
+     * @Assert\NotBlank(groups={"name"})
      */
     private $name;
 
     /**
-     * @var string $path
+     * @var string
      *
      * @ORM\Column(name="path", type="string", length=255)
+     *
      * @Assert\Image()
      */
     private $path;
 
     /**
+     * @var Image
+     *
      * @ORM\ManyToOne(targetEntity="Image", inversedBy="images")
      * @ORM\JoinColumn(name="album_id", referencedColumnName="id")
      */
@@ -53,10 +58,11 @@ class Image
     private $orientation;
 
     /**
-     * @ORM\OneToMany(targetEntity="Image", mappedBy="album", cascade={"remove"})
-     * @Assert\Valid()
-     *
      * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="album", cascade={"remove"})
+     *
+     * @Assert\Valid()
      */
     private $images;
 

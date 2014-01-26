@@ -1,11 +1,12 @@
 class EditAlbum
     container: ''
-    title:     ''
-    element:   []
+    title:     {}
+    element:   {}
 
     constructor: (container) ->
         @container = $(container)
-        @element = @container.find('input')
+        @element = @container.find('input[type=text]')
+        @title = $('h1')
 
         @element.keyup =>
             @container.addClass('change')
@@ -23,7 +24,8 @@ class EditAlbum
             type: @container.attr("method") # la méthode indiquée dans le formulaire (get ou post)
             data: @container.serialize() # je sérialise les données (voir plus loin), ici les $_POST
             success: (html) => # je récupère la réponse du fichier PHP
-                @container.find('h1').html html # j'affiche cette réponse
+                @title.html html # j'affiche cette réponse
                 @container.removeClass('change')
+                document.title = html;
 
-editAlbum = new EditAlbum(".edit-album")
+editAlbum = new EditAlbum("form[name=album_name]")

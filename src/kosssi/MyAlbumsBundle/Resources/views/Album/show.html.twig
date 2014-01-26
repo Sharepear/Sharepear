@@ -3,10 +3,14 @@
 {% block title %}{% if album is defined %}{{ album.name }}{% else %}{{ 'homepage'|trans({}, 'album') }}{% endif %}{% endblock %}
 
 {% block section_attr %} class="container"{% endblock %}
+
 {% block section_content %}
+    {% if form is defined %}
+        {{ form(form, {'action': path('album_name_edit', {'id': album.id})}) }}
+    {% endif %}
     {% if images|length > 0 %}
         <ul id="albumShow" class="album"></ul>
-        <ul id="album" class="album">
+        <ul id="albumList" class="album">
             {% for image in images %}
                 <li class="clearfix"
                     data-xs="{{ image.path | imagine_filter('xs') }}"
