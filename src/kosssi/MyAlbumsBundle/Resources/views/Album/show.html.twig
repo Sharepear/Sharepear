@@ -1,8 +1,4 @@
-{% extends 'kosssiMyAlbumsBundle::base.html.twig' %}
-
-{% block title %}{% if album is defined %}{{ album.name }}{% else %}{{ 'homepage'|trans({}, 'album') }}{% endif %}{% endblock %}
-
-{% block section_attr %} class="container"{% endblock %}
+{% extends 'kosssiMyAlbumsBundle:Album:base.html.twig' %}
 
 {% block section_content %}
     {% if form is defined %}
@@ -25,7 +21,7 @@
                     <ul class="actions">
                         <li title="Tourner à gauche"><a href="{{ path('image_rotation_right', {'id': image.id}) }}"><i class="fa fa-rotate-left"></i></a></li>
                         <li title="Tourner à droite"><a href="{{ path('image_rotation_left', {'id': image.id}) }}"><i class="fa fa-rotate-right"></i></a></li>
-                        <li title="Plein écran"><a href=""><i class="fa fa-arrows-alt"></i></a></li>
+                        <li title="Plein écran"><a href="{{ path('image_show', {'id': image.id}) }}"><i class="fa fa-expand"></i></a></li>
                         <li title="Ajouter des photos"><a href="{{ path('album_show', {'id': image.id}) }}"><i class="fa fa-folder-open"></i></a></li>
                         <li title="Supprimer"><a href="{{ path('image_delete', {'id': image.id}) }}"><i class="fa fa-times-circle-o"></i></a></li>
                     </ul>

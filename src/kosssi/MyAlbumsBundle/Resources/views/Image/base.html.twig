@@ -1,0 +1,15 @@
+{% extends 'kosssiMyAlbumsBundle::base.html.twig' %}
+
+{% block title %}{{ image.name }}{% endblock %}
+
+{% block section_attr %} class="container"{% endblock %}
+
+{% block header_content %}
+    <div class="actions left">
+        <a href="{{ path('homepage') }}"><i class="fa fa-home"></i></a>
+        {% if album is defined and album.album is not null -%}
+            <a href="{{ path('album_show', {'id': album.album.id}) }}"><i class="fa fa-chevron-left"></i></a>
+        {% endif %}
+    </div>
+    <h1>{{ block('title') }}</h1>
+{% endblock %}

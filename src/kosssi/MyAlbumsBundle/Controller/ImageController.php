@@ -19,7 +19,20 @@ use kosssi\MyAlbumsBundle\Form\AlbumType;
 class ImageController extends Controller
 {
     /**
-     * Deletes a Image entity.
+     * Show an image.
+     *
+     * @Route("/{id}", name="image_show")
+     * @template()
+     */
+    public function showAction(Image $image)
+    {
+        return array(
+            'image' => $image,
+        );
+    }
+
+    /**
+     * Deletes an Image entity.
      *
      * @Route("/delete/{id}", name="image_delete")
      */
