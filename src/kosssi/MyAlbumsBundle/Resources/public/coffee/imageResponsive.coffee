@@ -4,11 +4,7 @@ class ImageResponsive
     sizes:    []
 
     constructor: (@selector, @sizes) ->
-        @elements = $ @selector
-        for element in @elements
-            @updateSize element
-            $(window).resize =>
-                @updateSize element
+        @update
 
     getSizeName: (element) ->
         maxSize = element.width()
@@ -29,7 +25,14 @@ class ImageResponsive
             element.css 'background-image', 'url(' + url + ')'
             element.data 'actual-size', sizeName
 
-ImageResponsive = new ImageResponsive(".image-responsive", [
+    update: ->
+        @elements = $ @selector
+        for element in @elements
+            @updateSize element
+            $(window).resize =>
+                @updateSize element
+
+imageResponsive = new ImageResponsive(".image-responsive", [
     name: "xs"
     value: 300
 ,

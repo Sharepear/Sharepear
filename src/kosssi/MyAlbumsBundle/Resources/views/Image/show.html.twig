@@ -1,4 +1,5 @@
-{% extends 'kosssiMyAlbumsBundle:Image:base.html.twig' %}
+{% set layout = app.request.isXmlHttpRequest ? 'kosssiMyAlbumsBundle::baseAjax.html.twig' : 'kosssiMyAlbumsBundle:Image:base.html.twig' %}
+{% extends layout %}
 
 {% block section_content %}
     <div class="image-zoom image-responsive clearfix"

@@ -1,0 +1,19 @@
+@import "../../app/less/mixin.less";
+@import "../../app/less/variables.less";
+
+#fullscreenContent {
+    .fixed();
+    display: none;
+    padding: 20px 20px 60px;
+    background-color: @backgroundColor;
+
+    .actions {
+        .fixed(auto, 0, 10px, 0);
+        text-align: center;
+
+        li {
+            background-color: @highlightBackgroundColor;
+            margin-right: -3px;
+        }
+    }
+}
