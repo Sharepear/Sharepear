@@ -1,24 +1,30 @@
 class ImageFullscreen
     selector: ''
+    containers: {}
     elements: {}
 
-    constructor: (@selector) ->
-        @elements = $ @selector
-        for element in @elements
+    constructor: (containers, @selector) ->
+        @containers = $ containers
+        for element in @containers
             @addFullscreen element
 
     addFullscreen: (element) ->
         element = $ element
-        element.click (e) ->
+        btn = element.find @selector
+        btn.click (e) =>
             e.preventDefault()
             $.ajax
-                url: $(this).attr("href") # le nom du fichier indiqué dans le formulaire
-                success: (html) => # je récupère la réponse du fichier PHP
+                url: $(btn).attr("href")
+                success: (html) =>
+                    element.addClass "fullscreen"
                     content = $ "#fullscreenContent"
                     content.html(html).show()
                     imageResponsive.update()
+                    content.find('.show').removeClass('show')
                     content.find(".removeFullscreen").click (e) ->
                         e.preventDefault()
                         content.hide().html ""
+                    return
+        return
 
-imageFullscreen = new ImageFullscreen(".imageFullscreen")
+imageFullscreen = new ImageFullscreen("#albumList > li", ".imageFullscreen")

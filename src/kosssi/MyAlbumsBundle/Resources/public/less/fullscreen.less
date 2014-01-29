@@ -4,12 +4,20 @@
 #fullscreenContent {
     .fixed();
     display: none;
-    padding: 20px 20px 60px;
+    padding: 20px;
     background-color: @backgroundColor;
 
     .actions {
-        .fixed(auto, 0, 10px, 0);
+        .fixed(auto, 0, -30px, 0);
         text-align: center;
+        padding-top: 50px;
+        transition-duration: 1s;
+
+        &:hover, &.show {
+            bottom: 0;
+            padding-top: 20px;
+            padding-bottom: 10px;
+        }
 
         li {
             background-color: @highlightBackgroundColor;
