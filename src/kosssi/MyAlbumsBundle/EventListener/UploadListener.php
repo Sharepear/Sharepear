@@ -54,7 +54,6 @@ class UploadListener
         $this->em->persist($image);
 
         if ($album = $this->imageRepository->findOneById($event->getRequest()->get('album_id'))) {
-            $response['AlbumId'] = $album->getId();
             $image->setAlbum($album);
             $album->addImage($image);
             $this->em->persist($album);
@@ -62,6 +61,6 @@ class UploadListener
 
         $this->em->flush();
 
-        $response['ImageId'] = $image->getId();
+        $response['image'] = "Boom";
     }
 }
