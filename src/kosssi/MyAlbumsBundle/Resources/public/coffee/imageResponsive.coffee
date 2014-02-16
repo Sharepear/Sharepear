@@ -4,7 +4,10 @@ class ImageResponsive
     sizes:    []
 
     constructor: (@selector, @sizes) ->
-        @update
+        @update()
+
+        $(window).resize =>
+            @update()
 
     getSizeName: (element) ->
         maxSize = element.width()
@@ -29,10 +32,15 @@ class ImageResponsive
         @elements = $ @selector
         for element in @elements
             @updateSize element
-            $(window).resize =>
-                @updateSize element
 
-imageResponsive = new ImageResponsive(".image-responsive", [
+    desactivate: ->
+        for element in @elements
+            element.removeAttribute 'style'
+            $(element).data 'actual-size', ''
+        @update()
+
+
+imageResponsive = new ImageResponsive(".current", [
     name: "xs"
     value: 300
 ,

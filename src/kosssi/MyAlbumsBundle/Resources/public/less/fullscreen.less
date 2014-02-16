@@ -1,27 +1,25 @@
 @import "../../app/less/mixin.less";
 @import "../../app/less/variables.less";
 
-#fullscreenContent {
+.fullscreen {
     .fixed();
-    display: none;
     padding: 20px;
     background-color: @backgroundColor;
 
-    .actions {
-        .fixed(auto, 0, -30px, 0);
-        text-align: center;
-        padding-top: 50px;
-        transition-duration: 1s;
+    > * {
+        display: none;
+    }
 
-        &:hover, &.show {
-            bottom: 0;
-            padding-top: 20px;
-            padding-bottom: 10px;
-        }
+    .current {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center center;
 
-        li {
-            background-color: @highlightBackgroundColor;
-            margin-right: -3px;
+        img, .actions {
+            display: none;
         }
     }
 }

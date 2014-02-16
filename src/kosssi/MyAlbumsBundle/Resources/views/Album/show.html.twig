@@ -4,52 +4,11 @@
     {% if form is defined %}
         {{ form(form, {'action': path('album_name_edit', {'id': album.id})}) }}
     {% endif %}
-    {% if images|length > 0 %}
-        <ul id="albumShow" class="album"></ul>
-        <ul id="albumList" class="album">
-            {% for image in images %}
-                <li class="clearfix"
-                    data-xs="{{ image.path | imagine_filter('xs') }}"
-                    data-s="{{ image.path | imagine_filter('s') }}"
-                    data-m="{{ image.path | imagine_filter('m') }}"
-                    data-l="{{ image.path | imagine_filter('l') }}"
-                    data-xl="{{ image.path | imagine_filter('xl') }}"
-                    data-xxl="{{ image.path | imagine_filter('xxl') }}"
-                    data-orientation="{{ image.orientation }}"
-                    title="{{ image.name }}"
-                        >
-                    <ul class="actions">
-                        <li title="Tourner à gauche">
-                            <a href="{{ path('image_rotation_right', {'id': image.id}) }}">
-                                <i class="fa fa-rotate-left"></i>
-                            </a>
-                        </li>
-                        <li title="Tourner à droite">
-                            <a href="{{ path('image_rotation_left', {'id': image.id}) }}">
-                                <i class="fa fa-rotate-right"></i>
-                            </a>
-                        </li>
-                        <li title="Plein écran">
-                            <a class="imageFullscreen" href="{{ path('image_show', {'id': image.id}) }}">
-                                <i class="fa fa-expand"></i>
-                            </a>
-                        </li>
-                        <li title="Ajouter des photos">
-                            <a href="{{ path('album_show', {'id': image.id}) }}">
-                                <i class="fa fa-folder-open"></i>
-                            </a>
-                        </li>
-                        <li title="Supprimer">
-                            <a href="{{ path('image_delete', {'id': image.id}) }}">
-                                <i class="fa fa-times-circle-o"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            {% endfor %}
-        </ul>
-        <div id="fullscreenContent">
-
-        </div>
-    {% endif %}
+    <ul id="albumShow" class="album"></ul>
+    <ul id="albumList" class="album">
+        {% for image in images %}
+            {% include 'kosssiMyAlbumsBundle:Image:article.html.twig' with {'image': image, 'element': 'li'} only %}
+        {% endfor %}
+    </ul>
+    <div id="fullscreenContent"></div>
 {% endblock %}

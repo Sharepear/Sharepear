@@ -61,6 +61,6 @@ class UploadListener
 
         $this->em->flush();
 
-        $response['image'] = "Boom";
+        $response['image'] = $image->getId();
     }
 }

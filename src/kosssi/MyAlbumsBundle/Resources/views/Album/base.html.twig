@@ -18,13 +18,13 @@
                 <i class="fa fa-download"></i>
             </a>
             <a href="" class="show-upload" title="{{ "Add photos" | trans({}, "album") }}">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-picture-o fa-stack-2x"></i>
-                                <i class="fa fa-plus fa-stack-1x inverse"></i>
-                            </span>
-                            <span class="fa-stack fa-lg" style="display: none">
-                                <i class="fa fa-minus"></i>
-                            </span>
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-picture-o fa-stack-2x"></i>
+                    <i class="fa fa-plus fa-stack-1x inverse"></i>
+                </span>
+                <span class="fa-stack fa-lg" style="display: none">
+                    <i class="fa fa-minus"></i>
+                </span>
             </a>
             <div class="upload">
                 <div>
@@ -35,18 +35,18 @@
                 </div>
             </div>
             <a href="" title="{{ "Create a photo album" | trans({}, "album") }}">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-book fa-stack-2x"></i>
-                                <i class="fa fa-plus fa-stack-1x inverse"></i>
-                            </span>
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-book fa-stack-2x"></i>
+                    <i class="fa fa-plus fa-stack-1x inverse"></i>
+                </span>
             </a>
             {% if entity is defined %}
                 <span class="remove-album">
-                                <a href="">
-                                    <i class="fa fa-times-circle-o"></i>
-                                </a>
+                    <a href="">
+                        <i class="fa fa-times-circle-o"></i>
+                    </a>
                     {{ form(delete_form) }}
-                            </span>
+                </span>
             {% endif %}
         </div>
     {% endspaceless %}

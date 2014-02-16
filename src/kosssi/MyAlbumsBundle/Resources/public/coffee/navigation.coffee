@@ -68,4 +68,4 @@ class Navigation
         @isPlay = false
         clearTimeout @playTimeout
 
-navigation = new Navigation(".album", "li", 3000, false)
+# navigation = new Navigation(".album", "li", 3000, false)

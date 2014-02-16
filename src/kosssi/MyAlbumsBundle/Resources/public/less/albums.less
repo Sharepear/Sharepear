@@ -14,10 +14,12 @@
     height: 100%;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    position: relative;
 
     > li {
         list-style: none;
-        padding: @padding;
+        margin: 0;
+        padding: 0;
         border-width: 0;
         width: 20%;
         float: left;
@@ -25,9 +27,11 @@
         background-size: cover;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
+        overflow: hidden;
 
         img {
             width: 100%;
+            padding: 0 5px 5px 0;
         }
 
         ul {
