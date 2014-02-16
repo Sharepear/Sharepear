@@ -32,6 +32,7 @@
         img {
             width: 100%;
             padding: 0 5px 5px 0;
+            cursor: pointer;
         }
 
         ul {
@@ -43,7 +44,7 @@
 
             ul {
                 height: @headerSize;
-                .absolute(auto, @padding, @padding, @padding);
+                .absolute(auto, @padding + 5, @padding + 5, @padding);
                 display: block;
                 background-color: fade(@highlightBackgroundColor, 30%);
                 margin: 0 auto 4px;

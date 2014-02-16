@@ -5,18 +5,18 @@
     box-sizing: @boxmodel;
 }
 
-.position(@type, @top: 0, @left: 0, @bottom: 0, @right: 0) {
+.position(@type, @top: 0, @right: 0, @bottom: 0, @left: 0) {
     position: @type;
     top: @top;
-    left: @left;
-    bottom: @bottom;
     right: @right;
+    bottom: @bottom;
+    left: @left;
 }
 
-.absolute(@top: 0, @left: 0, @bottom: 0, @right: 0) {
-    .position(absolute, @top, @left, @bottom, @right);
+.absolute(@top: 0, @right: 0, @bottom: 0, @left: 0) {
+    .position(absolute, @top, @right, @bottom, @left);
 }
 
-.fixed(@top: 0, @left: 0, @bottom: 0, @right: 0) {
-    .position(fixed, @top, @left, @bottom, @right);
+.fixed(@top: 0, @right: 0, @bottom: 0, @left: 0) {
+    .position(fixed, @top, @right, @bottom, @left);
 }

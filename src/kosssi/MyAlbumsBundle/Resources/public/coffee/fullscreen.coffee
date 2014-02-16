@@ -42,4 +42,4 @@ class ImageFullscreen
         myMasonry.active()
 
 
-imageFullscreen = new ImageFullscreen "#albumShow", ".album > li", ".imageFullscreen"
+imageFullscreen = new ImageFullscreen "#albumShow", ".album > li", "img"

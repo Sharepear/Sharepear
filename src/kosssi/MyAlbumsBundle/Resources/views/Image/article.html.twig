@@ -23,16 +23,6 @@
                 </a>
             </li>
             <li>
-                <a title="Plein écran" class="imageFullscreen"
-                   href="{{ path('image_show', {'id': image.id}) }}">
-                    <i class="fa fa-expand"></i>
-                </a>
-                <a title="Quitter plein écran" class="removeFullscreen"
-                   href="{% if image.album is not null %}{{ path('album_show', {'id': image.album.id}) }}{% else %}{{ path('homepage') }}{% endif %}">
-                    <i class="fa fa-compress"></i>
-                </a>
-            </li>
-            <li>
                 <a title="Ajouter des photos" href="{{ path('album_show', {'id': image.id}) }}">
                     <i class="fa fa-folder-open"></i>
                 </a>
