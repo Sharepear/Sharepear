@@ -6,6 +6,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('livereloadx');
+    grunt.loadNpmTasks('grunt-php');
 
     // Création du répertoire d'image pour l'application s'il n'existe pas.
     grunt.file.mkdir('app/Resources/public/images/');
@@ -119,11 +121,27 @@ module.exports = function(grunt) {
                 files: ['web/bundles/*/coffee/*.coffee'],
                 tasks: ['javascript']
             }
+        },
+
+        livereloadx: {
+            port: 8000,
+            proxy: "http://localhost:35729/",
+            dir: 'web/built'
+        },
+
+        php: {
+            watch: {
+                options:{
+                    port: 35729,
+                    router: '../vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/config/router_dev.php',
+                    base: 'web/'
+                }
+            }
         }
     });
 
     // Default task(s).
-    grunt.registerTask('default', ['concat:bowercss', 'css', 'concat:bowerjs', 'javascript']);
+    grunt.registerTask('default', ['concat:bowercss', 'css', 'concat:bowerjs', 'javascript', 'php:watch', 'livereloadx', 'watch']);
     grunt.registerTask('css', ['less:discovering', 'less', 'concat:css', 'cssmin']);
     grunt.registerTask('javascript', ['coffee:discovering', 'coffee', 'concat:js', 'uglify']);
     grunt.registerTask('init', ['symlink', 'default']);

@@ -32,12 +32,11 @@ git clone git@github.com:chlorius/MyAlbums.git
 cd MyAlbums
 cp app/config/parameter.yml.dist app/config/parameter.yml
 composer install
-npm install
-bower install
 app/console doctrine:database:create
 app/console doctrine:schema:create
 app/console assets:install --symlink
-grunt init
+npm install
+npm start
 ```
 
 ## Réinitialiser
@@ -51,4 +50,4 @@ app/console doctrine:schema:create
 ## Commande Grunt
 
 - grunt init : pour initialiser l'ensemble des taches
-- grunt watch : pour compiler automatiquement les fichiers LESS et COFFEE en dev
+- grunt : pour compiler automatiquement les fichiers LESS et COFFEE et livereload son navigateur en dev
