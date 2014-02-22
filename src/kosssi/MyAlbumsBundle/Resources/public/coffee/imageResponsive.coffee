@@ -40,22 +40,4 @@ class ImageResponsive
         @update()
 
 
-imageResponsive = new ImageResponsive(".current", [
-    name: "xs"
-    value: 300
-,
-    name: "s"
-    value: 480
-,
-    name: "m"
-    value: 768
-,
-    name: "l"
-    value: 992
-,
-    name: "xl"
-    value: 1382
-,
-    name: "xxl"
-    value: 1600
-])
+imageResponsive = new ImageResponsive(".current", filters)

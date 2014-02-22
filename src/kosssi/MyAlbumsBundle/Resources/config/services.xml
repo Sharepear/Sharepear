@@ -20,6 +20,9 @@
         <!-- repository -->
         <parameter key="kosssi_my_albums.repository.album.class">kosssi\MyAlbumsBundle\Repository\AlbumRepository</parameter>
         <parameter key="kosssi_my_albums.repository.image.class">kosssi\MyAlbumsBundle\Repository\ImageRepository</parameter>
+
+        <!-- twig -->
+        <parameter key="kosssi_my_albums.twig.data_filters.class">kosssi\MyAlbumsBundle\Twig\DataFiltersExtension</parameter>
     </parameters>
 
     <services>
@@ -32,10 +35,12 @@
         <service id="kosssi_my_albums.helper.image_cache" class="%kosssi_my_albums.helper.image_cache.class%">
             <argument type="service" id="filesystem" />
             <argument type="service" id="liip_imagine.cache.manager" />
+            <argument type="service" id="liip_imagine.filter.configuration"/>
         </service>
         <service id="kosssi_my_albums.helper.image_rotate" class="%kosssi_my_albums.helper.image_rotate.class%">
             <argument type="service" id="liip_imagine" />
             <argument type="service" id="liip_imagine.cache.manager" />
+            <argument type="service" id="liip_imagine.filter.configuration"/>
         </service>
 
         <!-- listener -->
@@ -43,8 +48,7 @@
             <argument type="service" id="service_container"/>
         </service>
         <service id="kosssi_my_albums.listener.image" class="%kosssi_my_albums.listener.image.class%">
-            <argument type="service" id="liip_imagine.cache.manager"/>
-            <argument type="service" id="filesystem"/>
+            <argument type="service" id="kosssi_my_albums.helper.image_cache"/>
         </service>
         <service id="kosssi_my_albums.listener.upload" class="%kosssi_my_albums.listener.upload.class%">
             <argument type="service" id="doctrine.orm.entity_manager" />
@@ -65,6 +69,13 @@
                  factory-method="getRepository"
                 >
             <argument>kosssiMyAlbumsBundle:Image</argument>
+        </service>
+
+        <!-- twig -->
+        <service id="kosssi_my_albums.twig.data_filters" class="%kosssi_my_albums.twig.data_filters.class%">
+            <argument type="service" id="liip_imagine.cache.manager" />
+            <argument type="service" id="liip_imagine.filter.configuration"/>
+            <tag name="twig.extension" />
         </service>
     </services>
 </container>

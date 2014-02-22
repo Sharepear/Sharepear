@@ -44,25 +44,7 @@ class Album
         sizeName = @getSizeName $ element
         @setSize element, sizeName
 
-album = new Album(".album", "> li", [
-    name: "xs"
-    value: 300
-,
-    name: "s"
-    value: 480
-,
-    name: "m"
-    value: 768
-,
-    name: "l"
-    value: 992
-,
-    name: "xl"
-    value: 1382
-,
-    name: "xxl"
-    value: 1600
-], true)
+album = new Album(".album", "> li", filters, true)
 
 $(".remove-album a").click (e) ->
     e.preventDefault();

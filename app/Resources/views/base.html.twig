@@ -9,6 +9,11 @@
     </head>
     <body>
         {% block body %}{% endblock %}
-        <script src="/built/all.js"></script>
+        {% block javadcripts %}
+            <script>
+                var filters = {{ getFiltersConfiguration()|raw }};
+            </script>
+            <script src="/built/all.js"></script>
+        {% endblock %}
     </body>
 </html>
