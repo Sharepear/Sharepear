@@ -70,7 +70,7 @@ class ImageController extends Controller
         $this->get('kosssi_my_albums.helper.image_rotate')->rotate($image, $rotation);
 
         // remove cache
-        $this->get('kosssi_my_albums.helper.image_cache')->remove($image->getPath());
+        $this->get('kosssi_my_albums.helper.image_cache')->removeFilters($image->getPath());
 
         // save entity
         $em = $this->getDoctrine()->getManager();

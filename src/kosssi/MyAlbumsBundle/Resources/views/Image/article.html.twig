@@ -1,13 +1,7 @@
 {% set element = element|default('article') -%}
 
 {% spaceless %}
-    <{{ element }} class="clearfix"
-             data-xs="{{ image.path | imagine_filter('xs') }}"
-             data-s="{{ image.path | imagine_filter('s') }}"
-             data-m="{{ image.path | imagine_filter('m') }}"
-             data-l="{{ image.path | imagine_filter('l') }}"
-             data-xl="{{ image.path | imagine_filter('xl') }}"
-             data-xxl="{{ image.path | imagine_filter('xxl') }}"
+    <{{ element }} class="clearfix" {{ getDataFilters(image.path)|raw }}
              data-orientation="{{ image.orientation }}"
              title="{{ image.name }}"
             >

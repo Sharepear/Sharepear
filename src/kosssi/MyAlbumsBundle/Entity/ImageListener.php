@@ -13,19 +13,16 @@ use Doctrine\ORM\Event\PreUpdateEventArgs;
 class ImageListener
 {
     /**
-     * @var \Liip\ImagineBundle\Imagine\Cache\CacheManager
+     * @var \kosssi\MyAlbumsBundle\Helper\ImageCacheHelper
      */
-    private $cacheManager;
+    private $imageCacheHelper;
 
     /**
-     * @var \Symfony\Component\Filesystem\Filesystem
+     * @param \kosssi\MyAlbumsBundle\Helper\ImageCacheHelper $imageCacheHelper
      */
-    private $fs;
-
-    public function __construct($cacheManager, $fs)
+    public function __construct($imageCacheHelper)
     {
-        $this->cacheManager = $cacheManager;
-        $this->fs = $fs;
+        $this->imageCacheHelper = $imageCacheHelper;
     }
 
     /**
@@ -57,14 +54,6 @@ class ImageListener
      */
     public function postRemove(Image $image, LifecycleEventArgs $event)
     {
-        $webRoot = $this->cacheManager->getWebRoot();
-
-        // remove cache
-        foreach (['xs', 's', 'm', 'l', 'xl', 'xxl'] as $filter) {
-            $path = $this->cacheManager->getBrowserPath($image->getPath(), $filter);
-            $this->fs->remove($webRoot . $path);
-        }
-
-        $this->fs->remove($webRoot . $image->getPath());
+        $this->imageCacheHelper->removeImage($image);
     }
 }
