@@ -2,10 +2,7 @@
 
 namespace kosssi\MyAlbumsBundle\EventListener;
 
-use Doctrine\ORM\EntityManager;
 use kosssi\MyAlbumsBundle\Entity\Image;
-use kosssi\MyAlbumsBundle\Helper\ImageHelper;
-use kosssi\MyAlbumsBundle\Repository\ImageRepository;
 use Oneup\UploaderBundle\Event\PostPersistEvent;
 
 /**
@@ -16,27 +13,35 @@ use Oneup\UploaderBundle\Event\PostPersistEvent;
 class UploadListener
 {
     /**
-     * @var EntityManager
+     * @var \Doctrine\ORM\EntityManager
      */
     private $em;
 
     /**
-     * @var ImageRepository
+     * @var \kosssi\MyAlbumsBundle\Repository\ImageRepository
      */
     private $imageRepository;
 
     /**
-     * @var ImageHelper
+     * @var \kosssi\MyAlbumsBundle\Helper\ImageRotateHelper
      */
-    private $imageHelper;
+    private $imageRotate;
 
-    public function __construct($em, $imageRepository, $imageHelper)
+    /**
+     * @param \Doctrine\ORM\EntityManager                       $em
+     * @param \kosssi\MyAlbumsBundle\Repository\ImageRepository $imageRepository
+     * @param \kosssi\MyAlbumsBundle\Helper\ImageRotateHelper   $imageRotate
+     */
+    public function __construct($em, $imageRepository, $imageRotate)
     {
         $this->em = $em;
         $this->imageRepository = $imageRepository;
-        $this->imageHelper = $imageHelper;
+        $this->imageRotate = $imageRotate;
     }
 
+    /**
+     * @param PostPersistEvent $event
+     */
     public function onUpload(PostPersistEvent $event)
     {
         /** @var \Symfony\Component\HttpFoundation\File\File $file */
@@ -45,14 +50,15 @@ class UploadListener
         $originalName = $event->getRequest()->files->all()['file']->getClientOriginalName();
 
         // rotate
-        $imagine = $this->imageHelper->rotateAccordingExif($file);
+        $imagine = $this->imageRotate->rotateAccordingExif($file);
 
         $image = new Image();
         $image->setName(pathinfo($originalName, PATHINFO_FILENAME));
         $image->setPath('/uploads/album/' . $file->getFilename());
-        $image->setOrientation($this->imageHelper->getOrientation($imagine));
+        $image->setOrientation($this->getOrientation($imagine));
         $this->em->persist($image);
 
+        /** @var Image $album */
         if ($album = $this->imageRepository->findOneById($event->getRequest()->get('album_id'))) {
             $image->setAlbum($album);
             $album->addImage($image);
@@ -62,5 +68,21 @@ class UploadListener
         $this->em->flush();
 
         $response['image'] = $image->getId();
+    }
+
+    /**
+     * @param \Imagine\Gd\Image|\Imagine\Image\ImageInterface $image
+     *
+     * @return string
+     */
+    public function getOrientation($image)
+    {
+        $size = $image->getSize();
+
+        if ($size->getWidth() > $size->getHeight()) {
+            return Image::ORIENTATION_LANDSCAPE;
+        } else {
+            return Image::ORIENTATION_PORTRAIT;
+        }
     }
 }

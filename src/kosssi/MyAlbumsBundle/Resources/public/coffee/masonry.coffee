@@ -16,7 +16,6 @@ class MyMasonry
         imgLoad = imagesLoaded @container
         imgLoad.on 'progress', (instance, image) =>
             if image.isLoaded
-                console.log image.img
                 element = image.img.parentNode
             @containerShow.appendChild element
         imgLoad.on 'always', (instance) =>

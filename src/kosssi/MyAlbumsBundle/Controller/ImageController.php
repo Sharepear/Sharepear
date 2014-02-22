@@ -3,26 +3,26 @@
 namespace kosssi\MyAlbumsBundle\Controller;
 
 use kosssi\MyAlbumsBundle\Entity\Image;
-use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use kosssi\MyAlbumsBundle\Entity\Album;
-use kosssi\MyAlbumsBundle\Form\AlbumType;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Album controller.
+ * Image controller.
  *
- * @Route("/image")
+ * @Config\Route("/image")
  */
 class ImageController extends Controller
 {
     /**
      * Show an image.
      *
-     * @Route("/{id}", name="image_show")
-     * @template()
+     * @param Image $image
+     *
+     * @Config\Route("/{id}", name="image_show")
+     * @Config\template()
+     *
+     * @return array
      */
     public function showAction(Image $image)
     {
@@ -34,50 +34,43 @@ class ImageController extends Controller
     /**
      * Deletes an Image entity.
      *
-     * @Route("/delete/{id}", name="image_delete")
+     * @param Request $request
+     * @param Image $image
+     *
+     * @Config\Route("/{id}/delete", name="image_delete")
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function deleteAction(Image $image)
+    public function deleteAction(Request $request, Image $image)
     {
         $em = $this->getDoctrine()->getManager();
         $em->remove($image);
         $em->flush();
 
-        if ($album = $image->getAlbum()) {
-            return $this->redirect($this->generateUrl('album_show', array('id' => $album->getId())));
+        if ($request->isXmlHttpRequest()) {
+
         } else {
-            return $this->redirect($this->generateUrl('homepage'));
+            if ($album = $image->getAlbum()) {
+                return $this->redirect($this->generateUrl('album_show', array('id' => $album->getId())));
+            } else {
+                return $this->redirect($this->generateUrl('homepage'));
+            }
         }
     }
 
     /**
      * Deletes a Image entity.
      *
-     * @Route("/rotate/left/{id}", name="image_rotation_left", defaults={"rotation" = 90})
-     * @Route("/rotate/right/{id}", name="image_rotation_right", defaults={"rotation" = -90})
+     * @Config\Route("/{id}/rotate/left", name="image_rotation_left", defaults={"rotation" = 90})
+     * @Config\Route("/{id}/rotate/right", name="image_rotation_right", defaults={"rotation" = -90})
      */
     public function rotationAction(Image $image, $rotation)
     {
         // rotate
-        $imagine = $this->get('liip_imagine');
-        $webRoot = $this->get('liip_imagine.cache.manager')->getWebRoot();
-        $picture = $imagine->open($webRoot . $image->getPath());
-        $picture->rotate($rotation);
-        $picture->save($webRoot . $image->getPath());
+        $this->get('kosssi_my_albums.helper.image_rotate')->rotate($image, $rotation);
 
         // remove cache
-        $cacheManager = $this->get('liip_imagine.cache.manager');
-        $fs = $this->get('filesystem');
-        foreach (['xs', 's', 'm', 'l', 'xl', 'xxl'] as $filter) {
-            $path = $cacheManager->getBrowserPath($image->getPath(), $filter);
-            $fs->remove($webRoot . $path);
-        }
-
-        // change orientation
-        if ($image->getOrientation() == Image::ORIENTATION_LANDSCAPE) {
-            $image->setOrientation(Image::ORIENTATION_PORTRAIT);
-        } else {
-            $image->setOrientation(Image::ORIENTATION_LANDSCAPE);
-        }
+        $this->get('kosssi_my_albums.helper.image_cache')->remove($image->getPath());
 
         // save entity
         $em = $this->getDoctrine()->getManager();

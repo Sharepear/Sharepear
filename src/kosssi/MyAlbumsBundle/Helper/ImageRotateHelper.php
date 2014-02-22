@@ -4,9 +4,13 @@ namespace kosssi\MyAlbumsBundle\Helper;
 
 use kosssi\MyAlbumsBundle\Entity\Image;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\HttpFoundation\RequestStack;
 
-class ImageHelper
+/**
+ * Class ImageRotateHelper
+ *
+ * @author Simon Constans <kosssi@gmail.com>
+ */
+class ImageRotateHelper
 {
     /**
      * @var \Imagine\Gd\Imagine
@@ -14,31 +18,18 @@ class ImageHelper
     private $imagine;
 
     /**
-     * @var \Liip\ImagineBundle\Controller\ImagineController
+     * @var \Liip\ImagineBundle\Imagine\Cache\CacheManager
      */
-    private $imagineControler;
+    private $cacheManager;
 
     /**
-     * @var \Sensio\Bundle\FrameworkExtraBundle\Request
+     * @param \Imagine\Gd\Imagine                            $imagine
+     * @param \Liip\ImagineBundle\Imagine\Cache\CacheManager $cacheManager
      */
-    private $request;
-
-    /**
-     * @param \Imagine\Gd\Imagine                              $imagine
-     * @param \Liip\ImagineBundle\Controller\ImagineController $imagineControler
-     */
-    public function __construct($imagine, $imagineControler)
+    function __construct($imagine, $cacheManager)
     {
         $this->imagine = $imagine;
-        $this->imagineControler = $imagineControler;
-    }
-
-    /**
-     * @param RequestStack $request_stack
-     */
-    public function setRequest(RequestStack $request_stack)
-    {
-        $this->request = $request_stack->getCurrentRequest();
+        $this->cacheManager = $cacheManager;
     }
 
     /**
@@ -100,16 +91,21 @@ class ImageHelper
     }
 
     /**
-     * @param \Imagine\Gd\Image|\Imagine\Image\ImageInterface $image
-     *
-     * @return string
+     * @param Image  $image
+     * @param string $rotation
      */
-    public function getOrientation($image)
+    public function rotate(Image $image, $rotation)
     {
-        if ($image->getSize()->getWidth() > $image->getSize()->getHeight()) {
-            return Image::ORIENTATION_LANDSCAPE;
+        $webRoot = $this->cacheManager->getWebRoot();
+        $picture = $this->imagine->open($webRoot . $image->getPath());
+        $picture->rotate($rotation);
+        $picture->save($webRoot . $image->getPath());
+
+        // Inverse orientation
+        if ($image->getOrientation() == Image::ORIENTATION_LANDSCAPE) {
+            $image->setOrientation(Image::ORIENTATION_PORTRAIT);
         } else {
-            return Image::ORIENTATION_PORTRAIT;
+            $image->setOrientation(Image::ORIENTATION_LANDSCAPE);
         }
     }
 }
