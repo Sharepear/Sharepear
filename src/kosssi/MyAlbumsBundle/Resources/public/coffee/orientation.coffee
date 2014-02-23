@@ -26,12 +26,10 @@ class Orientation
                 @element.removeClass @portrait
 
             @element.addClass @orientation
-        return
+        return this
 
     isLandscape: (orientation = @orientation) ->
         return orientation == @landscape
 
     isPortrait: (orientation = @orientation) ->
         return orientation == @portrait
-
-orientation = new Orientation

@@ -5,19 +5,20 @@ class Album
     pictures:  []
     sizes:     []
     createImage: false
+    masonry:   {}
 
-    constructor: (@container, @selector, @sizes, @createImage) ->
+    constructor: (@container, @selector, @sizes, @createImage, @masonry) ->
         @elements = $(@container).find @selector
         @screenSizeChange()
         $(window).resize =>
             @screenSizeChange()
+        @masonry.init()
 
     screenSizeChange: ->
         sizeName = @getSizeName $(@elements).first()
         @setSize(element, sizeName) for element in @elements
-        if myMasonry
-            myMasonry.deactivate()
-            myMasonry.active()
+        @masonry.deactivate().active()
+        return this
 
     setSize: (element, sizeName) ->
         element = $ element
@@ -27,6 +28,7 @@ class Album
             element.append $('<img src="' + url + '" alt="" />')
         else
             picture.first().attr 'src', url
+        return this
 
     getSizeName: (element) ->
         width = element.width()
@@ -43,9 +45,4 @@ class Album
         @elements = $(@container).find @selector
         sizeName = @getSizeName $ element
         @setSize element, sizeName
-
-album = new Album(".album", "> li", filters, true)
-
-$(".remove-album a").click (e) ->
-    e.preventDefault();
-    $(".remove-album button").click()
+        return this

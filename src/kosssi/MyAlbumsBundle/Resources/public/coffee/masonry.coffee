@@ -35,7 +35,6 @@ class MyMasonry
         return this
 
     deactivate: ->
-        @msnry.destroy()
+        if @msnry != undefined
+            @msnry.destroy()
         return this
-
-myMasonry = new MyMasonry '#albumList', '#albumShow'

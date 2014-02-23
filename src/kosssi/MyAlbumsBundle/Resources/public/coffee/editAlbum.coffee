@@ -27,5 +27,3 @@ class EditAlbum
                 @title.html html # j'affiche cette réponse
                 @container.removeClass('change')
                 document.title = html;
-
-editAlbum = new EditAlbum("form[name=album_name]")

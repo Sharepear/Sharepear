@@ -27,17 +27,17 @@ class ImageResponsive
             url = element.data sizeName
             element.css 'background-image', 'url(' + url + ')'
             element.data 'actual-size', sizeName
+        return this
 
     update: ->
         @elements = $ @selector
         for element in @elements
             @updateSize element
+        return this
 
     desactivate: ->
         for element in @elements
             element.removeAttribute 'style'
             $(element).data 'actual-size', ''
         @update()
-
-
-imageResponsive = new ImageResponsive(".current", filters)
+        return this

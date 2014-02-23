@@ -11,6 +11,7 @@ class Navigation
     selector: ''
     pictures: []
     current: ''
+    active: false
 
     constructor: (@container, @selector, @timeout, autoplay) ->
         @pictures = $(@container).find(@selector)
@@ -23,23 +24,24 @@ class Navigation
 
     keyDown: (event) ->
         keyCode = event.keyCode or event.which
-        switch keyCode
-            when @arrow.right
-                @nextPicture()
-            when @arrow.left
-                @prevPicture()
-            when @arrow.down
-                event.preventDefault()
-                @nextPicture()
-            when @arrow.up
-                event.preventDefault()
-                @prevPicture()
-            when @arrow.space
-                event.preventDefault()
-                if @isPlay
-                    @stop()
-                else
-                    @play()
+        if @active
+            switch keyCode
+                when @arrow.right
+                    @nextPicture()
+                when @arrow.left
+                    @prevPicture()
+                when @arrow.down
+                    event.preventDefault()
+                    @nextPicture()
+                when @arrow.up
+                    event.preventDefault()
+                    @prevPicture()
+                when @arrow.space
+                    event.preventDefault()
+                    if @isPlay
+                        @stop()
+                    else
+                        @play()
 
     nextPicture: ->
         nextPicture = @current.next @selector
@@ -67,5 +69,3 @@ class Navigation
     stop: ->
         @isPlay = false
         clearTimeout @playTimeout
-
-# navigation = new Navigation(".album", "li", 3000, false)
