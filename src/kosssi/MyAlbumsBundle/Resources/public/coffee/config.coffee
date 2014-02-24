@@ -12,7 +12,7 @@ $(document).ready ->
     imageResponsive = new ImageResponsive ".current", filters
     imageFullscreen = new ImageFullscreen "#albumShow", ".album > li", "img", myMasonry, imageResponsive
     orientation     = new Orientation
-    navigation      = new Navigation ".album", "li", 3000, false
+    # navigation      = new Navigation ".album", "li", 3000, false
 
     $(".remove-album a").click (e) ->
         e.preventDefault();
