@@ -58,6 +58,9 @@ class DataFiltersExtension extends \Twig_Extension
         return $dataFilters;
     }
 
+    /**
+     * @return string
+     */
     public function getFiltersConfiguration()
     {
         $filtersConfig = array();
