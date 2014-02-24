@@ -21,6 +21,7 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "oneup/uploader-bundle": "dev-master",
         "liip/imagine-bundle": "dev-master",
+        "phake/phake": "dev-master",
         "paranoiq/php-zip": "dev-master"
     },
     "scripts": {

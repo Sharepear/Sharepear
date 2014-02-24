@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "8cafe6fd6c15a61af8378780d5b62179",
+    "hash": "600b99d67fea7d7a08739d09300e87a2",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1072,6 +1072,62 @@
             "time": "2013-11-06 10:03:31"
         },
         {
+            "name": "phake/phake",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mlively/Phake.git",
+                "reference": "5f23ef9d823e046c332aabbc0c3b1b0a9e290c03"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mlively/Phake/zipball/5f23ef9d823e046c332aabbc0c3b1b0a9e290c03",
+                "reference": "5f23ef9d823e046c332aabbc0c3b1b0a9e290c03",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "doctrine/common": "2.3.*",
+                "ext-soap": "*",
+                "hamcrest/hamcrest-php": "1.1.*",
+                "phpunit/phpunit": "3.7.*"
+            },
+            "suggest": {
+                "doctrine/common": "Allows mock annotations to use import statements for classes.",
+                "hamcrest/hamcrest-php": "Use Hamcrest matchers."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Phake": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Mike Lively",
+                    "email": "m@digitalsandwich.com"
+                }
+            ],
+            "description": "The Phake mock testing library",
+            "homepage": "https://github.com/mlively/Phake",
+            "keywords": [
+                "mock",
+                "testing"
+            ],
+            "time": "2014-01-20 16:55:13"
+        },
+        {
             "name": "psr/log",
             "version": "1.0.0",
             "source": {
@@ -1768,6 +1824,7 @@
         "doctrine/doctrine-bundle": 20,
         "oneup/uploader-bundle": 20,
         "liip/imagine-bundle": 20,
+        "phake/phake": 20,
         "paranoiq/php-zip": 20
     },
     "platform": {
