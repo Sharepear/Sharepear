@@ -6,6 +6,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('livereloadx');
     grunt.loadNpmTasks('grunt-php');
 
@@ -35,6 +36,11 @@ module.exports = function(grunt) {
                 src: 'bower_components/font-awesome/fonts/',
                 dest: 'web/fonts'
             }
+        },
+
+        clean: {
+            built: ["web/built"],
+            symlink: ["web/bundles/app", "web/images/spritemap.png", "web/fonts"]
         },
 
         less: {
@@ -130,9 +136,16 @@ module.exports = function(grunt) {
         },
 
         php: {
-            watch: {
+            live: {
                 options:{
                     port: 35729,
+                    router: '../vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/config/router_dev.php',
+                    base: 'web/'
+                }
+            },
+            server: {
+                options:{
+                    port: 8000,
                     router: '../vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/config/router_dev.php',
                     base: 'web/'
                 }
@@ -141,10 +154,11 @@ module.exports = function(grunt) {
     });
 
     // Default task(s).
-    grunt.registerTask('default', ['concat:bowercss', 'css', 'concat:bowerjs', 'javascript', 'php:watch', 'livereloadx', 'watch']);
+    grunt.registerTask('default', ['clean', 'symlink', 'concat:bowercss', 'css', 'concat:bowerjs', 'javascript']);
+    grunt.registerTask('live', ['default', 'php:live', 'livereloadx', 'watch']);
+    grunt.registerTask('server', ['default', 'php:server', 'watch']);
     grunt.registerTask('css', ['less:discovering', 'less', 'concat:css', 'cssmin']);
     grunt.registerTask('javascript', ['coffee:discovering', 'coffee', 'concat:js', 'uglify']);
-    grunt.registerTask('init', ['symlink', 'default']);
     grunt.registerTask('less:discovering', 'This is a function', function() {
         // LESS Files management
         // Source LESS files are located inside : bundles/[bundle]/less/

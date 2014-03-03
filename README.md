@@ -30,12 +30,11 @@ Design :
 ```
 git clone git@github.com:chlorius/MyAlbums.git
 cd MyAlbums
-cp app/config/parameter.yml.dist app/config/parameter.yml
+cp app/config/parameters.yml.dist app/config/parameters.yml
 composer install
 app/console doctrine:database:create
 app/console doctrine:schema:create
 app/console assets:install --symlink
-npm install
 npm start
 ```
 
@@ -49,5 +48,6 @@ app/console doctrine:schema:create
 
 ## Commande Grunt
 
-- grunt init : pour initialiser l'ensemble des taches
-- grunt : pour compiler automatiquement les fichiers LESS et COFFEE et livereload son navigateur en dev
+- grunt : pour compiler automatiquement les fichiers LESS et COFFEE
+- grunt server : il y a le watch sur l'ensemble des fichiers générés et le serveur PHP de lancé
+- grunt live : il y a le livereload en plus de 'grunt server'
