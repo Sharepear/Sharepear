@@ -27,11 +27,20 @@ class MyMasonry
         @msnry.appended element
         return this
 
+    removeElement: (element) ->
+        @msnry.remove element
+        return this
+
     active: ->
         @msnry = new Masonry(@containerShow, {
             containerStyle: null,
             gutter: 0,
         });
+        @update()
+        return this
+
+    update: ->
+        @msnry.layout()
         return this
 
     deactivate: ->

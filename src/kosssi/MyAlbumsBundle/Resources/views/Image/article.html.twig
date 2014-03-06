@@ -7,12 +7,12 @@
             >
         <ul class="actions">
             <li>
-                <a title="Tourner à gauche" href="{{ path('image_rotation_right', {'id': image.id}) }}">
+                <a class="imageRotateRight" title="Tourner à gauche" href="{{ path('image_rotation_right', {'id': image.id}) }}">
                     <i class="fa fa-rotate-left"></i>
                 </a>
             </li>
             <li>
-                <a title="Tourner à droite" href="{{ path('image_rotation_left', {'id': image.id}) }}">
+                <a class="imageRotateLeft" title="Tourner à droite" href="{{ path('image_rotation_left', {'id': image.id}) }}">
                     <i class="fa fa-rotate-right"></i>
                 </a>
             </li>
@@ -22,7 +22,7 @@
                 </a>
             </li>
             <li>
-                <a title="Supprimer cette image" href="{{ path('image_delete', {'id': image.id}) }}">
+                <a class="imageRemove" title="Supprimer cette image" href="{{ path('image_delete', {'id': image.id}) }}">
                     <i class="fa fa-times-circle-o"></i>
                 </a>
             </li>

@@ -13,6 +13,7 @@ class Album
         $(window).resize =>
             @screenSizeChange()
         @masonry.init()
+        @screenSizeChange()
 
     screenSizeChange: ->
         sizeName = @getSizeName $(@elements).first()

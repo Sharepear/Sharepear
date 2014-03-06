@@ -6,12 +6,15 @@ imageFullscreen = {}
 orientation = {}
 
 $(document).ready ->
-    myMasonry       = new MyMasonry '#albumList', '#albumShow'
-    album           = new Album ".album", "> li", filters, true, myMasonry
-    editAlbum       = new EditAlbum "form[name=album_name]"
-    imageResponsive = new ImageResponsive ".current", filters
-    imageFullscreen = new ImageFullscreen "#albumShow", ".album > li", "img", myMasonry, imageResponsive
-    orientation     = new Orientation
+    myMasonry        = new MyMasonry '#albumList', '#albumShow'
+    album            = new Album ".album", "> li", filters, true, myMasonry
+    editAlbum        = new EditAlbum "form[name=album_name]"
+    imageResponsive  = new ImageResponsive ".current", filters
+    imageFullscreen  = new ImageFullscreen "#albumShow", ".album > li", "img", myMasonry, imageResponsive
+    orientation      = new Orientation
+    imageRemove      = new ImageRemove '.imageRemove', myMasonry
+    imageRotateRight = new ImageRotate '.imageRotateRight', myMasonry
+    imageRotateLeft  = new ImageRotate '.imageRotateLeft', myMasonry
     # navigation      = new Navigation ".album", "li", 3000, false
 
     $(".remove-album a").click (e) ->
