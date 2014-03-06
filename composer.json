@@ -1,8 +1,6 @@
 {
-    "name": "symfony/framework-standard-edition",
+    "name": "MyAlbums",
     "license": "MIT",
-    "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
     "autoload": {
         "psr-0": { "": "src/" }
     },
@@ -22,7 +20,8 @@
         "oneup/uploader-bundle": "dev-master",
         "liip/imagine-bundle": "dev-master",
         "phake/phake": "dev-master",
-        "paranoiq/php-zip": "dev-master"
+        "paranoiq/php-zip": "dev-master",
+        "eloquent/composer-npm-bridge": "~2"
     },
     "scripts": {
         "post-install-cmd": [
