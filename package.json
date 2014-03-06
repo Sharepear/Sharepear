@@ -4,7 +4,7 @@
     "author": "Simon Constans <kosssi@gmail.com>",
     "private": true,
     "scripts": {
-        "postinstall": "bower install && grunt",
+        "postinstall": "bower install",
         "start": "grunt server"
     },
     "engines": {
@@ -12,17 +12,17 @@
     },
     "dependencies": {
         "bower": "~1.2",
-        "livereloadx": "~0.3.2",
+        "livereloadx": "~0.3",
         "grunt": "~0.4",
-        "grunt-php": "~0.3.2",
-        "grunt-contrib-symlink": "~0.2",
-        "grunt-contrib-less": "~0.6",
-        "grunt-contrib-cssmin": "~0.7",
-        "grunt-contrib-coffee": "~0.8",
-        "grunt-contrib-uglify": "~0.2",
+        "grunt-cli": "~0.1",
+        "grunt-php": "~0.3",
+        "grunt-contrib-symlink": "~0.3",
+        "grunt-contrib-less": "~0.10",
+        "grunt-contrib-cssmin": "~0.9",
+        "grunt-contrib-coffee": "~0.10",
+        "grunt-contrib-uglify": "~0.4",
         "grunt-contrib-concat": "~0.3",
-        "grunt-contrib-watch": "~0.4",
-        "grunt-contrib-clean": "~0.5",
-        "grunt-contrib-jshint": "~0.6"
+        "grunt-contrib-watch": "~0.5",
+        "grunt-contrib-clean": "~0.5"
     }
 }
