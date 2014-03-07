@@ -15,10 +15,8 @@ class ImageRotate
     rotate: ($element) ->
         _this = this
         parent = $element.parents('[data-orientation]')
-        parent.resize ->
-            _this.masonry.update()
-
         $img = $(parent.find('img'))
+
         if typeof $img.data('src') == 'undefined'
             $img.data 'src', $img.attr('src')
 

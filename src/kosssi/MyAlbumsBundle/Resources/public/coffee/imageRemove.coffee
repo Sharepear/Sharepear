@@ -4,8 +4,8 @@ class ImageRemove
     masonry:  {}
 
     constructor: (@selector, @masonry) ->
-        @elements = $(@selector);
         _this = this
+        @elements = $(@selector);
 
         @elements.on 'click', (e) ->
             e.preventDefault()

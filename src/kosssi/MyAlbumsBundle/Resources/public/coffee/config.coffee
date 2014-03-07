@@ -4,10 +4,14 @@ editAlbum = {}
 imageResponsive = {}
 imageFullscreen = {}
 orientation = {}
+imageRemove = {}
+imageRotateRight = {}
+imageRotateLeft = {}
+imagesLoader = {}
 
 $(document).ready ->
-    myMasonry        = new MyMasonry '#albumList', '#albumShow'
-    album            = new Album ".album", "> li", filters, true, myMasonry
+    myMasonry        = new MyMasonry '#albumShow'
+    album            = new Album ".album", "> li", filters
     editAlbum        = new EditAlbum "form[name=album_name]"
     imageResponsive  = new ImageResponsive ".current", filters
     imageFullscreen  = new ImageFullscreen "#albumShow", ".album > li", "img", myMasonry, imageResponsive
@@ -15,6 +19,7 @@ $(document).ready ->
     imageRemove      = new ImageRemove '.imageRemove', myMasonry
     imageRotateRight = new ImageRotate '.imageRotateRight', myMasonry
     imageRotateLeft  = new ImageRotate '.imageRotateLeft', myMasonry
+    imagesLoader     = new ImagesLoader '#albumList', myMasonry
     # navigation      = new Navigation ".album", "li", 3000, false
 
     $(".remove-album a").click (e) ->
@@ -34,7 +39,7 @@ $(document).ready ->
                     $('#albumList').append html
                     element = $('#albumList > li').last()
                     album.addElement element
+                    myMasonry.addElement element[0]
                     imageFullscreen.addFullscreen element
-                    myMasonry.init()
             return file.previewElement.classList.add "dz-success";
 

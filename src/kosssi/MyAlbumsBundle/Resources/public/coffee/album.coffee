@@ -4,21 +4,17 @@ class Album
     elements:  []
     pictures:  []
     sizes:     []
-    createImage: false
-    masonry:   {}
 
-    constructor: (@container, @selector, @sizes, @createImage, @masonry) ->
+    constructor: (@container, @selector, @sizes) ->
         @elements = $(@container).find @selector
         @screenSizeChange()
         $(window).resize =>
             @screenSizeChange()
-        @masonry.init()
         @screenSizeChange()
 
     screenSizeChange: ->
         sizeName = @getSizeName $(@elements).first()
         @setSize(element, sizeName) for element in @elements
-        @masonry.deactivate().active()
         return this
 
     setSize: (element, sizeName) ->
