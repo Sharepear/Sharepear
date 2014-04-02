@@ -4,13 +4,8 @@ class ImageRotate
     masonry:  {}
 
     constructor: (@selector, @masonry) ->
-        _this = this
         @elements = $(@selector);
-
-        @elements.on 'click', (e) ->
-            e.preventDefault()
-            _this.rotate $(this)
-        return
+        @bindClick()
 
     rotate: ($element) ->
         _this = this
@@ -27,4 +22,17 @@ class ImageRotate
                     $img.load ->
                         _this.masonry.update()
                     $img.attr 'src', $img.data('src') + '?' + new Date().getTime();
+        return this
+
+    addElement: ->
+        @elements = $ @selector;
+        @bindClick()
+        return this
+
+    bindClick: ->
+        _this = this
+        @elements.on 'click', (e) ->
+            e.preventDefault()
+            console.log 'test'
+            _this.rotate $(this)
         return this

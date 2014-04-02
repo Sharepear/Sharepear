@@ -4,13 +4,8 @@ class ImageRemove
     masonry:  {}
 
     constructor: (@selector, @masonry) ->
-        _this = this
-        @elements = $(@selector);
-
-        @elements.on 'click', (e) ->
-            e.preventDefault()
-            _this.remove $(this)
-        return
+        @elements = $ @selector;
+        @bindClick()
 
     remove: ($element) ->
         $.ajax
@@ -19,4 +14,16 @@ class ImageRemove
                 if html == 'ok'
                     @masonry.removeElement $element.parents('[data-orientation]')
                     @masonry.update()
+        return this
+
+    addElement: ->
+        @elements = $ @selector;
+        @bindClick()
+        return this
+
+    bindClick: ->
+        _this = this
+        @elements.on 'click', (e) ->
+            e.preventDefault()
+            _this.remove $(this)
         return this

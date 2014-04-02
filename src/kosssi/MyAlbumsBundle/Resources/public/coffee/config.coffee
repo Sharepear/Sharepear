@@ -41,5 +41,8 @@ $(document).ready ->
                     album.addElement element
                     myMasonry.addElement element[0]
                     imageFullscreen.addFullscreen element
+                    imageRemove.addElement
+                    imageRotateRight.addElement
+                    imageRotateLeft.addElement
             return file.previewElement.classList.add "dz-success";
 
