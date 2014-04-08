@@ -25,5 +25,6 @@ class ImageRemove
         _this = this
         @elements.on 'click', (e) ->
             e.preventDefault()
+            e.stopPropagation()
             _this.remove $(this)
         return this

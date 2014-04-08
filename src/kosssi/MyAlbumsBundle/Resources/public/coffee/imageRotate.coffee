@@ -4,7 +4,7 @@ class ImageRotate
     masonry:  {}
 
     constructor: (@selector, @masonry) ->
-        @elements = $(@selector);
+        @elements = $ @selector
         @bindClick()
 
     rotate: ($element) ->
@@ -33,6 +33,6 @@ class ImageRotate
         _this = this
         @elements.on 'click', (e) ->
             e.preventDefault()
-            console.log 'test'
+            e.stopPropagation()
             _this.rotate $(this)
         return this
