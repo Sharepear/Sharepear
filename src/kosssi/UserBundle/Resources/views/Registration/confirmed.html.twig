@@ -1,0 +1,18 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ 'Registration confirmed' }}{% endblock %}
+
+{% block body %}
+    <section class="checkEmail popin">
+        <ul>
+            <li>
+                <p>{{ 'registration.confirmed'|trans({'%username%': user.username}, 'FOSUserBundle') }}</p>
+            </li>
+            <li class="button">
+                <p>
+                    <a class="button" href="{{ path('chlorius_gallery_index') }}">{{ 'Home'|trans }}</a>
+                </p>
+            </li>
+        </ul>
+    </section>
+{% endblock %}

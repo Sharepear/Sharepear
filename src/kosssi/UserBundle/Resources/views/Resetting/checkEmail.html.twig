@@ -1,0 +1,20 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Request new password{% endblock %}
+
+{% block body %}
+    <section class="checkEmail popin">
+        <ul>
+            <li>
+                <p class="only">{{ 'resetting.check_email'|trans({'%email%': email}, 'FOSUserBundle') }}</p>
+            </li>
+            <li class="button">
+                <p>
+                    <a class="button" href="{{ path('fos_user_security_login') }}">
+                        {{ 'Login'|trans }}
+                    </a>
+                </p>
+            </li>
+        </ul>
+    </section>
+{% endblock %}

@@ -83,3 +83,8 @@ liip_imagine:
         xxl:
             filters:
                 relative_resize: { widen: 1600 }
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: kosssi\UserBundle\Entity\User

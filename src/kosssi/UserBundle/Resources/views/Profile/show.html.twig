@@ -1,0 +1,22 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Account{% endblock %}
+
+{% block content %}
+    <section class="accountShow popin">
+        <ul>
+            <li>
+                <input id="username" type="text" maxlength="255" value="{{ user.username }}" disabled="disabled">
+            </li>
+            <li>
+                <input id="email" type="email" maxlength="255" value="{{ user.email }}" disabled="disabled">
+            </li>
+            <li class="button">
+                <p class="twoColumn">
+                    <a class="smallText" href="{{ path('fos_user_change_password') }}">{{ 'Change password ?'|trans }}</a>
+                    <a class="button" href="{{ path('fos_user_profile_edit') }}">{{ 'Edit'|trans }}</a>
+                </p>
+            </li>
+        </ul>
+    </section>
+{% endblock %}

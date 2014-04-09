@@ -1,0 +1,55 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Edit account{% endblock %}
+
+{% block content %}
+    <section class="accountEdit popin">
+        <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
+            <ul>
+                <li>
+                    {% set username = form.children['username'].vars %}
+                    <input name="{{ username.full_name }}" id="username"
+                           type="text" pattern=".{2,}" maxlength="255" required="required"
+                           value="{{ username.value }}" placeholder="{{ 'Your username'|trans }}"
+                            {% if username.errors|length > 0 %}
+                                title="{{ username.errors[0].messageTemplate }}"
+                                class="error"
+                            {% endif %} />
+                </li>
+                <li>
+                    {% set email = form.children['email'].vars %}
+                    <input name="{{ email.full_name }}" id="email"
+                           type="email" required="required"
+                           value="{{ email.value }}" placeholder="{{ 'Your email'|trans }}"
+                            {% if email.errors|length > 0 %}
+                                title="{{ email.errors[0].messageTemplate }}"
+                                class="error"
+                            {% endif %} />
+                </li>
+                <li>
+                    {% spaceless %}
+                        {% set password = form.children['current_password'].vars %}
+                        <input name="{{ password.full_name }}" id="password"
+                               type="password" required="required"
+                               value="{{ password.data }}" placeholder="{{ 'Your current password'|trans }}"
+                               class="small{% if password.errors|length > 0 %} error"
+                               title="{{ password.errors[0].messageTemplate }}{% endif %}" />
+                        <input class="small" type="submit" value="{{ '>'|trans }}">
+                    {% endspaceless %}
+                </li>
+                <li class="button">
+                    <p class="twoColumn smallText">
+                        <a href="{{ path('fos_user_change_password') }}">
+                            {{ 'Change password ?'|trans }}
+                        </a>
+                        <a href="{{ path('fos_user_profile_show') }}">
+                            {{ 'Back'|trans }}
+                        </a>
+                    </p>
+                </li>
+            </ul>
+            {% set hidden = form.children['_token'].vars %}
+            <input type="hidden" id="{{ hidden.id }}" name="{{ hidden.full_name }}" value="{{ hidden.value }}" />
+        </form>
+    </section>
+{% endblock %}

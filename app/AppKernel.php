@@ -19,6 +19,8 @@ class AppKernel extends Kernel
             new kosssi\MyAlbumsBundle\kosssiMyAlbumsBundle(),
             new Oneup\UploaderBundle\OneupUploaderBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new kosssi\UserBundle\kosssiUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
