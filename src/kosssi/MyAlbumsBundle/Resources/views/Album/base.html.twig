@@ -14,9 +14,6 @@
     <h1>{{ block('title') }}</h1>
     {% spaceless %}
         <div class="actions right">
-            <a href="">
-                <i class="fa fa-download"></i>
-            </a>
             <a href="" class="show-upload" title="{{ "Add photos" | trans({}, "album") }}">
                 <span class="fa-stack fa-lg">
                     <i class="fa fa-picture-o fa-stack-2x"></i>
@@ -34,10 +31,9 @@
                     </form>
                 </div>
             </div>
-            <a href="" title="{{ "Create a photo album" | trans({}, "album") }}">
+            <a href="{{ path('logout') }}" title="{{ "Logout" | trans({}, "album") }}">
                 <span class="fa-stack fa-lg">
-                    <i class="fa fa-book fa-stack-2x"></i>
-                    <i class="fa fa-plus fa-stack-1x inverse"></i>
+                    <i class="fa fa-power-off"></i>
                 </span>
             </a>
             {% if entity is defined %}
