@@ -21,6 +21,10 @@
         <parameter key="kosssi_my_albums.repository.album.class">kosssi\MyAlbumsBundle\Repository\AlbumRepository</parameter>
         <parameter key="kosssi_my_albums.repository.image.class">kosssi\MyAlbumsBundle\Repository\ImageRepository</parameter>
 
+        <!-- voter -->
+        <parameter key="kosssi_my_albums.security.image.edit.class">kosssi\MyAlbumsBundle\Security\Authorization\Voter\ImageEditVoter</parameter>
+        <parameter key="kosssi_my_albums.security.image.show.class">kosssi\MyAlbumsBundle\Security\Authorization\Voter\ImageShowVoter</parameter>
+
         <!-- twig -->
         <parameter key="kosssi_my_albums.twig.data_filters.class">kosssi\MyAlbumsBundle\Twig\DataFiltersExtension</parameter>
     </parameters>
@@ -69,6 +73,14 @@
                  factory-method="getRepository"
                 >
             <argument>kosssiMyAlbumsBundle:Image</argument>
+        </service>
+
+        <!-- Voter -->
+        <service id="kosssi_my_albums.security.image.edit" class="%kosssi_my_albums.security.image.edit.class%">
+            <tag name="security.voter" />
+        </service>
+        <service id="kosssi_my_albums.security.image.show" class="%kosssi_my_albums.security.image.show.class%">
+            <tag name="security.voter" />
         </service>
 
         <!-- twig -->
