@@ -28,15 +28,22 @@ class UploadListener
     private $imageRotate;
 
     /**
+     * @var \Symfony\Component\Security\Core\SecurityContext
+     */
+    protected $securityContext;
+
+    /**
      * @param \Doctrine\ORM\EntityManager                       $em
      * @param \kosssi\MyAlbumsBundle\Repository\ImageRepository $imageRepository
      * @param \kosssi\MyAlbumsBundle\Helper\ImageRotateHelper   $imageRotate
+     * @param \Symfony\Component\Security\Core\SecurityContext  $securityContext
      */
-    public function __construct($em, $imageRepository, $imageRotate)
+    public function __construct($em, $imageRepository, $imageRotate, $securityContext)
     {
         $this->em = $em;
         $this->imageRepository = $imageRepository;
         $this->imageRotate = $imageRotate;
+        $this->securityContext = $securityContext;
     }
 
     /**
@@ -48,26 +55,32 @@ class UploadListener
         $file = $event->getFile();
         $response = $event->getResponse();
         $originalName = $event->getRequest()->files->all()['file']->getClientOriginalName();
-
-        // rotate
-        $imagine = $this->imageRotate->rotateAccordingExif($file);
-
-        $image = new Image();
-        $image->setName(pathinfo($originalName, PATHINFO_FILENAME));
-        $image->setPath('/uploads/album/' . $file->getFilename());
-        $image->setOrientation($this->getOrientation($imagine));
-        $this->em->persist($image);
-
         /** @var Image $album */
-        if ($album = $this->imageRepository->findOneById($event->getRequest()->get('album_id'))) {
-            $image->setAlbum($album);
-            $album->addImage($image);
-            $this->em->persist($album);
+        $album = $this->imageRepository->findOneById($event->getRequest()->get('album_id'));
+        $user = $this->securityContext->getToken()->getUser();
+
+        if (!$album || $album->getUser() == $user) {
+            // rotate
+            $imagine = $this->imageRotate->rotateAccordingExif($file);
+
+            $image = new Image();
+            $image->setName(pathinfo($originalName, PATHINFO_FILENAME));
+            $image->setPath('/uploads/album/' . $file->getFilename());
+            $image->setOrientation($this->getOrientation($imagine));
+            $image->setUser($user);
+            $this->em->persist($image);
+
+            /** @var Image $album */
+            if ($album) {
+                $image->setAlbum($album);
+                $album->addImage($image);
+                $this->em->persist($album);
+            }
+
+            $this->em->flush();
+
+            $response['image'] = $image->getId();
         }
-
-        $this->em->flush();
-
-        $response['image'] = $image->getId();
     }
 
     /**

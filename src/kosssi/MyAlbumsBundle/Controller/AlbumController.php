@@ -22,12 +22,18 @@ class AlbumController extends Controller
      *
      * @Config\Route("/{id}", name="album_show")
      * @Config\Template()
+     * @Config\Security("is_granted('IMAGE_SHOW', album)")
      *
      * @return array
      */
     public function showAction(Image $album)
     {
-        $images = $this->get('kosssi_my_albums.repository.image')->findBy(array('album' => $album));
+        $images = $this->get('kosssi_my_albums.repository.image')->findBy(
+            array(
+                'album' => $album,
+                'user' => $this->getUser(),
+            )
+        );
         $form = $this->createForm('album_name', $album);
 
         return array(
@@ -45,6 +51,7 @@ class AlbumController extends Controller
      *
      * @Config\Route("/{id}/edit", name="album_name_edit")
      * @Config\Template()
+     * @Config\Security("is_granted('IMAGE_EDIT', album)")
      *
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      */

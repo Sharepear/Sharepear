@@ -22,6 +22,7 @@ class ImageController extends Controller
      *
      * @Config\Route("/{id}", name="image_show")
      * @Config\template()
+     * @Config\Security("is_granted('IMAGE_SHOW', image)")
      *
      * @return array
      */
@@ -39,6 +40,7 @@ class ImageController extends Controller
      * @param Image   $image
      *
      * @Config\Route("/{id}/delete", name="image_delete")
+     * @Config\Security("is_granted('IMAGE_EDIT', image)")
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
@@ -68,6 +70,7 @@ class ImageController extends Controller
      *
      * @Config\Route("/{id}/rotate/left", name="image_rotation_left", defaults={"rotation" = 90})
      * @Config\Route("/{id}/rotate/right", name="image_rotation_right", defaults={"rotation" = -90})
+     * @Config\Security("is_granted('IMAGE_EDIT', image)")
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */

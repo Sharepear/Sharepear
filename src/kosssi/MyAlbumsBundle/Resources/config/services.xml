@@ -58,6 +58,7 @@
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="kosssi_my_albums.repository.image" />
             <argument type="service" id="kosssi_my_albums.helper.image_rotate" />
+            <argument type="service" id="security.context" />
             <tag name="kernel.event_listener" event="oneup_uploader.post_persist" method="onUpload" />
         </service>
 

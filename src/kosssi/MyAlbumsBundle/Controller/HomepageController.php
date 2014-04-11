@@ -15,12 +15,18 @@ class HomepageController extends Controller
      *
      * @Config\Route("/", name="homepage")
      * @Config\Template("kosssiMyAlbumsBundle:Album:show.html.twig")
+     * @Config\Security("has_role('ROLE_USER')")
      *
      * return array
      */
     public function homepageAction()
     {
-        $images = $this->get('kosssi_my_albums.repository.image')->findBy(array('album' => null));
+        $images = $this->get('kosssi_my_albums.repository.image')->findBy(
+            array(
+                'album' => null,
+                'user' => $this->getUser(),
+            )
+        );
 
         return array(
             'images' => $images
