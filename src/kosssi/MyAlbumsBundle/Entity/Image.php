@@ -81,6 +81,21 @@ class Image
     private $updatedAt;
 
     /**
+     * @var User
+     *
+     * @ORM\ManyToOne(
+     *     targetEntity="user",
+     *     inversedBy="Image"
+     * )
+     * @ORM\JoinColumn(
+     *     name="userId",
+     *     referencedColumnName="id",
+     *     nullable=false
+     * )
+     */
+    private $user;
+
+    /**
      * @param mixed $album
      */
     public function setAlbum($album)
@@ -230,5 +245,25 @@ class Image
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * @param \kosssi\MyAlbumsBundle\Entity\User $user
+     *
+     * @return $this
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return \kosssi\MyAlbumsBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

@@ -18,9 +18,39 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @var array
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="Image",
+     *     mappedBy="user"
+     * )
+     */
+    private $images;
+
     public function __construct()
     {
         parent::__construct();
         // your own logic
+    }
+
+    /**
+     * @param array $images
+     *
+     * @return $this
+     */
+    public function setImages($images)
+    {
+        $this->images = $images;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getImages()
+    {
+        return $this->images;
     }
 }
