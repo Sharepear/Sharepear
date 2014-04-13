@@ -17,6 +17,9 @@
                 </a>
             </li>
             <li>
+                {% include 'kosssiMyAlbumsBundle:Image/base:share.html.twig' with {'image': image} only %}
+            </li>
+            <li>
                 <a class="imageFolder" title="Ajouter des photos" href="{{ path('album_show', {'id': image.id}) }}">
                     <i class="fa fa-folder-open"></i>
                 </a>

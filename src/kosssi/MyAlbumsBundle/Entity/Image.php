@@ -83,17 +83,17 @@ class Image
     /**
      * @var User
      *
-     * @ORM\ManyToOne(
-     *     targetEntity="user",
-     *     inversedBy="Image"
-     * )
-     * @ORM\JoinColumn(
-     *     name="userId",
-     *     referencedColumnName="id",
-     *     nullable=false
-     * )
+     * @ORM\ManyToOne(targetEntity="user", inversedBy="Image")
+     * @ORM\JoinColumn(name="userId", referencedColumnName="id", nullable=false)
      */
     private $user;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean")
+     */
+    private $public;
 
     /**
      * @param mixed $album
@@ -265,5 +265,25 @@ class Image
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * @param bool $public
+     *
+     * @return $this
+     */
+    public function setPublic($public)
+    {
+        $this->public = $public;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPublic()
+    {
+        return $this->public === true;
     }
 }

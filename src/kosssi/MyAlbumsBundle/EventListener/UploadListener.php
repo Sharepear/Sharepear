@@ -68,6 +68,7 @@ class UploadListener
             $image->setPath('/uploads/album/' . $file->getFilename());
             $image->setOrientation($this->getOrientation($imagine));
             $image->setUser($user);
+            $image->setPublic(false);
             $this->em->persist($image);
 
             /** @var Image $album */

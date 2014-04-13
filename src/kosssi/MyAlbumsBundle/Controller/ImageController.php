@@ -98,4 +98,41 @@ class ImageController extends Controller
             }
         }
     }
+
+
+    /**
+     * Share an image.
+     *
+     * @param Request $request
+     * @param Image   $image
+     * @param boolean $public
+     *
+     * @Config\Route("/{id}/share", name="image_share", defaults={"public" = true})
+     * @Config\Route("/{id}/unshare", name="image_unshare", defaults={"public" = false})
+     * @Config\Security("is_granted('IMAGE_EDIT', image)")
+     * @Config\Template("kosssiMyAlbumsBundle:Image/base:share.html.twig")
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
+    public function shareAction(Request $request, Image $image, $public)
+    {
+        $image->setPublic($public);
+
+        // save entity
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($image);
+        $em->flush();
+
+        if ($request->isXmlHttpRequest()) {
+            return [
+                'image' => $image,
+            ];
+        } else {
+            if ($album = $image->getAlbum()) {
+                return $this->redirect($this->generateUrl('album_show', array('id' => $album->getId())));
+            } else {
+                return $this->redirect($this->generateUrl('homepage'));
+            }
+        }
+    }
 }

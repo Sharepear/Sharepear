@@ -22,6 +22,7 @@ $(document).ready ->
     imageRotateLeft  = new ImageRotate '.imageRotateLeft', myMasonry
     imagesLoader     = new ImagesLoader '#albumList', myMasonry
     showAlbum        = new ShowAlbum '.album .actions'
+    imageShare       = new ImageShare '.share'
     # navigation      = new Navigation ".album", "li", 3000, false
 
     $(".remove-album a").click (e) ->
@@ -49,5 +50,6 @@ $(document).ready ->
                     imageRotateLeft.addElement
                     imageFullscreen.addElement element[0]
                     showAlbum.addElement element[0]
+                    imageShare.addElement element[0]
             return file.previewElement.classList.add "dz-success";
 

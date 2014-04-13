@@ -1,0 +1,9 @@
+{% if image.public %}
+    <a class="share" title="Rendre l'image privée" href="{{ path('image_unshare', {'id': image.id}) }}">
+        <i class="fa fa-unlock-alt"></i>
+    </a>
+{% else %}
+    <a class="share" title="Rendre l'image public" href="{{ path('image_share', {'id': image.id}) }}">
+        <i class="fa fa-lock"></i>
+    </a>
+{% endif %}

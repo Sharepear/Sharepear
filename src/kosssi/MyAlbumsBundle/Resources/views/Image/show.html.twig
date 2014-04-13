@@ -2,12 +2,12 @@
     {% set layout = 'kosssiMyAlbumsBundle::baseAjax.html.twig' %}
     {% set element = 'li' %}
 {% else %}
-    {% set layout = 'kosssiMyAlbumsBundle::baseAjax.html.twig' %}
+    {% set layout = 'kosssiMyAlbumsBundle::base.html.twig' %}
     {% set element = 'article' %}
 {% endif %}
 
 {% extends layout %}
 
 {% block section_content %}
-    {% include 'kosssiMyAlbumsBundle:Image:article.html.twig' with {'image': image, 'element': 'li'} only %}
+    {% include 'kosssiMyAlbumsBundle:Image/base:image.html.twig' with {'image': image, 'element': element} only %}
 {% endblock %}

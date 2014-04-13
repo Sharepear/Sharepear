@@ -1,4 +1,4 @@
-{% extends 'kosssiMyAlbumsBundle:Album:base.html.twig' %}
+{% extends 'kosssiMyAlbumsBundle:Album/base:layout.html.twig' %}
 
 {% block section_content %}
     {% if form is defined %}
@@ -7,7 +7,7 @@
     <ul id="albumShow" class="album"></ul>
     <ul id="albumList" class="album">
         {% for image in images %}
-            {% include 'kosssiMyAlbumsBundle:Image:article.html.twig' with {'image': image, 'element': 'li'} only %}
+            {% include 'kosssiMyAlbumsBundle:Image/base:image.html.twig' with {'image': image, 'element': 'li'} only %}
         {% endfor %}
     </ul>
     <div id="fullscreenContent"></div>
