@@ -8,6 +8,7 @@ imageRemove = {}
 imageRotateRight = {}
 imageRotateLeft = {}
 imagesLoader = {}
+showAlbum = {}
 
 $(document).ready ->
     myMasonry        = new MyMasonry '#albumShow'
@@ -20,6 +21,7 @@ $(document).ready ->
     imageRotateRight = new ImageRotate '.imageRotateRight', myMasonry
     imageRotateLeft  = new ImageRotate '.imageRotateLeft', myMasonry
     imagesLoader     = new ImagesLoader '#albumList', myMasonry
+    showAlbum        = new ShowAlbum '.album .actions'
     # navigation      = new Navigation ".album", "li", 3000, false
 
     $(".remove-album a").click (e) ->
@@ -46,5 +48,6 @@ $(document).ready ->
                     imageRotateRight.addElement
                     imageRotateLeft.addElement
                     imageFullscreen.addElement element[0]
+                    showAlbum.addElement element[0]
             return file.previewElement.classList.add "dz-success";
 
