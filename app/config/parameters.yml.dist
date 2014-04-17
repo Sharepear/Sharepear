@@ -1,6 +1,6 @@
 parameters:
     database_driver:   pdo_sqlite
-    database_path:     %kernel.root_dir%/data/data.db3
+    database_path:     %kernel.root_dir%/data.db3
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
