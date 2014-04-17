@@ -21,8 +21,10 @@
         "liip/imagine-bundle": "dev-master",
         "phake/phake": "dev-master",
         "paranoiq/php-zip": "dev-master",
-        "eloquent/composer-npm-bridge": "~2",
         "friendsofsymfony/user-bundle": "~2.0@dev"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
     },
     "scripts": {
         "post-install-cmd": [
