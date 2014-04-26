@@ -1,11 +1,6 @@
 kosssi_fos_user:
     resource: "@kosssiUserBundle/Resources/config/routing.xml"
 
-kosssi_user:
-    resource: "@kosssiUserBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 kosssi_my_albums:
     resource: "@kosssiMyAlbumsBundle/Controller/"
     type:     annotation
