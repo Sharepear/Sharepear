@@ -18,7 +18,6 @@
         <parameter key="kosssi_my_albums.listener.upload.class">kosssi\MyAlbumsBundle\EventListener\UploadListener</parameter>
 
         <!-- repository -->
-        <parameter key="kosssi_my_albums.repository.album.class">kosssi\MyAlbumsBundle\Repository\AlbumRepository</parameter>
         <parameter key="kosssi_my_albums.repository.image.class">kosssi\MyAlbumsBundle\Repository\ImageRepository</parameter>
 
         <!-- voter -->
@@ -63,12 +62,6 @@
         </service>
 
         <!-- repository -->
-        <service id="kosssi_my_albums.repository.album" class="%kosssi_my_albums.repository.album.class%"
-                 factory-service="doctrine.orm.entity_manager"
-                 factory-method="getRepository"
-                >
-            <argument>kosssiMyAlbumsBundle:Album</argument>
-        </service>
         <service id="kosssi_my_albums.repository.image" class="%kosssi_my_albums.repository.image.class%"
                  factory-service="doctrine.orm.entity_manager"
                  factory-method="getRepository"
