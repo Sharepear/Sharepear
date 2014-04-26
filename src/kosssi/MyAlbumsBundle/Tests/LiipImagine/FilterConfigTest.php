@@ -2,6 +2,8 @@
 
 namespace kosssi\MyAlbumsBundle\Tests\LiipImagine;
 
+use kosssi\MyAlbumsBundle\LiipImagine\FilterConfig;
+
 /**
  * Class FilterConfigTest
  *
