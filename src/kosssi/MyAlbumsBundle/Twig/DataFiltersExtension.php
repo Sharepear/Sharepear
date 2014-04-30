@@ -15,13 +15,13 @@ class DataFiltersExtension extends \Twig_Extension
     private $cacheManager;
 
     /**
-     * @var \kosssi\MyAlbumsBundle\LiipImagine\FilterConfig
+     * @var \Liip\ImagineBundle\Imagine\Filter\FilterConfiguration
      */
     private $filterConfig;
 
     /**
-     * @param \Symfony\Component\Filesystem\Filesystem         $cacheManager
-     * @param \kosssi\MyAlbumsBundle\LiipImagine\FilterConfig  $filterConfig
+     * @param \Symfony\Component\Filesystem\Filesystem               $cacheManager
+     * @param \Liip\ImagineBundle\Imagine\Filter\FilterConfiguration $filterConfig
      */
     public function __construct($cacheManager, $filterConfig)
     {
@@ -47,10 +47,10 @@ class DataFiltersExtension extends \Twig_Extension
      */
     public function getDataFilters($path)
     {
-        $filtersNames = $this->filterConfig->getFiltersNames();
+        $filters = $this->filterConfig->all();
 
         $dataFilters = '';
-        foreach ($filtersNames as $filterName) {
+        foreach ($filters as $filterName => $value) {
             $cachePath = $this->cacheManager->getBrowserPath($path, $filterName);
             $dataFilters .= " data-$filterName=\"$cachePath\"";
         }
@@ -64,7 +64,7 @@ class DataFiltersExtension extends \Twig_Extension
     public function getFiltersConfiguration()
     {
         $filtersConfig = array();
-        $filters = $this->filterConfig->getFilters();
+        $filters = $this->filterConfig->all();
 
         foreach ($filters as $key => $filter) {
             $filtersConfig[] = array('name' => $key, 'value' => $filter['filters']['relative_resize']['widen']);

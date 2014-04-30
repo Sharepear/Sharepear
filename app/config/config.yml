@@ -2,9 +2,6 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
 
-parameters:
-    liip_imagine.filter.configuration.class: kosssi\MyAlbumsBundle\LiipImagine\FilterConfig
-
 framework:
     #esi:             ~
     #translator:      { fallback: "%locale%" }
