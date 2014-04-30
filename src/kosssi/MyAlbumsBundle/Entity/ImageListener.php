@@ -54,6 +54,6 @@ class ImageListener
      */
     public function postRemove(Image $image, LifecycleEventArgs $event)
     {
-        $this->imageCacheHelper->removeImage($image);
+        $this->imageCacheHelper->remove($image->getPath());
     }
 }

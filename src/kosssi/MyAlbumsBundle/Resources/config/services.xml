@@ -36,9 +36,10 @@
 
         <!-- helper -->
         <service id="kosssi_my_albums.helper.image_cache" class="%kosssi_my_albums.helper.image_cache.class%">
-            <argument type="service" id="filesystem" />
             <argument type="service" id="liip_imagine.cache.manager" />
-            <argument type="service" id="liip_imagine.filter.configuration"/>
+            <argument type="service" id="liip_imagine.filter.configuration" />
+            <argument type="service" id="liip_imagine.data.manager"/>
+            <argument type="service" id="liip_imagine.filter.manager"/>
         </service>
         <service id="kosssi_my_albums.helper.image_rotate" class="%kosssi_my_albums.helper.image_rotate.class%">
             <argument type="service" id="liip_imagine" />

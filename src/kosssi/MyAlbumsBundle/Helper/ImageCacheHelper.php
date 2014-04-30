@@ -1,7 +1,6 @@
 <?php
 
 namespace kosssi\MyAlbumsBundle\Helper;
-use kosssi\MyAlbumsBundle\Entity\Image;
 
 /**
  * Class ImageCacheHelper
@@ -11,53 +10,64 @@ use kosssi\MyAlbumsBundle\Entity\Image;
 class ImageCacheHelper
 {
     /**
-     * @var \Symfony\Component\Filesystem\Filesystem
-     */
-    private $fs;
-
-    /**
      * @var \Liip\ImagineBundle\Imagine\Cache\CacheManager
      */
     private $cacheManager;
 
     /**
-     * @var \kosssi\MyAlbumsBundle\LiipImagine\FilterConfig
+     * @var \Liip\ImagineBundle\Imagine\Filter\FilterConfiguration
      */
     private $filterConfig;
 
     /**
-     * @param \Liip\ImagineBundle\Imagine\Cache\CacheManager   $fs
-     * @param \Symfony\Component\Filesystem\Filesystem         $cacheManager
-     * @param \kosssi\MyAlbumsBundle\LiipImagine\FilterConfig  $filterConfig
+     * @var \Liip\ImagineBundle\Imagine\Data\DataManager
      */
-    public function __construct($fs, $cacheManager, $filterConfig)
+    private $dataManager;
+
+    /**
+     * @var \Liip\ImagineBundle\Imagine\Filter\FilterManager
+     */
+    private $filterManager;
+
+    /**
+     * @param \Liip\ImagineBundle\Imagine\Cache\CacheManager         $cacheManager               $cacheManager
+     * @param \Liip\ImagineBundle\Imagine\Filter\FilterConfiguration $filterConfig
+     * @param \Liip\ImagineBundle\Imagine\Data\DataManager           $dataManager
+     * @param \Liip\ImagineBundle\Imagine\Filter\FilterManager       $filterManager
+     */
+    public function __construct($cacheManager, $filterConfig, $dataManager, $filterManager)
     {
-        $this->fs = $fs;
         $this->cacheManager = $cacheManager;
         $this->filterConfig = $filterConfig;
+        $this->dataManager = $dataManager;
+        $this->filterManager = $filterManager;
     }
 
     /**
      * @param string $path
      */
-    public function removeFilters($path)
+    public function remove($path)
     {
-        $webRoot = $this->cacheManager->getWebRoot();
-        $filtersNames = $this->filterConfig->getFiltersNames();
-
-        foreach ($filtersNames as $filterName) {
-            $this->fs->remove($webRoot . $this->cacheManager->getBrowserPath($path, $filterName));
-        }
+        $this->cacheManager->remove($path);
     }
 
     /**
-     * @param Image $image
+     * @param string $path
      */
-    public function removeImage(Image $image)
+    public function generate($path)
     {
-        $webRoot = $this->cacheManager->getWebRoot();
+        $filters = $this->filterConfig->all();
 
-        $this->removeFilters($image->getPath());
-        $this->fs->remove($webRoot . $image->getPath());
+        foreach ($filters as $filter => $value) {
+            if (!$this->cacheManager->isStored($path, $filter)) {
+                $binary = $this->dataManager->find($filter, $path);
+
+                $this->cacheManager->store(
+                    $this->filterManager->applyFilter($binary, $filter),
+                    $path,
+                    $filter
+                );
+            }
+        }
     }
 }
