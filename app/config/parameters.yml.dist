@@ -4,3 +4,5 @@ parameters:
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    pictures_path: "%kernel.root_dir%/../web/uploads/pictures"

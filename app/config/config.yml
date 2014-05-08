@@ -59,6 +59,8 @@ oneup_uploader:
     mappings:
         album:
             frontend: dropzone
+            storage:
+                directory: "%pictures_path%"
 
 liip_imagine:
     filter_sets:
