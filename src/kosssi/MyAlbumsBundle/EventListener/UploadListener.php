@@ -61,12 +61,12 @@ class UploadListener
 
         if (!$album || $album->getUser() == $user) {
             // rotate
-            $imagine = $this->imageRotate->rotateAccordingExif($file);
+            $orientation = $this->imageRotate->rotateAccordingExif($file->getRealPath());
 
             $image = new Image();
             $image->setName(pathinfo($originalName, PATHINFO_FILENAME));
-            $image->setPath('/uploads/album/' . $file->getFilename());
-            $image->setOrientation($this->getOrientation($imagine));
+            $image->setPath($file->getRealPath());
+            $image->setOrientation($orientation);
             $image->setUser($user);
             $image->setPublic(false);
             $this->em->persist($image);
@@ -81,22 +81,6 @@ class UploadListener
             $this->em->flush();
 
             $response['image'] = $image->getId();
-        }
-    }
-
-    /**
-     * @param \Imagine\Gd\Image|\Imagine\Image\ImageInterface $image
-     *
-     * @return string
-     */
-    public function getOrientation($image)
-    {
-        $size = $image->getSize();
-
-        if ($size->getWidth() > $size->getHeight()) {
-            return Image::ORIENTATION_LANDSCAPE;
-        } else {
-            return Image::ORIENTATION_PORTRAIT;
         }
     }
 }

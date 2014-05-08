@@ -77,16 +77,16 @@ class ImageController extends Controller
     public function rotationAction(Request $request, Image $image, $rotation)
     {
         // rotate
-        $this->get('kosssi_my_albums.helper.image_rotate')->rotate($image, $rotation);
+        $orientation = $this->get('kosssi_my_albums.helper.image_rotate')->rotate($image->getPath(), $rotation);
+        $image->setOrientation($orientation);
 
         // remove cache
-        $this->get('kosssi_my_albums.helper.image_cache')->removeFilters($image->getPath());
+        $this->get('kosssi_my_albums.helper.image_cache')->remove($image->getWebPath());
 
         // save entity
         $em = $this->getDoctrine()->getManager();
         $em->persist($image);
         $em->flush();
-
 
         if ($request->isXmlHttpRequest()) {
             return new Response('ok');

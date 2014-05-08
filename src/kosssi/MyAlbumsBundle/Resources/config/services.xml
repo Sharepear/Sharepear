@@ -43,8 +43,6 @@
         </service>
         <service id="kosssi_my_albums.helper.image_rotate" class="%kosssi_my_albums.helper.image_rotate.class%">
             <argument type="service" id="liip_imagine" />
-            <argument type="service" id="liip_imagine.cache.manager" />
-            <argument type="service" id="liip_imagine.filter.configuration"/>
         </service>
 
         <!-- listener -->
@@ -53,6 +51,7 @@
         </service>
         <service id="kosssi_my_albums.listener.image" class="%kosssi_my_albums.listener.image.class%">
             <argument type="service" id="kosssi_my_albums.helper.image_cache"/>
+            <argument type="service" id="filesystem"/>
         </service>
         <service id="kosssi_my_albums.listener.upload" class="%kosssi_my_albums.listener.upload.class%">
             <argument type="service" id="doctrine.orm.entity_manager" />

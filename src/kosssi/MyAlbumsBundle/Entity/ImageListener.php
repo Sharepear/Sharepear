@@ -18,11 +18,18 @@ class ImageListener
     private $imageCacheHelper;
 
     /**
-     * @param \kosssi\MyAlbumsBundle\Helper\ImageCacheHelper $imageCacheHelper
+     * @var \Symfony\Component\Filesystem\Filesystem $fs
      */
-    public function __construct($imageCacheHelper)
+    private $fs;
+
+    /**
+     * @param \kosssi\MyAlbumsBundle\Helper\ImageCacheHelper $imageCacheHelper
+     * @param \Symfony\Component\Filesystem\Filesystem       $fs
+     */
+    public function __construct($imageCacheHelper, $fs)
     {
         $this->imageCacheHelper = $imageCacheHelper;
+        $this->fs = $fs;
     }
 
     /**
@@ -35,6 +42,8 @@ class ImageListener
 
         $image->setCreatedAt($now);
         $image->setUpdatedAt($now);
+
+        $this->imageCacheHelper->generate($image->getWebPath());
     }
 
     /**
@@ -54,6 +63,7 @@ class ImageListener
      */
     public function postRemove(Image $image, LifecycleEventArgs $event)
     {
-        $this->imageCacheHelper->remove($image->getPath());
+        $this->imageCacheHelper->remove($image->getWebPath());
+        $this->fs->remove($image->getPath());
     }
 }

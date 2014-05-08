@@ -1,9 +1,7 @@
 <?php
 
 namespace kosssi\MyAlbumsBundle\Helper;
-
 use kosssi\MyAlbumsBundle\Entity\Image;
-use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Class ImageRotateHelper
@@ -18,42 +16,31 @@ class ImageRotateHelper
     private $imagine;
 
     /**
-     * @var \Liip\ImagineBundle\Imagine\Cache\CacheManager
+     * @param \Imagine\Gd\Imagine $imagine
      */
-    private $cacheManager;
-
-    /**
-     * @param \Imagine\Gd\Imagine                            $imagine
-     * @param \Liip\ImagineBundle\Imagine\Cache\CacheManager $cacheManager
-     */
-    function __construct($imagine, $cacheManager)
+    function __construct($imagine)
     {
         $this->imagine = $imagine;
-        $this->cacheManager = $cacheManager;
     }
 
     /**
-     * @param File $file
+     * @param string $path
      *
-     * @return \Imagine\Gd\Image|\Imagine\Image\ImageInterface
+     * @return string
      */
-    public function rotateAccordingExif(File $file)
+    public function rotateAccordingExif($path)
     {
-        $extension = strtolower($file->getExtension());
-        $path = $file->getPathname();
+        $extension = strtolower(pathinfo($path, PATHINFO_EXTENSION));
         $image = $this->imagine->open($path);
 
         //exif only supports jpg in our supported file types
         if ($extension == "jpg" || $extension == "jpeg") {
 
             //fix photos taken on cameras that have incorrect dimensions
-            $exif = exif_read_data($file->getPathName());
-
-            //get the orientation
-            $orientation = $exif['Orientation'];
+            $exif = exif_read_data($path);
 
             //determine what orientation the image was taken at
-            switch($orientation) {
+            switch($exif['Orientation']) {
                 case 2: // horizontal flip
                     $image->flipHorizontally();
                     break;
@@ -87,25 +74,37 @@ class ImageRotateHelper
         }
         $image->save($path);
 
-        return $image;
+        return $this->getOrientation($image);
     }
 
     /**
-     * @param Image  $image
-     * @param string $rotation
+     * @param string  $path
+     * @param integer $rotation
+     *
+     * @return string
      */
-    public function rotate(Image $image, $rotation)
+    public function rotate($path, $rotation)
     {
-        $webRoot = $this->cacheManager->getWebRoot();
-        $picture = $this->imagine->open($webRoot . $image->getPath());
-        $picture->rotate($rotation);
-        $picture->save($webRoot . $image->getPath());
+        $image = $this->imagine->open($path);
+        $image->rotate($rotation);
+        $image->save($path);
 
-        // Inverse orientation
-        if ($image->getOrientation() == Image::ORIENTATION_LANDSCAPE) {
-            $image->setOrientation(Image::ORIENTATION_PORTRAIT);
+        return $this->getOrientation($image);
+    }
+
+    /**
+     * @param \Imagine\Gd\Image|\Imagine\Image\ImageInterface $image
+     *
+     * @return string
+     */
+    private function getOrientation($image)
+    {
+        $size = $image->getSize();
+
+        if ($size->getWidth() > $size->getHeight()) {
+            return Image::ORIENTATION_LANDSCAPE;
         } else {
-            $image->setOrientation(Image::ORIENTATION_LANDSCAPE);
+            return Image::ORIENTATION_PORTRAIT;
         }
     }
 }

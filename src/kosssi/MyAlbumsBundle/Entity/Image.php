@@ -286,4 +286,14 @@ class Image
     {
         return $this->public === true;
     }
+
+    /**
+     * @return string
+     */
+    public function getWebPath()
+    {
+        $webPath = split('../web', $this->path);
+
+        return $webPath[1];
+    }
 }

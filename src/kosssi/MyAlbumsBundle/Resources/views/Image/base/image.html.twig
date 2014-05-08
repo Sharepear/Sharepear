@@ -1,7 +1,7 @@
 {% set element = element|default('article') -%}
 
 {% spaceless %}
-    <{{ element }} class="clearfix" {{ getDataFilters(image.path)|raw }}
+    <{{ element }} class="clearfix" {{ getDataFilters(image.getWebPath)|raw }}
              data-orientation="{{ image.orientation }}"
              title="{{ image.name }}"
             >
