@@ -61,6 +61,7 @@ oneup_uploader:
             frontend: dropzone
             storage:
                 directory: "%pictures_path%"
+            namer: kosssi_my_albums.uploader.naming.image
 
 liip_imagine:
     filter_sets:

@@ -26,6 +26,9 @@
 
         <!-- twig -->
         <parameter key="kosssi_my_albums.twig.data_filters.class">kosssi\MyAlbumsBundle\Twig\DataFiltersExtension</parameter>
+
+        <!-- uploader -->
+        <parameter key="kosssi_my_albums.uploader.naming.image.class">kosssi\MyAlbumsBundle\Uploader\Naming\ImageNamer</parameter>
     </parameters>
 
     <services>
@@ -82,6 +85,11 @@
             <argument type="service" id="liip_imagine.cache.manager" />
             <argument type="service" id="liip_imagine.filter.configuration"/>
             <tag name="twig.extension" />
+        </service>
+
+        <!-- uploader -->
+        <service id="kosssi_my_albums.uploader.naming.image" class="%kosssi_my_albums.uploader.naming.image.class%">
+            <argument type="service" id="security.context"/>
         </service>
     </services>
 </container>
