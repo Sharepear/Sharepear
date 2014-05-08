@@ -2,14 +2,14 @@
 
 namespace kosssi\MyAlbumsBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use kosssi\MyAlbumsBundle\Tests\UserWebTestCase;
 
 /**
  * Class AlbumControllerTest
  *
  * @author Simon Constans <kosssi@gmail.com>
  */
-class AlbumControllerTest extends WebTestCase
+class AlbumControllerTest extends UserWebTestCase
 {
     /**
      * Test homepage

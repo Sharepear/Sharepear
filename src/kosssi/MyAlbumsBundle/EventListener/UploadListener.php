@@ -23,11 +23,6 @@ class UploadListener
     private $imageRepository;
 
     /**
-     * @var \kosssi\MyAlbumsBundle\Helper\ImageRotateHelper
-     */
-    private $imageRotate;
-
-    /**
      * @var \Symfony\Component\Security\Core\SecurityContext
      */
     protected $securityContext;
@@ -35,14 +30,12 @@ class UploadListener
     /**
      * @param \Doctrine\ORM\EntityManager                       $em
      * @param \kosssi\MyAlbumsBundle\Repository\ImageRepository $imageRepository
-     * @param \kosssi\MyAlbumsBundle\Helper\ImageRotateHelper   $imageRotate
      * @param \Symfony\Component\Security\Core\SecurityContext  $securityContext
      */
-    public function __construct($em, $imageRepository, $imageRotate, $securityContext)
+    public function __construct($em, $imageRepository, $securityContext)
     {
         $this->em = $em;
         $this->imageRepository = $imageRepository;
-        $this->imageRotate = $imageRotate;
         $this->securityContext = $securityContext;
     }
 
@@ -60,22 +53,16 @@ class UploadListener
         $user = $this->securityContext->getToken()->getUser();
 
         if (!$album || $album->getUser() == $user) {
-            // rotate
-            $orientation = $this->imageRotate->rotateAccordingExif($file->getRealPath());
-
             $image = new Image();
             $image->setName(pathinfo($originalName, PATHINFO_FILENAME));
             $image->setPath($file->getRealPath());
-            $image->setOrientation($orientation);
             $image->setUser($user);
             $image->setPublic(false);
             $this->em->persist($image);
 
-            /** @var Image $album */
             if ($album) {
                 $image->setAlbum($album);
                 $album->addImage($image);
-                $this->em->persist($album);
             }
 
             $this->em->flush();

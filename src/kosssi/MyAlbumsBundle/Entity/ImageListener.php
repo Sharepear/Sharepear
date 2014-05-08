@@ -13,23 +13,37 @@ use Doctrine\ORM\Event\PreUpdateEventArgs;
 class ImageListener
 {
     /**
-     * @var \kosssi\MyAlbumsBundle\Helper\ImageCacheHelper
-     */
-    private $imageCacheHelper;
-
-    /**
      * @var \Symfony\Component\Filesystem\Filesystem $fs
      */
     private $fs;
 
     /**
-     * @param \kosssi\MyAlbumsBundle\Helper\ImageCacheHelper $imageCacheHelper
-     * @param \Symfony\Component\Filesystem\Filesystem       $fs
+     * @var \kosssi\MyAlbumsBundle\Helper\ImageCacheHelper
      */
-    public function __construct($imageCacheHelper, $fs)
+    private $imageCacheHelper;
+
+    /**
+     * @var \kosssi\MyAlbumsBundle\Helper\ImageOptimiseHelper
+     */
+    private $imageOptimiseHelper;
+
+    /**
+     * @var \kosssi\MyAlbumsBundle\Helper\ImageRotateHelper
+     */
+    private $imageRotate;
+
+    /**
+     * @param \Symfony\Component\Filesystem\Filesystem          $fs
+     * @param \kosssi\MyAlbumsBundle\Helper\ImageCacheHelper    $imageCacheHelper
+     * @param \kosssi\MyAlbumsBundle\Helper\ImageOptimiseHelper $imageOptimiseHelper
+     * @param \kosssi\MyAlbumsBundle\Helper\ImageRotateHelper   $imageRotate
+     */
+    public function __construct($fs, $imageCacheHelper, $imageOptimiseHelper, $imageRotate)
     {
-        $this->imageCacheHelper = $imageCacheHelper;
         $this->fs = $fs;
+        $this->imageCacheHelper = $imageCacheHelper;
+        $this->imageOptimiseHelper = $imageOptimiseHelper;
+        $this->imageRotate = $imageRotate;
     }
 
     /**
@@ -40,10 +54,14 @@ class ImageListener
     {
         $now = new \Datetime();
 
+        $orientation = $this->imageRotate->rotateAccordingExif($image->getPath());
+        $this->imageCacheHelper->generate($image->getWebPath());
+        $this->imageOptimiseHelper->optimiseCaches($image->getWebPath());
+        $this->imageOptimiseHelper->optimise($image->getPath());
+
         $image->setCreatedAt($now);
         $image->setUpdatedAt($now);
-
-        $this->imageCacheHelper->generate($image->getWebPath());
+        $image->setOrientation($orientation);
     }
 
     /**
@@ -52,9 +70,7 @@ class ImageListener
      */
     public function preUpdate(Image $image, PreUpdateEventArgs $event)
     {
-        $now = new \Datetime();
-
-        $image->setUpdatedAt($now);
+        $image->setUpdatedAt(new \Datetime());
     }
 
     /**

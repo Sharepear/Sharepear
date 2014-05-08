@@ -10,6 +10,7 @@
 
         <!-- helper -->
         <parameter key="kosssi_my_albums.helper.image_cache.class">kosssi\MyAlbumsBundle\Helper\ImageCacheHelper</parameter>
+        <parameter key="kosssi_my_albums.helper.image_optimise.class">kosssi\MyAlbumsBundle\Helper\ImageOptimiseHelper</parameter>
         <parameter key="kosssi_my_albums.helper.image_rotate.class">kosssi\MyAlbumsBundle\Helper\ImageRotateHelper</parameter>
 
         <!-- listener -->
@@ -44,6 +45,12 @@
             <argument type="service" id="liip_imagine.data.manager"/>
             <argument type="service" id="liip_imagine.filter.manager"/>
         </service>
+        <service id="kosssi_my_albums.helper.image_optimise" class="%kosssi_my_albums.helper.image_optimise.class%">
+            <argument type="string">%kernel.root_dir%</argument>
+            <argument type="service" id="liip_imagine" />
+            <argument type="service" id="liip_imagine.cache.manager" />
+            <argument type="service" id="liip_imagine.filter.configuration" />
+        </service>
         <service id="kosssi_my_albums.helper.image_rotate" class="%kosssi_my_albums.helper.image_rotate.class%">
             <argument type="service" id="liip_imagine" />
         </service>
@@ -53,13 +60,14 @@
             <argument type="service" id="service_container"/>
         </service>
         <service id="kosssi_my_albums.listener.image" class="%kosssi_my_albums.listener.image.class%">
-            <argument type="service" id="kosssi_my_albums.helper.image_cache"/>
             <argument type="service" id="filesystem"/>
+            <argument type="service" id="kosssi_my_albums.helper.image_cache"/>
+            <argument type="service" id="kosssi_my_albums.helper.image_optimise" />
+            <argument type="service" id="kosssi_my_albums.helper.image_rotate" />
         </service>
         <service id="kosssi_my_albums.listener.upload" class="%kosssi_my_albums.listener.upload.class%">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="kosssi_my_albums.repository.image" />
-            <argument type="service" id="kosssi_my_albums.helper.image_rotate" />
             <argument type="service" id="security.context" />
             <tag name="kernel.event_listener" event="oneup_uploader.post_persist" method="onUpload" />
         </service>

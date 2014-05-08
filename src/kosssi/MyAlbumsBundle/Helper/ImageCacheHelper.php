@@ -30,7 +30,7 @@ class ImageCacheHelper
     private $filterManager;
 
     /**
-     * @param \Liip\ImagineBundle\Imagine\Cache\CacheManager         $cacheManager               $cacheManager
+     * @param \Liip\ImagineBundle\Imagine\Cache\CacheManager         $cacheManager
      * @param \Liip\ImagineBundle\Imagine\Filter\FilterConfiguration $filterConfig
      * @param \Liip\ImagineBundle\Imagine\Data\DataManager           $dataManager
      * @param \Liip\ImagineBundle\Imagine\Filter\FilterManager       $filterManager
