@@ -16,8 +16,7 @@ class AlbumControllerTest extends UserWebTestCase
      */
     public function testHomepageAction()
     {
-        $this->markTestSkipped('Must be connected user.');
-        $client = static::createClient();
+        $client = static::createConnectedClient();
         $crawler = $client->request('GET', '/');
 
         $this->assertCount(1, $crawler->filter('html:contains("homepage")'));
