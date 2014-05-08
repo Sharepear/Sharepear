@@ -66,7 +66,7 @@ class ImageController extends Controller
      *
      * @param Request $request
      * @param Image   $image
-     * @param Integer $rotation
+     * @param integer $rotation
      *
      * @Config\Route("/{id}/rotate/left", name="image_rotation_left", defaults={"rotation" = 90})
      * @Config\Route("/{id}/rotate/right", name="image_rotation_right", defaults={"rotation" = -90})

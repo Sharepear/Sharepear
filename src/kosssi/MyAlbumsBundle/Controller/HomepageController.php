@@ -37,10 +37,12 @@ class HomepageController extends Controller
     /**
      * Show user homepage
      *
+     * @param User $user
+     *
      * @Config\Route("/{username}", name="user_homepage")
      * @Config\Template("kosssiMyAlbumsBundle:Album:show.html.twig")
      *
-     * return array
+     * @return array
      */
     public function userHomepage(User $user)
     {
