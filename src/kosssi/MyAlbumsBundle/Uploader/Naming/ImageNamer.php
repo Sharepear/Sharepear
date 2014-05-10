@@ -5,7 +5,7 @@ namespace kosssi\MyAlbumsBundle\Uploader\Naming;
 use kosssi\MyAlbumsBundle\Entity\User;
 use Oneup\UploaderBundle\Uploader\File\FileInterface;
 use Oneup\UploaderBundle\Uploader\Naming\NamerInterface;
-use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
  * Class ImageNamer
@@ -15,14 +15,14 @@ use Symfony\Component\Security\Core\SecurityContext;
 class ImageNamer implements NamerInterface
 {
     /**
-     * @var \Symfony\Component\Security\Core\SecurityContext
+     * @var SecurityContextInterface
      */
     private $context;
 
     /**
-     * @param SecurityContext $context
+     * @param SecurityContextInterface $context
      */
-    public function __construct(SecurityContext $context)
+    public function __construct(SecurityContextInterface $context)
     {
         $this->context = $context;
     }
@@ -30,7 +30,7 @@ class ImageNamer implements NamerInterface
     /**
      * @return User
      */
-    public function getUser()
+    private function getUser()
     {
         return $this->context->getToken()->getUser();
     }
