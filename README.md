@@ -1,4 +1,4 @@
-MyAlbums [![Build Status](https://travis-ci.org/chlorius/MyAlbums.svg?branch=master)](https://travis-ci.org/chlorius/MyAlbums) [![Coverage Status](https://coveralls.io/repos/chlorius/MyAlbums/badge.png)](https://coveralls.io/r/chlorius/MyAlbums)
+MyAlbums [![Build Status](https://travis-ci.org/chlorius/MyAlbums.svg?branch=master)](https://travis-ci.org/chlorius/MyAlbums) [![Coverage Status](https://coveralls.io/repos/chlorius/MyAlbums/badge.png?branch=master)](https://coveralls.io/r/chlorius/MyAlbums?branch=master)
 ========
 
 Status : WIP
