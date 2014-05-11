@@ -20,7 +20,7 @@ class DataFiltersExtension extends \Twig_Extension
     private $filterConfig;
 
     /**
-     * @param \Symfony\Component\Filesystem\Filesystem               $cacheManager
+     * @param \Liip\ImagineBundle\Imagine\Cache\CacheManager         $cacheManager
      * @param \Liip\ImagineBundle\Imagine\Filter\FilterConfiguration $filterConfig
      */
     public function __construct($cacheManager, $filterConfig)
@@ -50,9 +50,11 @@ class DataFiltersExtension extends \Twig_Extension
         $filters = $this->filterConfig->all();
 
         $dataFilters = '';
-        foreach ($filters as $filterName => $value) {
-            $cachePath = $this->cacheManager->getBrowserPath($path, $filterName);
-            $dataFilters .= " data-$filterName=\"$cachePath\"";
+        if (is_array($filters)) {
+            foreach ($filters as $filterName => $value) {
+                $cachePath = $this->cacheManager->getBrowserPath($path, $filterName);
+                $dataFilters .= " data-$filterName=\"$cachePath\"";
+            }
         }
 
         return $dataFilters;
@@ -66,8 +68,10 @@ class DataFiltersExtension extends \Twig_Extension
         $filtersConfig = array();
         $filters = $this->filterConfig->all();
 
-        foreach ($filters as $key => $filter) {
-            $filtersConfig[] = array('name' => $key, 'value' => $filter['filters']['relative_resize']['widen']);
+        if (is_array($filters)) {
+            foreach ($filters as $key => $filter) {
+                $filtersConfig[] = array('name' => $key, 'value' => $filter['filters']['relative_resize']['widen']);
+            }
         }
 
         return json_encode($filtersConfig);
