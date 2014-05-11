@@ -18,13 +18,27 @@ class LoadUserData implements FixtureInterface
      */
     public function load(ObjectManager $manager)
     {
+        $manager->persist($this->createUser('username', 'pa$$word', 'username@example.org'));
+        $manager->persist($this->createUser('kosssi', 'pa$$word', 'kosssi@example.org'));
+
+        $manager->flush();
+    }
+
+    /**
+     * @param string $username
+     * @param string $password
+     * @param string $email
+     *
+     * @return User
+     */
+    private function createUser($username, $password, $email)
+    {
         $user = new User();
-        $user->setUsername('username');
-        $user->setPlainPassword('pa$$word');
-        $user->setEmail('username@example.org');
+        $user->setUsername($username);
+        $user->setPlainPassword($password);
+        $user->setEmail($email);
         $user->setEnabled(true);
 
-        $manager->persist($user);
-        $manager->flush();
+        return $user;
     }
 }

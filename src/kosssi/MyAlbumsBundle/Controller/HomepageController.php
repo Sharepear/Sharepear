@@ -44,7 +44,7 @@ class HomepageController extends Controller
      *
      * @return array
      */
-    public function userHomepage(User $user)
+    public function userHomepageAction(User $user)
     {
         $images = $this->get('kosssi_my_albums.repository.image')->findBy(
             array(
