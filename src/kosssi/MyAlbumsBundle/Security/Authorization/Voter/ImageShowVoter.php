@@ -3,10 +3,14 @@
 namespace kosssi\MyAlbumsBundle\Security\Authorization\Voter;
 
 use kosssi\MyAlbumsBundle\Entity\Image;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
+/**
+ * Class ImageShowVoter
+ *
+ * @author Simon Constans <kosssi@gmail.com>
+ */
 class ImageShowVoter implements VoterInterface
 {
     /**
@@ -42,7 +46,7 @@ class ImageShowVoter implements VoterInterface
             if ($this->supportsAttribute($attribute) && $this->supportsClass($object)) {
                 $user = $token->getUser();
 
-                if ($object instanceof Image && $user == $object->getUser()) {
+                if ($user == $object->getUser()) {
                     return VoterInterface::ACCESS_GRANTED;
                 }
             }
