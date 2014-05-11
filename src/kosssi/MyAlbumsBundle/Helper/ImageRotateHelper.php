@@ -97,7 +97,7 @@ class ImageRotateHelper
      *
      * @return string
      */
-    private function getOrientation($image)
+    public function getOrientation($image)
     {
         $size = $image->getSize();
 
