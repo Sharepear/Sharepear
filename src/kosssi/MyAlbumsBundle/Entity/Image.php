@@ -292,7 +292,7 @@ class Image
      */
     public function getWebPath()
     {
-        $webPath = split('../web', $this->path);
+        $webPath = explode('../web', $this->path);
 
         return $webPath[1];
     }

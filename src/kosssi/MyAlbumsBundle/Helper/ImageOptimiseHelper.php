@@ -48,7 +48,7 @@ class ImageOptimiseHelper
         $filters = $this->filterConfig->all();
 
         foreach ($filters as $filter => $value) {
-            $cachePath = $this->webPath . '/media' . split('/media', $this->cacheManager->resolve($path, $filter), 2)[1];
+            $cachePath = $this->webPath . '/media' . explode('/media', $this->cacheManager->resolve($path, $filter), 2)[1];
             $this->optimise($cachePath);
         }
     }
