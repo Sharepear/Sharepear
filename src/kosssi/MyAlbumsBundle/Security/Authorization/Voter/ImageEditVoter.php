@@ -24,7 +24,7 @@ class ImageEditVoter implements VoterInterface
     }
 
     /**
-     * @param string $class
+     * @param object $class
      *
      * @return bool
      */

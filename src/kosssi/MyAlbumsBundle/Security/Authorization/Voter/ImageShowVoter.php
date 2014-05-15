@@ -24,7 +24,7 @@ class ImageShowVoter implements VoterInterface
     }
 
     /**
-     * @param string $class
+     * @param object $class
      *
      * @return bool
      */
