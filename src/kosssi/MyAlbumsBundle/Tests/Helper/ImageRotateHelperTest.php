@@ -72,7 +72,7 @@ class ImageRotateHelperTest extends WebTestCase
 
         // test width
         $box = $this->imagine->open($this->imagePath)->getSize();
-        $this->assertEquals($width, $box->getHeight());
+        $this->assertLessThan(2, $width - $box->getHeight());
         $this->assertEquals($height, $box->getWidth());
 
         // test orientation
