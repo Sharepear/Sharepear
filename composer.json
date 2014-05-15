@@ -1,5 +1,6 @@
 {
-    "name": "MyAlbums",
+    "name": "kosssi/MyAlbums",
+    "description": "A simple gallery.",
     "license": "MIT",
     "autoload": {
         "psr-0": { "": "src/" }
