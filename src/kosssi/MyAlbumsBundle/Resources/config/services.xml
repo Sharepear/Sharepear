@@ -15,7 +15,7 @@
 
         <!-- listener -->
         <parameter key="kosssi_my_albums.listener.resolver.class">kosssi\MyAlbumsBundle\Entity\ListenerResolver</parameter>
-        <parameter key="kosssi_my_albums.listener.image.class">kosssi\MyAlbumsBundle\Entity\ImageListener</parameter>
+        <parameter key="kosssi_my_albums.listener.image.class">kosssi\MyAlbumsBundle\EventListener\ImageListener</parameter>
         <parameter key="kosssi_my_albums.listener.upload.class">kosssi\MyAlbumsBundle\EventListener\UploadListener</parameter>
 
         <!-- repository -->

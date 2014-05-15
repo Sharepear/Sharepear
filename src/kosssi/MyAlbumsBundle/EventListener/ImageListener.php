@@ -1,6 +1,6 @@
 <?php
 
-namespace kosssi\MyAlbumsBundle\Entity;
+namespace kosssi\MyAlbumsBundle\EventListener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;

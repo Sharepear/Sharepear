@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
- * @ORM\EntityListeners({"ImageListener"})
+ * @ORM\EntityListeners({"kosssi\MyAlbumsBundle\EventListener\ImageListener"})
  */
 class Image
 {
