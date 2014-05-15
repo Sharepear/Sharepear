@@ -1,0 +1,11 @@
+kosssi\MyAlbumsBundle\Entity\User:
+    user1:
+        username: 'username'
+        plainPassword: 'pa$$word'
+        email: 'username@example.org'
+        enabled: true
+    user2:
+        username: 'kosssi'
+        plainPassword: 'pa$$word'
+        email: 'kosssi@example.org'
+        enabled: true
