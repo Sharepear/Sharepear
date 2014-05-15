@@ -1,6 +1,8 @@
 MyAlbums [![Build Status](https://travis-ci.org/chlorius/MyAlbums.svg?branch=master)](https://travis-ci.org/chlorius/MyAlbums) [![Coverage Status](https://coveralls.io/repos/chlorius/MyAlbums/badge.png?branch=master)](https://coveralls.io/r/chlorius/MyAlbums?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/chlorius/MyAlbums/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/chlorius/MyAlbums/?branch=master)
 ========
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/b57f6541-c800-43dc-a563-3bc43aa9663b/big.png)](https://insight.sensiolabs.com/projects/b57f6541-c800-43dc-a563-3bc43aa9663b)
+
 Status : WIP
 
 Board : https://waffle.io/chlorius/MyAlbums
