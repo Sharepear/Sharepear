@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="kosssi\MyAlbumsBundle\Repository\ImageRepository")
  * @ORM\EntityListeners({"kosssi\MyAlbumsBundle\EventListener\ImageListener"})
  */
 class Image

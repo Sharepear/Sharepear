@@ -28,18 +28,15 @@ class AlbumController extends Controller
      */
     public function showAction(Image $album)
     {
-        $images = $this->get('kosssi_my_albums.repository.image')->findBy(
-            array(
-                'album' => $album,
-                'user' => $this->getUser(),
-            )
-        );
+        $sharedAlbum = $this->getUser() != $album->getUser();
+        $images = $this->get('kosssi_my_albums.repository.image')->getImages($album, $sharedAlbum);
         $form = $this->createForm('album_name', $album);
 
         return array(
-            'album'  => $album,
+            'album' => $album,
             'images' => $images,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
+            'shared_album' => $sharedAlbum,
         );
     }
 

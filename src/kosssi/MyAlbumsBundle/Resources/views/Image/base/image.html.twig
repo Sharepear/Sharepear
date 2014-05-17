@@ -6,29 +6,33 @@
              title="{{ image.name }}"
             >
         <ul class="actions">
-            <li>
-                <a class="imageRotateRight" title="Tourner à gauche" href="{{ path('image_rotation_right', {'id': image.id}) }}">
-                    <i class="fa fa-rotate-left"></i>
-                </a>
-            </li>
-            <li>
-                <a class="imageRotateLeft" title="Tourner à droite" href="{{ path('image_rotation_left', {'id': image.id}) }}">
-                    <i class="fa fa-rotate-right"></i>
-                </a>
-            </li>
-            <li>
-                {% include 'kosssiMyAlbumsBundle:Image/base:share.html.twig' with {'image': image} only %}
-            </li>
+            {% if not shared_album %}
+                <li>
+                    <a class="imageRotateRight" title="Tourner à gauche" href="{{ path('image_rotation_right', {'id': image.id}) }}">
+                        <i class="fa fa-rotate-left"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="imageRotateLeft" title="Tourner à droite" href="{{ path('image_rotation_left', {'id': image.id}) }}">
+                        <i class="fa fa-rotate-right"></i>
+                    </a>
+                </li>
+                <li>
+                    {% include 'kosssiMyAlbumsBundle:Image/base:share.html.twig' with {'image': image} only %}
+                </li>
+            {% endif %}
             <li>
                 <a class="imageFolder" title="Ajouter des photos" href="{{ path('album_show', {'id': image.id}) }}">
                     <i class="fa fa-folder-open"></i>
                 </a>
             </li>
-            <li>
-                <a class="imageRemove" title="Supprimer cette image" href="{{ path('image_delete', {'id': image.id}) }}">
-                    <i class="fa fa-times-circle-o"></i>
-                </a>
-            </li>
+            {% if not shared_album %}
+                <li>
+                    <a class="imageRemove" title="Supprimer cette image" href="{{ path('image_delete', {'id': image.id}) }}">
+                        <i class="fa fa-times-circle-o"></i>
+                    </a>
+                </li>
+            {% endif %}
         </ul>
     </{{ element }}>
 {% endspaceless %}

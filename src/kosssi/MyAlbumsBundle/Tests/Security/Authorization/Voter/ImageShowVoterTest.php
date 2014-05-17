@@ -87,12 +87,26 @@ class ImageShowVoterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * test access granted
+     * test access granted when image is own image
      */
-    public function testAccessGranted()
+    public function testAccessGrantedOwnImage()
     {
         Phake::when($this->token)->getUser()->thenReturn("user1");
         Phake::when($this->object)->getUser()->thenReturn("user1");
+
+        $this->assertEquals(
+            VoterInterface::ACCESS_GRANTED,
+            $this->imageShowVoter->vote($this->token, $this->object, $this->attributes)
+        );
+    }
+
+    /**
+     * test access granted when image is public
+     */
+    public function testAccessGrantedPublicImage()
+    {
+        Phake::when($this->token)->getUser()->thenReturn("user1");
+        Phake::when($this->object)->isPublic()->thenReturn(true);
 
         $this->assertEquals(
             VoterInterface::ACCESS_GRANTED,

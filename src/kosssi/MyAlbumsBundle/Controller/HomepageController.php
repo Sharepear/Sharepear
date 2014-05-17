@@ -30,7 +30,8 @@ class HomepageController extends Controller
         );
 
         return array(
-            'images' => $images
+            'images' => $images,
+            'shared_album' => false,
         );
     }
 
@@ -55,7 +56,8 @@ class HomepageController extends Controller
         );
 
         return array(
-            'images' => $images
+            'images' => $images,
+            'shared_album' => true,
         );
     }
 }

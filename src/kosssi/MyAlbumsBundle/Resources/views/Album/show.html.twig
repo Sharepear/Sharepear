@@ -1,5 +1,9 @@
 {% extends 'kosssiMyAlbumsBundle:Album/base:layout.html.twig' %}
 
+{% if shared_album is not defined %}
+    {% set shared_album = false %}
+{% endif %}
+
 {% block section_content %}
     {% if form is defined %}
         {{ form(form, {'action': path('album_name_edit', {'id': album.id})}) }}
@@ -7,7 +11,7 @@
     <ul id="albumShow" class="album"></ul>
     <ul id="albumList" class="album">
         {% for image in images %}
-            {% include 'kosssiMyAlbumsBundle:Image/base:image.html.twig' with {'image': image, 'element': 'li'} only %}
+            {% include 'kosssiMyAlbumsBundle:Image/base:image.html.twig' with {'image': image, 'element': 'li', 'shared_album': shared_album} only %}
         {% endfor %}
     </ul>
     <div id="fullscreenContent"></div>

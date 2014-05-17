@@ -46,7 +46,7 @@ class ImageShowVoter implements VoterInterface
             if ($this->supportsAttribute($attribute) && $this->supportsClass($object)) {
                 $user = $token->getUser();
 
-                if ($user == $object->getUser()) {
+                if ($user == $object->getUser() || $object->isPublic()) {
                     return VoterInterface::ACCESS_GRANTED;
                 }
             }
