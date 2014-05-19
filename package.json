@@ -4,8 +4,7 @@
     "author": "Simon Constans <kosssi@gmail.com>",
     "private": true,
     "scripts": {
-        "postinstall": "bower install",
-        "start": "grunt server"
+        "postinstall": "bower install"
     },
     "engines": {
         "npm": "1.3.24"
