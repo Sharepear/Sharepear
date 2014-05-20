@@ -35,8 +35,12 @@ class DataFiltersExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('getDataFilters', array($this, 'getDataFilters')),
-            new \Twig_SimpleFunction('getFiltersConfiguration', array($this, 'getFiltersConfiguration')),
+            new \Twig_SimpleFunction('getDataFilters', array($this, 'getDataFilters'), array(
+                'is_safe' => array('html')
+            )),
+            new \Twig_SimpleFunction('getFiltersConfiguration', array($this, 'getFiltersConfiguration'), array(
+                'is_safe' => array('html')
+            )),
         );
     }
 

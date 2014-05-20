@@ -10,7 +10,7 @@
         {% block body %}{% endblock %}
         {% block javadcripts %}
             <script>
-                var filters = {{ getFiltersConfiguration()|raw }};
+                var filters = {{ getFiltersConfiguration() }};
             </script>
             <script src="/built/all.js"></script>
         {% endblock %}
