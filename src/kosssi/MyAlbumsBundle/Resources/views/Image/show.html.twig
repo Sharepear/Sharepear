@@ -9,5 +9,5 @@
 {% extends layout %}
 
 {% block section_content %}
-    {% include 'kosssiMyAlbumsBundle:Image/base:image.html.twig' with {'image': image, 'element': element} only %}
+    {% include 'kosssiMyAlbumsBundle:Image/base:image.html.twig' with {'image': image, 'element': element, 'shared_album': shared_album} only %}
 {% endblock %}

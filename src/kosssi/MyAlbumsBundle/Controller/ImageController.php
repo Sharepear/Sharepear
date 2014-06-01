@@ -30,6 +30,7 @@ class ImageController extends Controller
     {
         return [
             'image' => $image,
+            'shared_album' => $this->getUser() == $image->getUser(),
         ];
     }
 
