@@ -40,6 +40,11 @@
                         </form>
                     </div>
                 </div>
+                <a href="{{ path('fos_user_profile_show') }}" title="{{ "Profile" | trans({}, "album") }}">
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-user"></i>
+                    </span>
+                </a>
                 <a href="{{ path('logout') }}" title="{{ "Logout" | trans({}, "album") }}">
                     <span class="fa-stack fa-lg">
                         <i class="fa fa-sign-out"></i>
