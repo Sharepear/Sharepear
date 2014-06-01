@@ -14,12 +14,14 @@
     <h1>{{ block('title') }}</h1>
     {% spaceless %}
         <div class="actions right">
+            {#
             <input type="text" id="search"/>
             <a href="">
                 <span class="fa-stack fa-lg">
                     <i class="fa fa-search"></i>
                 </span>
             </a>
+            #}
             {% if app.user %}
                 <a href="" class="show-upload" title="{{ "Add photos" | trans({}, "album") }}">
                     <span class="fa-stack fa-lg">
