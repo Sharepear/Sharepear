@@ -83,8 +83,7 @@ class Image
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="user", inversedBy="Image")
-     * @ORM\JoinColumn(name="userId", referencedColumnName="id", nullable=false)
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="images")
      */
     private $user;
 
