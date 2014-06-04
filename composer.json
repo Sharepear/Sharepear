@@ -20,15 +20,14 @@
         "sensio/framework-extra-bundle": "~3.0",
         "sensio/generator-bundle": "~2.3",
         "incenteev/composer-parameter-handler": "~2.0",
-        "oneup/uploader-bundle": "dev-master",
-        "liip/imagine-bundle": "dev-master",
-        "phake/phake": "dev-master",
-        "paranoiq/php-zip": "dev-master",
+        "oneup/uploader-bundle": "~1.2",
+        "liip/imagine-bundle": "dev-master#2be6f957694d06d6d2a3203ec16ecdbf0d849765",
         "friendsofsymfony/user-bundle": "~2.0@dev"
     },
     "require-dev": {
-        "phpunit/phpunit": "*",
-        "satooshi/php-coveralls": "dev-master"
+        "phpunit/phpunit": "~4.0",
+        "phake/phake": "~1.0",
+        "satooshi/php-coveralls": "~0.6"
     },
     "scripts": {
         "post-install-cmd": [
