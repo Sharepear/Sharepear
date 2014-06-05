@@ -16,12 +16,12 @@
         "symfony/assetic-bundle": "~2.3",
         "symfony/swiftmailer-bundle": "~2.3",
         "symfony/monolog-bundle": "~2.4",
-        "sensio/distribution-bundle": "~2.3",
+        "sensio/distribution-bundle": "~3.0",
         "sensio/framework-extra-bundle": "~3.0",
         "sensio/generator-bundle": "~2.3",
         "incenteev/composer-parameter-handler": "~2.0",
         "oneup/uploader-bundle": "~1.2",
-        "liip/imagine-bundle": "dev-master#2be6f957694d06d6d2a3203ec16ecdbf0d849765",
+        "liip/imagine-bundle": "~1.0",
         "friendsofsymfony/user-bundle": "~2.0@dev"
     },
     "require-dev": {
