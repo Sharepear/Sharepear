@@ -1,7 +1,14 @@
-MyAlbums [![Build Status](https://travis-ci.org/chlorius/MyAlbums.svg?branch=master)](https://travis-ci.org/chlorius/MyAlbums) [![Coverage Status](https://coveralls.io/repos/chlorius/MyAlbums/badge.png?branch=master)](https://coveralls.io/r/chlorius/MyAlbums?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/chlorius/MyAlbums/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/chlorius/MyAlbums/?branch=master) [![Dependency Status](https://www.versioneye.com/user/projects/538f136e46c473e14f000009/badge.svg)](https://www.versioneye.com/user/projects/538f136e46c473e14f000009)
+MyAlbums
 ========
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/b57f6541-c800-43dc-a563-3bc43aa9663b/big.png)](https://insight.sensiolabs.com/projects/b57f6541-c800-43dc-a563-3bc43aa9663b)
+| Service       | Badge         |
+| ------------- |:-------------:|
+| Travis | [![Build Status](https://travis-ci.org/chlorius/MyAlbums.svg?branch=master)](https://travis-ci.org/chlorius/MyAlbums) |
+| Coveralls | [![Coverage Status](https://coveralls.io/repos/chlorius/MyAlbums/badge.png?branch=master)](https://coveralls.io/r/chlorius/MyAlbums?branch=master) |
+| Scrutinizer | [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/chlorius/MyAlbums/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/chlorius/MyAlbums/?branch=master) |
+| VersionEye (PHP) | [![Dependency Status](https://www.versioneye.com/user/projects/538f136e46c473e14f000009/badge.svg)](https://www.versioneye.com/user/projects/538f136e46c473e14f000009) |
+| VersionEye (Node) | [![Dependency Status](https://www.versioneye.com/user/projects/538fc58146c47388ee000019/badge.svg)](https://www.versioneye.com/user/projects/538fc58146c47388ee000019) |
+| Insight | [![SensioLabsInsight](https://insight.sensiolabs.com/projects/b57f6541-c800-43dc-a563-3bc43aa9663b/big.png)](https://insight.sensiolabs.com/projects/b57f6541-c800-43dc-a563-3bc43aa9663b) |
 
 Status : WIP
 
