@@ -1,5 +1,5 @@
 {
-    "name": "kosssi/MyAlbums",
+    "name": "kosssi/my-albums",
     "description": "A simple gallery.",
     "license": "MIT",
     "autoload": {
