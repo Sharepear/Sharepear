@@ -53,6 +53,7 @@ class ImageListener
      */
     public function prePersist(Image $image, LifecycleEventArgs $event)
     {
+        unset($event);
         $now = new \Datetime();
 
         $orientation = $this->imageRotate->rotateAccordingExif($image->getPath());
@@ -71,6 +72,7 @@ class ImageListener
      */
     public function preUpdate(Image $image, PreUpdateEventArgs $event)
     {
+        unset($event);
         $image->setUpdatedAt(new \Datetime());
     }
 
@@ -80,6 +82,7 @@ class ImageListener
      */
     public function postRemove(Image $image, LifecycleEventArgs $event)
     {
+        unset($event);
         $this->imageCacheHelper->remove($image->getWebPath());
         $this->fs->remove($image->getPath());
     }
