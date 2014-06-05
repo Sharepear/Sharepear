@@ -2,7 +2,6 @@
 
 namespace kosssi\MyAlbumsBundle\Form\Type;
 
-use kosssi\MyAlbumsBundle\Entity\Image;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
