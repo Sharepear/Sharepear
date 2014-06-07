@@ -7,6 +7,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
+ * Class Image
+ *
+ * @author Simon Constans <kosssi@gmail.com>
  * @ORM\Entity(repositoryClass="kosssi\MyAlbumsBundle\Repository\ImageRepository")
  * @ORM\EntityListeners({"kosssi\MyAlbumsBundle\EventListener\ImageListener"})
  */
@@ -191,7 +194,7 @@ class Image
     }
 
     /**
-     * @param $image
+     * @param Image $image
      *
      * @return $this
      */
@@ -203,7 +206,7 @@ class Image
     }
 
     /**
-     * @param $image
+     * @param Image $image
      *
      * @return $this
      */

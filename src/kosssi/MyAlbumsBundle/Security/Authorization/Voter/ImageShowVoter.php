@@ -40,7 +40,7 @@ class ImageShowVoter implements VoterInterface
      *
      * @return int
      */
-    function vote(TokenInterface $token, $object, array $attributes)
+    public function vote(TokenInterface $token, $object, array $attributes)
     {
         foreach ($attributes as $attribute) {
             if ($this->supportsAttribute($attribute) && $this->supportsClass($object)) {

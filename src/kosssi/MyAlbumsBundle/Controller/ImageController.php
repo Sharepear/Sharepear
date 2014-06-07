@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Image controller.
  *
+ * @author Simon Constans <kosssi@gmail.com>
  * @Config\Route("/image")
  */
 class ImageController extends Controller

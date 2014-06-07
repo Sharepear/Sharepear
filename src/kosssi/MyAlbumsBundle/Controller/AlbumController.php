@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Album controller.
  *
+ * @author Simon Constans <kosssi@gmail.com>
  * @Config\Route("/album")
  */
 class AlbumController extends Controller

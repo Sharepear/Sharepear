@@ -6,6 +6,9 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Class User
+ *
+ * @author Simon Constans <kosssi@gmail.com>
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
  */
@@ -28,6 +31,9 @@ class User extends BaseUser
      */
     private $images;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         parent::__construct();

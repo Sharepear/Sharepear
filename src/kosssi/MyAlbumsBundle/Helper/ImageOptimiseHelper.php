@@ -35,7 +35,7 @@ class ImageOptimiseHelper
      * @param \Liip\ImagineBundle\Imagine\Cache\CacheManager         $cacheManager
      * @param \Liip\ImagineBundle\Imagine\Filter\FilterConfiguration $filterConfig
      */
-    function __construct($rootDir, $imagine, $cacheManager, $filterConfig)
+    public function __construct($rootDir, $imagine, $cacheManager, $filterConfig)
     {
         $this->imagine = $imagine;
         $this->cacheManager = $cacheManager;
@@ -43,6 +43,9 @@ class ImageOptimiseHelper
         $this->webPath = $rootDir . '/../web';
     }
 
+    /**
+     * @param string $path
+     */
     public function optimiseCaches($path)
     {
         $filters = $this->filterConfig->all();

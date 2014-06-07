@@ -8,6 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * The homepage controller.
+ *
+ * @author Simon Constans <kosssi@gmail.com>
  */
 class HomepageController extends Controller
 {
@@ -18,7 +20,7 @@ class HomepageController extends Controller
      * @Config\Template("kosssiMyAlbumsBundle:Album:show.html.twig")
      * @Config\Security("has_role('ROLE_USER')")
      *
-     * return array
+     * @return array
      */
     public function homepageAction()
     {

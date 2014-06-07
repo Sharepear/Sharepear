@@ -1,6 +1,7 @@
 <?php
 
 namespace kosssi\MyAlbumsBundle\Helper;
+
 use kosssi\MyAlbumsBundle\Entity\Image;
 
 /**
@@ -18,7 +19,7 @@ class ImageRotateHelper
     /**
      * @param \Imagine\Gd\Imagine $imagine
      */
-    function __construct($imagine)
+    public function __construct($imagine)
     {
         $this->imagine = $imagine;
     }
