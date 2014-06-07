@@ -6,7 +6,7 @@ MyAlbums
 | Travis | [![Build Status](https://travis-ci.org/chlorius/MyAlbums.svg?branch=master)](https://travis-ci.org/chlorius/MyAlbums) |
 | Coveralls | [![Coverage Status](https://coveralls.io/repos/chlorius/MyAlbums/badge.png?branch=master)](https://coveralls.io/r/chlorius/MyAlbums?branch=master) |
 | Scrutinizer | [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/chlorius/MyAlbums/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/chlorius/MyAlbums/?branch=master) |
-| VersionEye (PHP) | [![Dependency Status](https://www.versioneye.com/user/projects/538fc3c146c4733233000016/badge.svg?style=flat)](https://www.versioneye.com/user/projects/538fc3c146c4733233000016) |
+| VersionEye (PHP) | [![Dependency Status](https://www.versioneye.com/user/projects/538fc3c146c4733233000016/badge.svg)](https://www.versioneye.com/user/projects/538fc3c146c4733233000016) |
 | VersionEye (Node) | [![Dependency Status](https://www.versioneye.com/user/projects/538fc58146c47388ee000019/badge.svg)](https://www.versioneye.com/user/projects/538fc58146c47388ee000019) |
 | Insight | [![SensioLabsInsight](https://insight.sensiolabs.com/projects/b57f6541-c800-43dc-a563-3bc43aa9663b/big.png)](https://insight.sensiolabs.com/projects/b57f6541-c800-43dc-a563-3bc43aa9663b) |
 
@@ -42,9 +42,10 @@ cd MyAlbums
 cp app/config/parameters.yml.dist app/config/parameters.yml
 composer install
 app/console doctrine:database:create
-app/console doctrine:schema:create
+app/console doctrine:migration:migrate -n
 app/console assets:install --symlink
-npm start
+npm install
+node_modules/.bin/grunt
 ```
 
 ## Réinitialiser
@@ -52,7 +53,7 @@ npm start
 ```
 app/console doctrine:database:drop --force
 app/console doctrine:database:create
-app/console doctrine:schema:create
+app/console doctrine:migration:migrate -n
 ```
 
 ## Commande Grunt

@@ -13,7 +13,7 @@ before_script:
   - mysql -e 'create database sharepear;'
   - cp app/config/parameters.yml.travis app/config/parameters.yml
   - composer install --prefer-dist
-  - app/console doctrine:schema:create
+  - app/console doctrine:migration:migrate -n
   - app/console doctrine:fixtures:load -n
   - app/console assets:install --symlink
   - npm install
@@ -21,6 +21,7 @@ before_script:
 
 script:
   - phpunit -c app
+  - app/console doctrine:migration:migrate -n --env=test 0
 
 after_script:
   - php bin/coveralls -v
