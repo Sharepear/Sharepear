@@ -1,6 +1,10 @@
 parameters:
-    database_driver:   pdo_sqlite
-    database_path:     %kernel.root_dir%/data.db3
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: ~
+    database_name: sharepear
+    database_user: sharepear
+    database_password: sharepear
 
     locale:            en
     secret:            aD5n5sLb2Q8q6Z39bDra23ZrzAN85ANr
