@@ -3,7 +3,6 @@
 namespace kosssi\MyAlbumsBundle\Entity;
 
 use Doctrine\ORM\Mapping\DefaultEntityListenerResolver;
-use kosssi\MyAlbumsBundle\EventListener\ImageListener;
 
 /**
  * Class ListenerResolver
@@ -33,7 +32,7 @@ class ListenerResolver extends DefaultEntityListenerResolver
     public function resolve($className)
     {
         $id = null;
-        if ($className === ImageListener::class) {
+        if ($className === 'kosssi\MyAlbumsBundle\EventListener\ImageListener') {
             $id = 'kosssi_my_albums.listener.image';
         }
 

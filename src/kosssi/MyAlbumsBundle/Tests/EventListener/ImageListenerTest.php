@@ -2,9 +2,6 @@
 
 namespace kosssi\MyAlbumsBundle\Tests\EventListener;
 
-use Doctrine\ORM\Event\LifecycleEventArgs;
-use Doctrine\ORM\Event\PreUpdateEventArgs;
-use kosssi\MyAlbumsBundle\Entity\Image;
 use kosssi\MyAlbumsBundle\EventListener\ImageListener;
 use kosssi\MyAlbumsBundle\Helper\ImageCacheHelper;
 use kosssi\MyAlbumsBundle\Helper\ImageOptimiseHelper;
@@ -49,9 +46,9 @@ class ImageListenerTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->fs = Phake::mock('Symfony\Component\Filesystem\Filesystem');
-        $this->imageCacheHelper = Phake::mock(ImageCacheHelper::class);
-        $this->imageOptimiseHelper = Phake::mock(ImageOptimiseHelper::class);
-        $this->imageRotate = Phake::mock(ImageRotateHelper::class);
+        $this->imageCacheHelper = Phake::mock('kosssi\MyAlbumsBundle\Helper\ImageCacheHelper');
+        $this->imageOptimiseHelper = Phake::mock('kosssi\MyAlbumsBundle\Helper\ImageOptimiseHelper');
+        $this->imageRotate = Phake::mock('kosssi\MyAlbumsBundle\Helper\ImageRotateHelper');
         $this->imageListener = new ImageListener(
             $this->fs, $this->imageCacheHelper, $this->imageOptimiseHelper, $this->imageRotate
         );
@@ -62,8 +59,8 @@ class ImageListenerTest extends \PHPUnit_Framework_TestCase
      */
     public function testPrePersist()
     {
-        $image = Phake::mock(Image::class);
-        $event = Phake::mock(LifecycleEventArgs::class);
+        $image = Phake::mock('kosssi\MyAlbumsBundle\Entity\Image');
+        $event = Phake::mock('Doctrine\ORM\Event\LifecycleEventArgs');
         $this->imageListener->prePersist($image, $event);
 
         Phake::verify($image, Phake::times(1))->setCreatedAt(Phake::anyParameters());
@@ -76,8 +73,8 @@ class ImageListenerTest extends \PHPUnit_Framework_TestCase
      */
     public function testPreUpdate()
     {
-        $image = Phake::mock(Image::class);
-        $event = Phake::mock(PreUpdateEventArgs::class);
+        $image = Phake::mock('kosssi\MyAlbumsBundle\Entity\Image');
+        $event = Phake::mock('Doctrine\ORM\Event\PreUpdateEventArgs');
         $this->imageListener->preUpdate($image, $event);
 
         Phake::verify($image, Phake::times(1))->setUpdatedAt(Phake::anyParameters());
@@ -88,8 +85,8 @@ class ImageListenerTest extends \PHPUnit_Framework_TestCase
      */
     public function testPostRemove()
     {
-        $image = Phake::mock(Image::class);
-        $event = Phake::mock(LifecycleEventArgs::class);
+        $image = Phake::mock('kosssi\MyAlbumsBundle\Entity\Image');
+        $event = Phake::mock('Doctrine\ORM\Event\LifecycleEventArgs');
         $this->imageListener->postRemove($image, $event);
 
         Phake::verify($this->imageCacheHelper, Phake::times(1))->remove(Phake::anyParameters());

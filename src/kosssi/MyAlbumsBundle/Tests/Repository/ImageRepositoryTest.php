@@ -2,10 +2,7 @@
 
 namespace kosssi\MyAlbumsBundle\Tests\Repository;
 
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Mapping\ClassMetadata;
 use kosssi\MyAlbumsBundle\Entity\Image;
-use kosssi\MyAlbumsBundle\Repository\ImageRepository;
 use Phake;
 
 /**
@@ -20,11 +17,11 @@ class ImageRepositoryTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetImage()
     {
-        $em = Phake::mock(EntityManagerInterface::class);
-        $class = Phake::mock(ClassMetadata::class);
-        $repository = Phake::partialMock(ImageRepository::class, $em, $class);
+        $em = Phake::mock('Doctrine\ORM\EntityManagerInterface');
+        $class = Phake::mock('Doctrine\ORM\Mapping\ClassMetadata');
+        $repository = Phake::partialMock('kosssi\MyAlbumsBundle\Repository\ImageRepository', $em, $class);
         Phake::when($repository)->findBy(Phake::anyParameters())->thenReturn(null);
-        $album = Phake::mock(Image::class);
+        $album = Phake::mock('kosssi\MyAlbumsBundle\Entity\Image');
 
         $sharedAlbum = true;
         $repository->getImages($album, $sharedAlbum);

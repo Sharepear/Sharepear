@@ -2,12 +2,8 @@
 
 namespace kosssi\MyAlbumsBundle\Tests\Uploader\Naming;
 
-use FOS\UserBundle\Model\UserInterface;
 use kosssi\MyAlbumsBundle\Uploader\Naming\ImageNamer;
-use Oneup\UploaderBundle\Uploader\File\FileInterface;
 use Phake;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
  * Class ImageNamerTest
@@ -24,10 +20,10 @@ class ImageNamerTest extends \PHPUnit_Framework_TestCase
         $username  = "kosssi";
         $extension = "jpg";
 
-        $context = Phake::mock(SecurityContextInterface::class);
-        $token   = Phake::mock(TokenInterface::class);
-        $user    = Phake::mock(UserInterface::class);
-        $file    = Phake::mock(FileInterface::class);
+        $context = Phake::mock('Symfony\Component\Security\Core\SecurityContextInterface');
+        $token   = Phake::mock('Symfony\Component\Security\Core\Authentication\Token\TokenInterface');
+        $user    = Phake::mock('FOS\UserBundle\Model\UserInterface');
+        $file    = Phake::mock('Oneup\UploaderBundle\Uploader\File\FileInterface');
 
         Phake::when($context)->getToken()->thenReturn($token);
         Phake::when($token)->getUser()->thenReturn($user);

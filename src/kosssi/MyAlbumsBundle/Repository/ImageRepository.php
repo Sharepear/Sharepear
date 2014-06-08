@@ -9,6 +9,7 @@ use kosssi\MyAlbumsBundle\Entity\Image;
  * Class ImageRepository
  *
  * @author Simon Constans <kosssi@gmail.com>
+ * @method Image findOneById()
  */
 class ImageRepository extends EntityRepository
 {

@@ -3,8 +3,6 @@
 namespace kosssi\MyAlbumsBundle\Tests\Twig;
 
 use kosssi\MyAlbumsBundle\Twig\DataFiltersExtension;
-use Liip\ImagineBundle\Imagine\Cache\CacheManager;
-use Liip\ImagineBundle\Imagine\Filter\FilterConfiguration;
 use Phake;
 
 /**
@@ -15,12 +13,12 @@ use Phake;
 class DataFiltersExtensionTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var CacheManager
+     * @var \Liip\ImagineBundle\Imagine\Cache\CacheManager
      */
     private $cacheManager;
 
     /**
-     * @var FilterConfiguration
+     * @var \Liip\ImagineBundle\Imagine\Filter\FilterConfiguration
      */
     private $filterConfig;
 
@@ -34,8 +32,8 @@ class DataFiltersExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->cacheManager = Phake::mock(CacheManager::class);
-        $this->filterConfig = Phake::mock(FilterConfiguration::class);
+        $this->cacheManager = Phake::mock('Liip\ImagineBundle\Imagine\Cache\CacheManager');
+        $this->filterConfig = Phake::mock('Liip\ImagineBundle\Imagine\Filter\FilterConfiguration');
 
         $this->dataFiltersExtension = new DataFiltersExtension($this->cacheManager, $this->filterConfig);
     }

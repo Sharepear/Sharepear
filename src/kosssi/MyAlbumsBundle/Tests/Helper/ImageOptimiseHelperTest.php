@@ -2,11 +2,7 @@
 
 namespace kosssi\MyAlbumsBundle\Tests\Helper;
 
-use Imagine\Gmagick\Imagine;
-use Imagine\Image\ImageInterface;
 use kosssi\MyAlbumsBundle\Helper\ImageOptimiseHelper;
-use Liip\ImagineBundle\Imagine\Cache\CacheManager;
-use Liip\ImagineBundle\Imagine\Filter\FilterConfiguration;
 use Phake;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -50,13 +46,13 @@ class ImageOptimiseHelperTest extends WebTestCase
     public function testOptimiseCaches()
     {
         $rootDir = "";
-        $imagine = Phake::mock(Imagine::class);
-        $cacheManager = Phake::mock(CacheManager::class);
-        $filterConfig = Phake::mock(FilterConfiguration::class);
+        $imagine = Phake::mock('Imagine\Gmagick\Imagine');
+        $cacheManager = Phake::mock('Liip\ImagineBundle\Imagine\Cache\CacheManager');
+        $filterConfig = Phake::mock('Liip\ImagineBundle\Imagine\Filter\FilterConfiguration');
         $path = "/test.jpg";
         $filterName = "xl";
         $filters = [$filterName => null];
-        $imageInterface = Phake::mock(ImageInterface::class);
+        $imageInterface = Phake::mock('Imagine\Image\ImageInterface');
 
         Phake::when($filterConfig)->all()->thenReturn($filters);
         Phake::when($cacheManager)->resolve($path, $filterName)->thenReturn("/blabla/media/test/me.jpg");

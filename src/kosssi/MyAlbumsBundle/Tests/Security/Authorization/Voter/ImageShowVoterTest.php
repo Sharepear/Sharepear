@@ -2,10 +2,8 @@
 
 namespace kosssi\MyAlbumsBundle\Tests\Security\Authorization\Voter;
 
-use kosssi\MyAlbumsBundle\Entity\Image;
 use kosssi\MyAlbumsBundle\Security\Authorization\Voter\ImageShowVoter;
 use Phake;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 
 /**
@@ -16,12 +14,12 @@ use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 class ImageShowVoterTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var TokenInterface
+     * @var \Symfony\Component\Security\Core\Authentication\Token\TokenInterface
      */
     private $token;
 
     /**
-     * @var Image
+     * @var \kosssi\MyAlbumsBundle\Entity\Image
      */
     private $object;
 
@@ -40,8 +38,8 @@ class ImageShowVoterTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->token = Phake::mock(TokenInterface::class);
-        $this->object = Phake::mock(Image::class);
+        $this->token = Phake::mock('Symfony\Component\Security\Core\Authentication\Token\TokenInterface');
+        $this->object = Phake::mock('kosssi\MyAlbumsBundle\Entity\Image');
         $this->attributes = ['IMAGE_SHOW'];
         $this->imageShowVoter = new ImageShowVoter();
     }
@@ -64,7 +62,7 @@ class ImageShowVoterTest extends \PHPUnit_Framework_TestCase
      */
     public function testAccessDeniedNoSupportClass()
     {
-        $this->object = Phake::mock(TokenInterface::class);
+        $this->object = Phake::mock('Symfony\Component\Security\Core\Authentication\Token\TokenInterface');
 
         $this->assertEquals(
             VoterInterface::ACCESS_DENIED,
