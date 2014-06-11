@@ -37,28 +37,36 @@ Design :
 
 ## Installation
 
-```
-git clone git@github.com:chlorius/MyAlbums.git
-cd MyAlbums
-cp app/config/parameters.yml.dist app/config/parameters.yml
-composer install
-app/console doctrine:database:create
-app/console doctrine:migration:migrate -n
-app/console assets:install --symlink
-npm install
-node_modules/.bin/grunt
-```
+    git clone git@github.com:chlorius/MyAlbums.git
+    cd MyAlbums
+    cp app/config/parameters.yml.dist app/config/parameters.yml
+    composer install
+    app/console doctrine:database:create
+    app/console doctrine:migration:migrate -n
+    app/console assets:install --symlink
+    npm install
+    node_modules/.bin/grunt
 
 ## Réinitialiser
 
-```
-app/console doctrine:database:drop --force
-app/console doctrine:database:create
-app/console doctrine:migration:migrate -n
-```
+    app/console doctrine:database:drop --force
+    app/console doctrine:database:create
+    app/console doctrine:migration:migrate -n
 
 ## Commande Grunt
 
 - grunt : pour compiler automatiquement les fichiers LESS et COFFEE
 - grunt server : il y a le watch sur l'ensemble des fichiers générés et le serveur PHP de lancé
 - grunt live : il y a le livereload en plus de 'grunt server'
+
+## Déploiement
+
+Le déploiement se fait depuis votre machine local.
+Il faut avoir renseigné dans dans le fichier hosts (/etc/hosts) deux domain :
+
+- sharepear.dev 10.0.0.177 : pour la vagrant
+- sharepear.prod ?.?.?.? : pour votre production
+
+    bundle install
+    bundle exec cap vagrant deploy
+    bundle exec cap prod deploy
