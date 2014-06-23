@@ -77,19 +77,28 @@ module.exports = function(grunt) {
         concat: {
             bowerjs: {
                 src: [
-                    'bower_components/jquery/jquery.js',
-                    'bower_components/dropzone/downloads/dropzone.js',
+                    // jquery
+                    'bower_components/jquery/dist/jquery.js',
+
+                    // masonery
+                    'bower_components/get-style-property/get-style-property.js',
+                    'bower_components/get-size/get-size.js',
+
                     'bower_components/eventEmitter/EventEmitter.js',
                     'bower_components/eventie/eventie.js',
                     'bower_components/doc-ready/doc-ready.js',
-                    'bower_components/get-style-property/get-style-property.js',
-                    'bower_components/get-size/get-size.js',
                     'bower_components/jquery-bridget/jquery.bridget.js',
                     'bower_components/matches-selector/matches-selector.js',
                     'bower_components/outlayer/item.js',
                     'bower_components/outlayer/outlayer.js',
+
                     'bower_components/masonry/masonry.js',
+
+                    // imagesloaded
                     'bower_components/imagesloaded/imagesloaded.js',
+
+                    // dropzone
+                    'bower_components/dropzone/downloads/dropzone.js'
                 ],
                 dest: 'web/built/bower.js'
             },
