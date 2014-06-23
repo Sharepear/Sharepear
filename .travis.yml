@@ -18,12 +18,11 @@ before_script:
   - app/console assets:install --symlink
   - npm install
   - node_modules/.bin/grunt
-  - wget https://scrutinizer-ci.com/ocular.phar
 
 script:
-  - phpunit -c app
+  - bin/phpunit -c app
   - app/console doctrine:migration:migrate -n --env=test 0
 
 after_script:
-  - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml
-  - php bin/coveralls -v
+  - bin/ocular code-coverage:upload --format=php-clover build/logs/clover.xml
+  - bin/coveralls -v

@@ -1,6 +1,17 @@
+before_commands:
+    - git clone git://github.com/opensky/Symfony2-coding-standard.git ../symfony-2
+
 tools:
+    php_code_sniffer:
+        config:
+            ruleset: ../symfony-2/ruleset.xml
+            standard: PSR2
     php_sim: true
-    external_code_coverage: true
+    php_changetracking: true
+    php_cs_fixer:
+        config: { level: psr2 }
+    php_mess_detector: true
     php_pdepend: true
     php_analyzer: true
-    php_changetracking: true
+    sensiolabs_security_checker: true
+    external_code_coverage: true
