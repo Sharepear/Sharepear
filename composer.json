@@ -27,7 +27,7 @@
         "friendsofsymfony/user-bundle": "~2.0@dev"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.0",
+        "phpunit/phpunit": "4.1.3",
         "phake/phake": "~1.0",
         "satooshi/php-coveralls": "~0.6"
     },
