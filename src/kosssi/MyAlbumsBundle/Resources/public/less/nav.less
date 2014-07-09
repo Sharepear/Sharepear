@@ -1,0 +1,88 @@
+@import "../../app/knacss/knacss-config";
+
+nav {
+    ul {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        pointer-events: none;
+
+        li {
+            width: 100px;
+            height: 100px;
+            overflow: hidden;
+            border-style: solid;
+            border-width: 0;
+            pointer-events: auto;
+
+            &.small {
+                width: 60px;
+                height: 60px;
+
+                button {
+                    font-size: @h2-size;
+                }
+
+                &.top.right { border-bottom-left-radius: 20px }
+                &.top.left { border-bottom-right-radius: 20px; }
+                &.bottom.left { border-top-right-radius: 20px; }
+                &.bottom.right { border-top-left-radius: 20px; }
+            }
+
+            &.color1 {
+                border-color: @writeColor;
+
+                button {
+                    color: @writeColor;
+                }
+            }
+
+            &.color2 {
+                border-color: @flashColor;
+
+                button {
+                    color: @flashColor;
+                }
+            }
+
+            &.right {
+                border-left-width: 3px;
+            }
+
+            &.left {
+                border-right-width: 3px;
+            }
+
+            &.top {
+                border-bottom-width: 3px;
+            }
+
+            &.bottom {
+                position: absolute;
+                bottom: 0;
+                border-top-width: 3px;
+            }
+
+            &.top.right { border-bottom-left-radius: 30px }
+            &.top.left { border-bottom-right-radius: 30px; }
+            &.bottom.left { border-top-right-radius: 30px; }
+            &.bottom.right {
+                border-top-left-radius: 30px;
+                right: 0;
+            }
+
+            button {
+                width: 100%;
+                height: 100%;
+                padding: 0;
+                margin: 0;
+                border-width: 0;
+                background-color: transparent;
+                box-shadow: inset 0 0 0 #fff, 0 0 0 #000;
+                text-shadow: 0px 0px @h4-size @backgroundColor;
+                font-weight: bold;
+                font-size: @h1-size;
+            }
+        }
+    }
+}

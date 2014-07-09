@@ -18,3 +18,4 @@ web/images
 web/uploads
 app/data
 web/fonts
+/app/Resources/public/knacss/_*

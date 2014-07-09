@@ -16,6 +16,7 @@
         "dropzone": "3.10.2",
         "font-awesome": "4.1.0",
         "masonry": "3.1.5",
-        "imagesloaded": "3.1.8"
+        "imagesloaded": "3.1.8",
+        "knacss": "3.0.4"
     }
 }

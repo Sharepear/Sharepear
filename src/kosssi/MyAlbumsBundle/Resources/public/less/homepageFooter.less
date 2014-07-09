@@ -1,0 +1,86 @@
+@import "../../app/knacss/knacss-config";
+
+footer {
+    z-index: 10;
+    color: white;
+    position: absolute;
+    right: 0; bottom: 0; left: 0;
+
+    p {
+        display: inline;
+    }
+
+    ul {
+        margin: 0;
+        display: inline-block;
+    }
+
+    li {
+        display: inline-block;
+    }
+
+    a {
+        color: @color5;
+    }
+}
+
+@media screen and (max-width: @large-screen) {
+    footer {
+        padding: @small-value;
+        text-align: center;
+
+        p {
+            font-size: @h4-size;
+            padding: @small-value;
+            float: left;
+        }
+
+        ul {
+            float: right;
+
+            li {
+                padding: @small-value;
+
+                i {
+                    font-size: @h2-size*2;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: @small-screen) {
+    footer {
+        p {
+            display: block;
+            float: none;
+        }
+
+        ul {
+            float: none;
+        }
+    }
+}
+
+@media screen and (min-width: @large-screen) {
+    footer {
+        padding: @large-value;
+
+        p {
+            font-size: @h2-size;
+            float: left;
+        }
+
+        ul {
+            height: 42px;
+            float: right;
+        }
+
+        li {
+            i {
+                margin: -10px 0 0 @small-value;
+                font-size: @h1-size*2;
+            }
+        }
+    }
+}

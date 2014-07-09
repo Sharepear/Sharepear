@@ -17,13 +17,16 @@ class HomepageController extends Controller
      * Show homepage
      *
      * @Config\Route("/", name="homepage")
-     * @Config\Template("kosssiMyAlbumsBundle:Album:show.html.twig")
-     * @Config\Security("has_role('ROLE_USER')")
+     * @Config\Template("kosssiMyAlbumsBundle:Homepage:homepage.html.twig")
      *
      * @return array
      */
     public function homepageAction()
     {
+        if (null === $this->getUser()) {
+            return array();
+        }
+
         $images = $this->get('kosssi_my_albums.repository.image')->findBy(
             array(
                 'album' => null,
@@ -31,9 +34,12 @@ class HomepageController extends Controller
             )
         );
 
-        return array(
-            'images' => $images,
-            'shared_album' => false,
+        return $this->render(
+            'kosssiMyAlbumsBundle:Album:show.html.twig',
+            array(
+                'images' => $images,
+                'shared_album' => false,
+            )
         );
     }
 

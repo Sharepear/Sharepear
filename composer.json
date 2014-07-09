@@ -24,7 +24,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "oneup/uploader-bundle": "~1.2",
         "liip/imagine-bundle": "~1.0",
-        "friendsofsymfony/user-bundle": "~2.0@dev"
+        "friendsofsymfony/user-bundle": "~2.0@dev",
+        "hwi/oauth-bundle": "0.4.*@dev"
     },
     "require-dev": {
         "phpunit/phpunit": "4.1.3",

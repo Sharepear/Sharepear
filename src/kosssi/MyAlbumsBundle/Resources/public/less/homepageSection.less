@@ -1,0 +1,51 @@
+@import "../../app/knacss/knacss-config";
+
+section {
+    background-color: @color2;
+    color: @color4;
+    text-align: center;
+
+    h2 {
+        font-size: @h0-size;
+    }
+}
+
+@media screen and (max-width: @small-screen) {
+    section {
+        padding: @medium-value;
+
+        p {
+            font-size: @h3-size;
+        }
+    }
+}
+
+@media screen and (min-width: @small-screen) and (max-width: @large-screen) {
+    section {
+        padding: @medium-value;
+
+        h2 {
+            padding: @small-value 0 @small-value/2;
+        }
+
+        p {
+            padding: 0 @small-value @small-value;
+            font-size: @h2-size;
+        }
+    }
+}
+
+@media screen and (min-width: @large-screen) {
+    section {
+        padding: @large-value;
+
+        h2 {
+            font-size: @h2-size*2;
+        }
+
+        p {
+            padding: 0 @medium-value;
+            font-size: @h1-size;
+        }
+    }
+}

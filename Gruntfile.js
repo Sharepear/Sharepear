@@ -9,6 +9,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('livereloadx');
     grunt.loadNpmTasks('grunt-php');
+    grunt.loadNpmTasks('grunt-autoprefixer');
 
     // Création du répertoire d'image pour l'application s'il n'existe pas.
     grunt.file.mkdir('app/Resources/public/images/');
@@ -27,6 +28,17 @@ module.exports = function(grunt) {
             app: {
                 src: 'app/Resources/public/',
                 dest: 'web/bundles/app'
+            },
+            knacss: {
+                files: [
+                    {
+                        expand: true,
+                        overwrite: false,
+                        cwd: 'bower_components/knacss/less/',
+                        src: ['_0[1-9]*.less'],
+                        dest: 'app/Resources/public/knacss'
+                    }
+                ]
             },
             dropzone_image: {
                 src: 'bower_components/dropzone/downloads/images/spritemap.png',
@@ -127,6 +139,12 @@ module.exports = function(grunt) {
             }
         },
 
+        autoprefixer: {
+            no_dest: {
+                src: 'web/built/all.css'
+            }
+        },
+
         watch: {
             css: {
                 files: ['web/bundles/*/less/*.less'],
@@ -166,7 +184,7 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['clean', 'symlink', 'concat:bowercss', 'css', 'concat:bowerjs', 'javascript']);
     grunt.registerTask('live', ['default', 'php:live', 'livereloadx', 'watch']);
     grunt.registerTask('server', ['default', 'php:server', 'watch']);
-    grunt.registerTask('css', ['less:discovering', 'less', 'concat:css', 'cssmin']);
+    grunt.registerTask('css', ['less:discovering', 'less', 'concat:css', 'autoprefixer:no_dest', 'cssmin']);
     grunt.registerTask('javascript', ['coffee:discovering', 'coffee', 'concat:js', 'uglify']);
     grunt.registerTask('less:discovering', 'This is a function', function() {
         // LESS Files management
@@ -177,7 +195,10 @@ module.exports = function(grunt) {
             'web/built/', {
                 cwd: 'web/bundles/',
                 rename: function(dest, matchedSrcPath, options) {
-                    return dest + matchedSrcPath.replace(/less/g, 'css');
+                    var destPath = dest + matchedSrcPath.replace(/less/g, 'css');
+                    grunt.log.write(matchedSrcPath + " : ");
+                    grunt.log.write("File " + destPath + " created.\n");
+                    return destPath;
                 }
             });
 
