@@ -16,7 +16,7 @@
         "url": "git://github.com/SharePear/SharePear.git"
     },
     "scripts": {
-        "postinstall": "./node_modules/.bin/bower install"
+        "postinstall": "./node_modules/.bin/bower install --config.interactive=false"
     },
     "engines": {
         "npm": "1.4.16"
