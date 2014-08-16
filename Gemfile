@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
 
-gem "capifony",   "~> 2.7.0"
-gem "capistrano", "~> 2.15.5"
+gem 'capistrano', '~> 3.2.1'
+gem 'capistrano-npm', '~> 1.0.0'
+gem 'capistrano-symfony', '~> 0.2', :github => 'capistrano/symfony'
