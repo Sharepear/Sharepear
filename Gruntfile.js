@@ -181,7 +181,7 @@ module.exports = function(grunt) {
     });
 
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'symlink', 'concat:bowercss', 'css', 'concat:bowerjs', 'javascript']);
+    grunt.registerTask('default', ['clean:built', 'symlink', 'concat:bowercss', 'css', 'concat:bowerjs', 'javascript']);
     grunt.registerTask('live', ['default', 'php:live', 'livereloadx', 'watch']);
     grunt.registerTask('server', ['default', 'php:server', 'watch']);
     grunt.registerTask('css', ['less:discovering', 'less', 'concat:css', 'autoprefixer:no_dest', 'cssmin']);
