@@ -1,30 +1,26 @@
-{% extends '::base.html.twig' %}
-
-{% block title %}Login{% endblock %}
-
-{% block body %}
-    <section class="login popin">
-        <form id="login_form" action="{{ path('login_check') }}" method="post">
-            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-            <ul class="listFields">
-                <li>
-                    <input placeholder="Login" type="text" id="username" name="_username" value="{{ last_username }}"
-                           {% if error %}class="error" title="{{ error|trans }}" {% endif %}/>
-                </li>
-                <li>
-                    {% spaceless %}
-                        <input placeholder="Password" type="password" id="password" name="_password"
-                               class="small{% if error %} error" title="{{ error|trans }}{% endif %}" />
-                        <input class="button small{% if error %} error{% endif %}" type="submit" value=">" />
-                    {% endspaceless %}
-                </li>
-                <li class="button smallText">
-                    <p class="twoColumn">
-                        <a href="{{ path('fos_user_resetting_request') }}">{{ 'Lost password ?'|trans }}</a>
-                        <a href="{{ path('fos_user_registration_register') }}">{{ 'Join us ?'|trans }}</a>
-                    </p>
-                </li>
-            </ul>
-        </form>
-    </section>
-{% endblock %}
+<section class="login">
+    <form id="login_form" action="{{ path('login_check') }}" method="post">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        <ul>
+            <li>
+                <input placeholder="Login" type="text" id="username" name="_username" value="{{ last_username }}"
+                       {% if error %}class="error" title="{{ error|trans }}" {% endif %}/>
+            </li>
+            <li>
+                <input placeholder="Password" type="password" id="password" name="_password"
+                       {% if error %}class="error" title="{{ error|trans }}" {% endif %}"/>
+            </li>
+            <li>
+                <button {% if error %}class="error"{% endif %} type="submit">
+                    <i class="fa fa-sign-in"></i> Sign in
+                </button>
+            </li>
+            <li>
+                <p>
+                    <a class="ajax" href="{{ path('fos_user_resetting_request') }}">{{ 'Lost password ?'|trans }}</a>
+                    <a class="ajax" href="{{ path('fos_user_registration_register') }}">{{ 'Join us ?'|trans }}</a>
+                </p>
+            </li>
+        </ul>
+    </form>
+</section>

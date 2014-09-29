@@ -34,8 +34,8 @@ $(document).ready ->
         $(".show-upload").click (e) ->
             e.preventDefault();
             e.stopPropagation()
-            $(".show-upload span").toggle()
-            $(".upload").toggle "show"
+            $(".upload").toggle("show").toggleClass("show")
+            return
 
         Dropzone.options.myDropzone =
             success: (file, response) ->

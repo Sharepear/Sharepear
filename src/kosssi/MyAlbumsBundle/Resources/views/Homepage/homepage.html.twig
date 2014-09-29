@@ -1,45 +1,37 @@
 {% extends '::base.html.twig' %}
 
+{% block footer_attr %}class="link"{% endblock %}
+
 {% block body %}
     <header class="homepage cornfield">
-
-{#        <nav>
-            <ul class="unstyled pan">
-                <li class="top right color2 small">
-                    <button value="Login" onclick="$('.newsletter').toggleClass('visually-hidden');$('.login').toggleClass('visually-hidden');return false;">
-                        <i class="fa fa-users"></i>
-                    </button>
-                </li>
-            </ul>
-        </nav>#}
 
         <img src="/logo_white.svg" class="logo"/>
 
         <h1>Sharepear</h1>
 
-{#        <form class="newsletter visually-hidden">
-            <input type="text" autofocus="autofocus" placeholder="Your Email and Get Notified..."/>
-            <input type="submit" value=""/>
-        </form>
-
-        <form class="login visually-hidden">
-            <input type="text" autofocus="autofocus" placeholder="Email or Pseudo" />
-            <input type="password" placeholder="Password" />
-            <input type="submit" value="" />
-        </form>#}
     </header>
-    <section class="visually-hidden">
-        <h2>What is it?</h2>
-        <p>
-            My name is Simon Constans, I'm a web developer.
-            I want launch a web service arround the picture.
-            If you love it, so share it.
-            I would like optimisate picture for each device.
-            I love dev, ops, design also, I think open source is the best !!!
-        </p>
+
+    <ul class="links">
+        <li class="link-top link-left">
+            <a href="{{ path('fos_user_security_login') }}" class="ajax" title="{{ "Sign in" | trans({}, "album") }}">
+                <i class="fa fa-sign-in"></i>
+            </a>
+        </li>
+    </ul>
+
+    <section class="ajaxFullScreen" style="display: none;">
+        <ul class="links">
+            <li class="link-top link-right">
+                <a href="" class="close" title="{{ "Close" | trans({}, "album") }}">
+                    <i class="fa fa-times"></i>
+                </a>
+            </li>
+        </ul>
+        <div class="ajaxContainer">{% block ajaxContainer '' %}</div>
     </section>
-    <footer class="clearfix">
-        <p>Made With Love By <a href="https://twitter.com/kosssi">@kosssi</a></p>
+
+    <footer class="homepage clearfix">
+        <p class="small-hidden">Made With Fresh Pear!</p>
         <ul class="unstyled pan">
             <li>
                 <a href="https://github.com/sharepear/sharepear">

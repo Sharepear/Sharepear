@@ -9,7 +9,7 @@ MyAlbums
 | Scrutinizer (Coverage) | [![Code Coverage](https://scrutinizer-ci.com/g/chlorius/MyAlbums/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/chlorius/MyAlbums/?branch=master) |
 | VersionEye (PHP) | [![Dependency Status](https://www.versioneye.com/user/projects/538fc3c146c4733233000016/badge.svg)](https://www.versioneye.com/user/projects/538fc3c146c4733233000016) |
 | VersionEye (Gem) | [![Dependency Status](https://www.versioneye.com/user/projects/5398334d83add738da000036/badge.svg)](https://www.versioneye.com/user/projects/5398334d83add738da000036) |
-| VersionEye (Node) | [![Dependency Status](https://www.versioneye.com/user/projects/538fc58146c47388ee000019/badge.svg)](https://www.versioneye.com/user/projects/538fc58146c47388ee000019) |
+| VersionEye (Node) |  [![Dependency Status](https://www.versioneye.com/user/projects/53ed31ec13bb067b970000a9/badge.svg)](https://www.versioneye.com/user/projects/53ed31ec13bb067b970000a9) |
 | VersionEye (Bower) | [![Dependency Status](https://www.versioneye.com/user/projects/53a40e9f83add7e81a000031/badge.svg)](https://www.versioneye.com/user/projects/53a40e9f83add7e81a000031) |
 | Insight | [![SensioLabsInsight](https://insight.sensiolabs.com/projects/b57f6541-c800-43dc-a563-3bc43aa9663b/big.png)](https://insight.sensiolabs.com/projects/b57f6541-c800-43dc-a563-3bc43aa9663b) |
 

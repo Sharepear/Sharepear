@@ -1,62 +1,67 @@
 {% extends 'kosssiMyAlbumsBundle::base.html.twig' %}
 
-{% block title %}{% if album is defined %}{{ album.name }}{% else %}{{ 'homepage'|trans({}, 'album') }}{% endif %}{% endblock %}
+{% block title %}{% if album is defined %}{{ album.name }}{% else %}{{ 'Homepage'|trans({}, 'album') }}{% endif %}{% endblock %}
 
-{% block section_attr %} class="container"{% endblock %}
+{% block section_attr %}class="container"{% endblock %}
+
+{% block footer_content %}
+    <ul class="menu">
+        <li>
+            <a href="{{ path('homepage') }}">
+                <i class="fa fa-home"></i>
+                {{ "Homepage" | trans({}, "album") }}
+            </a>
+        </li>
+        <li>
+            <a class="ajax" href="{{ path('fos_user_profile_show') }}">
+                <i class="fa fa-user"></i>
+                {{ "Profile" | trans({}, "album") }}
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('logout') }}">
+                <i class="fa fa-sign-out"></i>
+                {{ "Logout" | trans({}, "album") }}
+            </a>
+        </li>
+    </ul>
+
+    <ul class="links">
+        <li class="link-top link-left">
+            <a href="" data-icon="logo" class="show-menu close" title="{{ "Menu" | trans({}, "album") }}">
+                <i class="fa logo"></i>
+            </a>
+        </li>
+        <li class="link-top link-right">
+            <a href="" data-icon="fa-picture-o" class="show-upload" title="{{ "Add photos" | trans({}, "album") }}">
+                <i class="fa fa-picture-o"></i>
+            </a>
+        </li>
+    </ul>
+
+    <ul class="links links-fullscreen visually-hidden">
+        <li class="link-middle link-left">
+            <a href="" class="show-before-picture" title="{{ "Show before picture" | trans({}, "album") }}">
+                <i class="fa fa-caret-left"></i>
+            </a>
+        </li>
+        <li class="link-middle link-right">
+            <a href="" class="show-next-picture" title="{{ "Show next picture" | trans({}, "album") }}">
+                <i class="fa fa-caret-right"></i>
+            </a>
+        </li>
+    </ul>
+
+    <div class="upload">
+        <div>
+            <form action="{{ oneup_uploader_endpoint('album') }}" class="dropzone" id="my-dropzone">
+                <input type="hidden" name="album_id" value="{% if album is defined %}{{ album.id }}{% endif %}">
+                <span data-description="{{ "Drop files here to upload" | trans({}, "album") }}"></span>
+            </form>
+        </div>
+    </div>
+{% endblock %}
 
 {% block header_content %}
-    <div class="actions left">
-        <a href="{{ path('homepage') }}"><i class="fa fa-home"></i></a>
-        {% if album is defined and album.album is not null -%}
-            <a href="{{ path('album_show', {'id': album.album.id}) }}"><i class="fa fa-chevron-left"></i></a>
-        {% endif %}
-    </div>
     <h1>{{ block('title') }}</h1>
-    {% spaceless %}
-        <div class="actions right">
-            {#
-            <input type="text" id="search"/>
-            <a href="">
-                <span class="fa-stack fa-lg">
-                    <i class="fa fa-search"></i>
-                </span>
-            </a>
-            #}
-            {% if app.user %}
-                <a href="" class="show-upload" title="{{ "Add photos" | trans({}, "album") }}">
-                    <span class="fa-stack fa-lg">
-                        <i class="fa fa-picture-o fa-stack-2x"></i>
-                        <i class="fa fa-plus fa-stack-1x inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-lg" style="display: none">
-                        <i class="fa fa-minus"></i>
-                    </span>
-                </a>
-                <div class="upload">
-                    <div>
-                        <form action="{{ oneup_uploader_endpoint('album') }}" class="dropzone" id="my-dropzone">
-                            <input type="hidden" name="album_id" value="{% if album is defined %}{{ album.id }}{% endif %}">
-                            <span data-description="{{ "Drop files here to upload" | trans({}, "album") }}"></span>
-                        </form>
-                    </div>
-                </div>
-                <a href="{{ path('fos_user_profile_show') }}" title="{{ "Profile" | trans({}, "album") }}">
-                    <span class="fa-stack fa-lg">
-                        <i class="fa fa-user"></i>
-                    </span>
-                </a>
-                <a href="{{ path('logout') }}" title="{{ "Logout" | trans({}, "album") }}">
-                    <span class="fa-stack fa-lg">
-                        <i class="fa fa-sign-out"></i>
-                    </span>
-                </a>
-            {% else %}
-                <a href="{{ path('fos_user_security_login') }}" title="{{ "Login" | trans({}, "album") }}">
-                    <span class="fa-stack fa-lg">
-                        <i class="fa fa-sign-in"></i>
-                    </span>
-                </a>
-            {% endif %}
-        </div>
-    {% endspaceless %}
 {% endblock %}
