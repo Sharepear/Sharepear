@@ -1,0 +1,41 @@
+@import "../../app/knacss/knacss-config.less";
+
+ul.menu {
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  padding: 100px;
+  background-color: @backgroundColor;
+  list-style: none;
+  opacity: 0.95;
+  display: none;
+
+  &.show {
+    display: block;
+  }
+
+  li {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    margin: 50px;
+  }
+
+  a {
+    width: 100%;
+    height: 100%;
+    display: table;
+    text-decoration: none;
+    border: 2px solid @flashColor;
+    border-radius: 100px;
+    font-size: @h3-size;
+    text-align: center;
+    padding-top: 55px;
+
+    i {
+      font-size: @h3-size * 2;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

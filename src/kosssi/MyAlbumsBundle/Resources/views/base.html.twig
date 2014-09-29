@@ -2,23 +2,20 @@
 
 {% block body %}
     {% block header %}
-        <header{% block header_attr %}{% endblock %}>
-            {% block header_content %}
-            {% endblock %}
+        <header {% block header_attr '' %}>
+            {% block header_content '' %}
         </header>
     {% endblock %}
 
     {% block section %}
-        <section{% block section_attr %}{% endblock %}>
-            {% block section_content %}
-            {% endblock %}
+        <section {% block section_attr '' %}>
+            {% block section_content '' %}
         </section>
     {% endblock %}
 
     {% block footer %}
-        <footer{% block footer_attr %}{% endblock %}>
-            {% block footer_content %}
-            {% endblock %}
+        <footer {% block footer_attr '' %}>
+            {% block footer_content '' %}
         </footer>
     {% endblock %}
 {% endblock %}

@@ -1,34 +1,22 @@
-{% extends '::base.html.twig' %}
-
-{% block title %}Request new password{% endblock %}
-
-{% block body %}
-    <section class="resettingRequest popin{% if invalid_username is not defined %} small{% endif %}">
-        <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
-            <ul>
-                {% if invalid_username is defined %}
-                    <li>
-                        <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}</p>
-                    </li>
-                {% endif %}
-                <li>
-                    {% spaceless %}
-                        <input id="username" type="text" name="username" required="required" class="small"
-                               placeholder="{{ 'resetting.request.username'|trans({}, 'FOSUserBundle') }}" />
-                        <input type="submit" class="small" value=">" />
-                    {% endspaceless %}
-                </li>
-                <li class="button smallText">
-                    <p class="twoColumn">
-                        <a href="{{ path('fos_user_security_login') }}">
-                            {{ 'Already sign up ?'|trans }}
-                        </a>
-                        <a href="{{ path('fos_user_registration_register') }}">
-                            {{ 'Join us ?'|trans }}
-                        </a>
-                    </p>
-                </li>
-            </ul>
-        </form>
-    </section>
-{% endblock body %}
+<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+    <ul>
+        {% if invalid_username is defined %}
+            <li>
+                <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}</p>
+            </li>
+        {% endif %}
+        <li>
+            <input id="username" type="text" name="username" required="required" class="small"
+                   placeholder="{{ 'Username or email'|trans({}, 'FOSUserBundle') }}" />
+        </li>
+        <li>
+            <button type="submit">{{ 'Send'|trans({}, 'FOSUserBundle') }}</button>
+        </li>
+        <li>
+            <p>
+                <a class="ajax" href="{{ path('fos_user_security_login') }}">{{ 'Already sign up ?'|trans }}</a>
+                <a class="ajax" href="{{ path('fos_user_registration_register') }}">{{ 'Join us ?'|trans }}</a>
+            </p>
+        </li>
+    </ul>
+</form>

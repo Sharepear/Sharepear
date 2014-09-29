@@ -1,8 +1,4 @@
 <section class="login">
-    <a href="#" id="btn_login">
-        <i class="fa fa-sign-in"></i>
-        <i class="fa fa-times"></i>
-    </a>
     <form id="login_form" action="{{ path('login_check') }}" method="post">
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
         <ul>
@@ -19,10 +15,12 @@
                     <i class="fa fa-sign-in"></i> Sign in
                 </button>
             </li>
-            {#<li>#}
-                {#<a href="{{ path('fos_user_resetting_request') }}">{{ 'Lost password ?'|trans }}</a>#}
-                {#<a href="{{ path('fos_user_registration_register') }}">{{ 'Join us ?'|trans }}</a>#}
-            {#</li>#}
+            <li>
+                <p>
+                    <a class="ajax" href="{{ path('fos_user_resetting_request') }}">{{ 'Lost password ?'|trans }}</a>
+                    <a class="ajax" href="{{ path('fos_user_registration_register') }}">{{ 'Join us ?'|trans }}</a>
+                </p>
+            </li>
         </ul>
     </form>
 </section>

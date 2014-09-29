@@ -1,0 +1,77 @@
+@import "../../app/knacss/knacss-config.less";
+
+.ajaxFullScreen {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: @backgroundColor;
+  display: table;
+  opacity: 0.95;
+
+  .ajaxContainer {
+    height: 100%;
+    width: 100%;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0 auto;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  input, button {
+    margin: 0 auto 30px;
+    text-align: center;
+    font-size: @h3-size * 2;
+  }
+
+  input {
+    padding: 10px;
+    width: 100%;
+    max-width: 600px;
+    color: @color4;
+    border-width: 0 0 4px;
+    border-color: @color4;
+    border-style: dashed;
+    background-color: transparent;
+  }
+
+  button {
+    padding: 15px 40px;
+    background-color: transparent;
+    border: 4px solid @flashColor;
+    color: @flashColor;
+    border-radius: 50%;
+    margin: auto 20px;
+  }
+
+  a {
+    text-align: right;
+  }
+}
+
+@media screen and (max-width: @small-screen), screen and (max-width: @medium-screen) and (orientation: landscape) {
+  .login {
+    width: 50px;
+    height: 50px;
+
+    #login_form {
+      padding: 50px;
+
+      input, button {
+        font-size: @h4-size;
+      }
+
+      input {
+        max-width: 300px;
+      }
+    }
+  }
+}

@@ -20,3 +20,21 @@
         }
     }
 }
+
+@keyframes pulse {
+  from {
+    box-shadow: 0 0 0px deepskyblue;
+    opacity: 0.2;
+  }
+  to {
+    box-shadow: 0 0 14px deepskyblue;
+    opacity: 1;
+  }
+}
+ul.links.links-fullscreen.visually-hidden li {
+  opacity: 1;
+}
+ul.links.links-fullscreen li {
+  transition: 3s;
+  opacity: 0.2;
+}

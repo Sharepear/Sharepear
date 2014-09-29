@@ -1,0 +1,64 @@
+@import "../../app/knacss/knacss-config.less";
+
+ul.links {
+  margin: 0;
+
+  li {
+    z-index: 1000;
+    border: 0 solid @flashColor;
+    position: fixed;
+    display: table;
+    width: 100px;
+    height: 100px;
+    background-color: transparent;
+    overflow: hidden;
+
+    &.link-top { top: 0; border-bottom-width: 2px; i{ padding-bottom: 25px; } }
+    &.link-right { right: 0; border-left-width: 2px; i{ padding-left: 10px; } }
+    &.link-bottom { bottom: 0; border-top-width: 2px; i{ padding-top: 25px; } }
+    &.link-left { left: 0; border-right-width: 2px; i{ padding-right: 10px; } }
+    &.link-top.link-right { border-bottom-left-radius: 100px; }
+    &.link-bottom.link-right { border-top-left-radius: 100px; }
+    &.link-bottom.link-left { border-top-right-radius: 100px; }
+    &.link-top.link-left { border-bottom-right-radius: 100px; }
+    &.link-middle { width: 50px; top: 50%; border-bottom-width: 2px; border-top-width: 2px; margin-top: -50px; }
+    &.link-middle.link-right { border-top-left-radius: 100px; border-bottom-left-radius: 100px; }
+    &.link-middle.link-left { border-top-right-radius: 100px; border-bottom-right-radius: 100px; }
+
+
+    a {
+      width: 100%;
+      height: 100%;
+      display: table;
+      text-decoration: none;
+      background-color: @flashBagroundColor;
+    }
+
+    i {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      font-size: @h3-size * 2;
+
+      &.logo {
+        background-image: url(/logo.svg);
+        background-size: 70px;
+        background-position: 5px 5px;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: @small-screen), screen and (max-width: @medium-screen) and (orientation: landscape) {
+  ul.links {
+    li {
+      width: 50px;
+      height: 50px;
+
+      i {
+        font-size: @h3-size;
+      }
+    }
+  }
+}

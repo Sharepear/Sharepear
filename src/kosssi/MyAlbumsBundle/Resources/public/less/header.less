@@ -1,23 +1,24 @@
-@import "../../app/less/variables.less";
+@import "../../app/knacss/knacss-config";
 
 header {
     z-index: 200;
     display: block;
-    height: @headerSize;
-    padding: 0 10px;
-    background-color: @highlightBackgroundColor;
 
     h1 {
-        height: @headerSize;
-        line-height: @headerSize;
-        font-size: 20px;
-        display: inline-block;
+        text-align: center;
         color: @writeColor;
         border-width: 0;
         background-color: transparent;
         font-weight: bold;
         overflow: hidden;
-        width: 50%;
+        margin: 0;
+        padding: 26px 0 0;
+        font-size: @h2-size * 2;
+
+        img {
+            height: 80px;
+            margin-top: -10px;
+        }
     }
 
     .remove-album form {

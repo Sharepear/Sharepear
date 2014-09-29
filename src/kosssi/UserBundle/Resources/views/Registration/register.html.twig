@@ -1,64 +1,57 @@
-{% extends '::base.html.twig' %}
+<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+    {% spaceless %}
+        <ul class="listFields">
+            <li>
+                {% set username = form.children['username'].vars %}
+                <input name="{{ username.full_name }}" id="username"
+                       type="text" pattern=".{2,}" maxlength="255" required="required"
+                       value="{{ username.value }}" placeholder="{{ 'Your username'|trans }}"
+                        {% if username.errors|length > 0 %}
+                            title="{{ username.errors[0].messageTemplate }}"
+                            class="error"
+                        {% endif %} />
+            </li>
+            <li>
+                {% set email = form.children['email'].vars %}
+                <input name="{{ email.full_name }}" id="email"
+                       type="email" required="required"
+                       value="{{ email.value }}" placeholder="{{ 'Your email'|trans }}"
+                        {% if email.errors|length > 0 %}
+                            title="{{ email.errors[0].messageTemplate }}"
+                            class="error"
+                        {% endif %} />
+            </li>
+            <li>
+                {% set password1 = form.children['plainPassword']['first'].vars %}
+                <input name="{{ password1.full_name }}" id="password1"
+                       type="password" required="required"
+                       value="{{ password1.data }}" placeholder="{{ 'Your password'|trans }}"
+                        {% if password1.errors|length > 0 %}
+                            title="{{ password1.errors[0].messageTemplate }}"
+                            class="error"
+                        {% endif %} />
+            </li>
+            <li>
+                {% set password2 = form.children['plainPassword']['second'].vars %}
+                <input name="{{ password2.full_name }}" id="password2"
+                       type="password" required="required"
+                       value="{{ password2.data }}" placeholder="{{ 'Confirm your password'|trans }}"
+                        {% if password2.errors|length > 0 %}
+                            title="{{ password2.errors[0].messageTemplate }}"
+                            class="error"
+                        {% endif %} />
+            </li>
+            <li>
+                <p>
+                    <a class="ajax" href="{{ path('fos_user_security_login') }}">{% spaceless %}
+                            {{ 'Already sign up ?'|trans }}
+                        {% endspaceless %}</a>
+                    <button type="submit">{{ 'Sign up'|trans }}</button>
+                </p>
 
-{% block title %}{{ 'Registration'|trans }}{% endblock %}
-
-{% block body %}
-    <section class="registration popin">
-        <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
-            {% spaceless %}
-                <ul class="listFields">
-                    <li>
-                        {% set username = form.children['username'].vars %}
-                        <input name="{{ username.full_name }}" id="username"
-                               type="text" pattern=".{2,}" maxlength="255" required="required"
-                               value="{{ username.value }}" placeholder="{{ 'Your username'|trans }}"
-                                {% if username.errors|length > 0 %}
-                                    title="{{ username.errors[0].messageTemplate }}"
-                                    class="error"
-                                {% endif %} />
-                    </li>
-                    <li>
-                        {% set email = form.children['email'].vars %}
-                        <input name="{{ email.full_name }}" id="email"
-                               type="email" required="required"
-                               value="{{ email.value }}" placeholder="{{ 'Your email'|trans }}"
-                                {% if email.errors|length > 0 %}
-                                    title="{{ email.errors[0].messageTemplate }}"
-                                    class="error"
-                                {% endif %} />
-                    </li>
-                    <li>
-                        {% set password1 = form.children['plainPassword']['first'].vars %}
-                        <input name="{{ password1.full_name }}" id="password1"
-                               type="password" required="required"
-                               value="{{ password1.data }}" placeholder="{{ 'Your password'|trans }}"
-                                {% if password1.errors|length > 0 %}
-                                    title="{{ password1.errors[0].messageTemplate }}"
-                                    class="error"
-                                {% endif %} />
-                    </li>
-                    <li>
-                        {% set password2 = form.children['plainPassword']['second'].vars %}
-                        <input name="{{ password2.full_name }}" id="password2"
-                               type="password" required="required"
-                               value="{{ password2.data }}" placeholder="{{ 'Confirm your password'|trans }}"
-                                {% if password2.errors|length > 0 %}
-                                    title="{{ password2.errors[0].messageTemplate }}"
-                                    class="error"
-                                {% endif %} />
-                    </li>
-                    <li class="button">
-                        <p class="twoColumn smallText">
-                            <a class="showPopin" href="{{ path('fos_user_security_login') }}">{% spaceless %}
-                                {{ 'Already sign up ?'|trans }}
-                            {% endspaceless %}</a>
-                        </p>
-                        <input type="submit" value="{{ 'Sign up'|trans }}">
-                    </li>
-                </ul>
-                {% set hidden = form.children['_token'].vars %}
-                <input type="hidden" id="{{ hidden.id }}" name="{{ hidden.full_name }}" value="{{ hidden.value }}" />
-            {% endspaceless %}
-        </form>
-    </section>
-{% endblock %}
+            </li>
+        </ul>
+        {% set hidden = form.children['_token'].vars %}
+        <input type="hidden" id="{{ hidden.id }}" name="{{ hidden.full_name }}" value="{{ hidden.value }}" />
+    {% endspaceless %}
+</form>

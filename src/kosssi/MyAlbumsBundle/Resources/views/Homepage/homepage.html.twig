@@ -1,5 +1,7 @@
 {% extends '::base.html.twig' %}
 
+{% block footer_attr %}class="link"{% endblock %}
+
 {% block body %}
     <header class="homepage cornfield">
 
@@ -9,9 +11,26 @@
 
     </header>
 
-    {{ render(controller('FOSUserBundle:Security:Login')) }}
+    <ul class="links">
+        <li class="link-top link-left">
+            <a href="{{ path('fos_user_security_login') }}" class="ajax" title="{{ "Sign in" | trans({}, "album") }}">
+                <i class="fa fa-sign-in"></i>
+            </a>
+        </li>
+    </ul>
 
-    <footer class="clearfix">
+    <section class="ajaxFullScreen" style="display: none;">
+        <ul class="links">
+            <li class="link-top link-right">
+                <a href="" class="close" title="{{ "Close" | trans({}, "album") }}">
+                    <i class="fa fa-times"></i>
+                </a>
+            </li>
+        </ul>
+        <div class="ajaxContainer">{% block ajaxContainer '' %}</div>
+    </section>
+
+    <footer class="homepage clearfix">
         <p class="small-hidden">Made With Fresh Pear!</p>
         <ul class="unstyled pan">
             <li>

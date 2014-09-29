@@ -1,11 +1,5 @@
-# General settings
-set :domain,           "sharepear.dev"
-set :deploy_to,        "/var/www/sharepear"
-set :user,             "www-data"
-set :repository,       "https://github.com/chlorius/MyAlbums.git"
-set :branch,           "master"
+role :app, %w{www-data@sharepear.dev}
 
-server domain, :app, :web, :primary => true
+set :deploy_to, '/var/www/deploy'
 
-# Composer settings
-set :composer_options, "--no-progress --prefer-dist --optimize-autoloader"
+server 'sharepear.dev', user: 'www-data', roles: %w{app}

@@ -1,4 +1,6 @@
-$("#btn_login").click ->
-  $(this).parent().toggleClass('open')
-  if ($(this).parent().hasClass('open'))
+$(".show-sign-in").click (e) ->
+  e.preventDefault();
+  e.stopPropagation()
+  $(".login").toggleClass('open')
+  if ($(".login").hasClass('open'))
     $("#username").focus()
