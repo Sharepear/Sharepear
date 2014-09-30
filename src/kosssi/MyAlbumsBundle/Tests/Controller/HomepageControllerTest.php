@@ -30,7 +30,7 @@ class HomepageControllerTest extends UserWebTestCase
         $client = static::createConnectedClient();
         $crawler = $client->request('GET', '/');
 
-        $this->assertCount(1, $crawler->filter('html:contains("homepage")'));
+        $this->assertCount(1, $crawler->filter('html:contains("Homepage")'));
     }
 
     /**
@@ -41,6 +41,6 @@ class HomepageControllerTest extends UserWebTestCase
         $client = static::createClient();
         $crawler = $client->request('GET', '/kosssi');
 
-        $this->assertCount(1, $crawler->filter('html:contains("homepage")'));
+        $this->assertCount(1, $crawler->filter('html:contains("Homepage")'));
     }
 }

@@ -3,7 +3,7 @@ MyAlbums
 
 | Service       | Badge         |
 | ------------- |:-------------:|
-| Travis | [![Build Status](https://travis-ci.org/chlorius/MyAlbums.svg?branch=master)](https://travis-ci.org/chlorius/MyAlbums) |
+| Travis | [![Build Status](https://travis-ci.org/Sharepear/Sharepear.svg?branch=master)](https://travis-ci.org/Sharepear/Sharepear) |
 | Coveralls | [![Coverage Status](https://coveralls.io/repos/chlorius/MyAlbums/badge.png?branch=master)](https://coveralls.io/r/chlorius/MyAlbums?branch=master) |
 | Scrutinizer (Quality score) | [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/chlorius/MyAlbums/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/chlorius/MyAlbums/?branch=master) |
 | Scrutinizer (Coverage) | [![Code Coverage](https://scrutinizer-ci.com/g/chlorius/MyAlbums/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/chlorius/MyAlbums/?branch=master) |
