@@ -1,21 +1,20 @@
-MyAlbums
-========
+# Sharepear
 
 | Service       | Badge         |
 | ------------- |:-------------:|
 | Travis | [![Build Status](https://travis-ci.org/Sharepear/Sharepear.svg?branch=master)](https://travis-ci.org/Sharepear/Sharepear) |
-| Coveralls | [![Coverage Status](https://coveralls.io/repos/chlorius/MyAlbums/badge.png?branch=master)](https://coveralls.io/r/chlorius/MyAlbums?branch=master) |
-| Scrutinizer (Quality score) | [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/chlorius/MyAlbums/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/chlorius/MyAlbums/?branch=master) |
-| Scrutinizer (Coverage) | [![Code Coverage](https://scrutinizer-ci.com/g/chlorius/MyAlbums/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/chlorius/MyAlbums/?branch=master) |
+| Coveralls | [![Coverage Status](https://coveralls.io/repos/Sharepear/Sharepear/badge.png?branch=master)](https://coveralls.io/r/Sharepear/Sharepear?branch=master) |
+| Scrutinizer (Quality score) | [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Sharepear/Sharepear/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Sharepear/Sharepear/?branch=master) |
+| Scrutinizer (Coverage) | [![Code Coverage](https://scrutinizer-ci.com/g/Sharepear/Sharepear/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Sharepear/Sharepear/?branch=master) |
 | VersionEye (PHP) | [![Dependency Status](https://www.versioneye.com/user/projects/538fc3c146c4733233000016/badge.svg)](https://www.versioneye.com/user/projects/538fc3c146c4733233000016) |
 | VersionEye (Gem) | [![Dependency Status](https://www.versioneye.com/user/projects/5398334d83add738da000036/badge.svg)](https://www.versioneye.com/user/projects/5398334d83add738da000036) |
 | VersionEye (Node) |  [![Dependency Status](https://www.versioneye.com/user/projects/53ed31ec13bb067b970000a9/badge.svg)](https://www.versioneye.com/user/projects/53ed31ec13bb067b970000a9) |
 | VersionEye (Bower) | [![Dependency Status](https://www.versioneye.com/user/projects/53a40e9f83add7e81a000031/badge.svg)](https://www.versioneye.com/user/projects/53a40e9f83add7e81a000031) |
 | Insight | [![SensioLabsInsight](https://insight.sensiolabs.com/projects/b57f6541-c800-43dc-a563-3bc43aa9663b/big.png)](https://insight.sensiolabs.com/projects/b57f6541-c800-43dc-a563-3bc43aa9663b) |
 
-Status : WIP
+Status : MVP
 
-Board : https://waffle.io/chlorius/MyAlbums
+Board : https://waffle.io/Sharepear/Sharepear
 
 # Developpement
 
@@ -40,8 +39,8 @@ Design :
 
 ## Installation
 
-    git clone git@github.com:chlorius/MyAlbums.git
-    cd MyAlbums
+    git clone git@github.com:Sharepear/Sharepear.git
+    cd Sharepear
     cp app/config/parameters.yml.dist app/config/parameters.yml
     composer install
     app/console doctrine:database:create
