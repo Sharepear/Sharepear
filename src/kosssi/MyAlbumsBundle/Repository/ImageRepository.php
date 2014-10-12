@@ -31,4 +31,15 @@ class ImageRepository extends EntityRepository
 
         return $this->findBy($criteria);
     }
+
+    /**
+     * @return integer
+     */
+    public function count()
+    {
+        return $this->createQueryBuilder('id')
+            ->select('COUNT(id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }

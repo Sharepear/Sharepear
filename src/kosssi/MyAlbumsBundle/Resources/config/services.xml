@@ -20,6 +20,7 @@
 
         <!-- repository -->
         <parameter key="kosssi_my_albums.repository.image.class">kosssi\MyAlbumsBundle\Repository\ImageRepository</parameter>
+        <parameter key="kosssi_my_albums.repository.user.class">kosssi\MyAlbumsBundle\Repository\UserRepository</parameter>
 
         <!-- voter -->
         <parameter key="kosssi_my_albums.security.image.edit.class">kosssi\MyAlbumsBundle\Security\Authorization\Voter\ImageEditVoter</parameter>
@@ -78,6 +79,12 @@
                  factory-method="getRepository"
                 >
             <argument>kosssiMyAlbumsBundle:Image</argument>
+        </service>
+        <service id="kosssi_my_albums.repository.user" class="%kosssi_my_albums.repository.user.class%"
+                 factory-service="doctrine.orm.entity_manager"
+                 factory-method="getRepository"
+                >
+            <argument>kosssiMyAlbumsBundle:User</argument>
         </service>
 
         <!-- Voter -->

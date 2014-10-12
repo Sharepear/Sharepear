@@ -24,7 +24,10 @@ class HomepageController extends Controller
     public function homepageAction()
     {
         if (null === $this->getUser()) {
-            return array();
+            return array(
+                'user_count' => $this->get('kosssi_my_albums.repository.user')->count(),
+                'image_count' => $this->get('kosssi_my_albums.repository.image')->count(),
+            );
         }
 
         $images = $this->get('kosssi_my_albums.repository.image')->findBy(

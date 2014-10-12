@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class User
  *
  * @author Simon Constans <kosssi@gmail.com>
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="kosssi\MyAlbumsBundle\Repository\UserRepository")
  * @ORM\Table(name="fos_user")
  */
 class User extends BaseUser
