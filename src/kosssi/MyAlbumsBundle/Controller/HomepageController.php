@@ -63,6 +63,9 @@ class HomepageController extends Controller
                 'album' => null,
                 'user' => $user,
                 'public' => true,
+            ),
+            array(
+                'createdAt'
             )
         );
 
