@@ -66,7 +66,7 @@ Design :
 Le déploiement se fait depuis votre machine local.
 Il faut avoir renseigné dans dans le fichier hosts (/etc/hosts) deux domain :
 
-- sharepear.dev 10.0.0.177 : pour la vagrant
+- sharepear.dev 199.199.199.199 : pour la vagrant
 - sharepear.prod ?.?.?.? : pour votre production
 
     bundle install
