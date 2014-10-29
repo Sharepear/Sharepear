@@ -28,13 +28,23 @@
 
     <ul class="links">
         <li class="link-top link-left">
-            <a href="" data-icon="logo" class="show-menu close" title="{{ "Menu" | trans({}, "album") }}">
+            <a href="{{ path('homepage') }}" title="{{ "Homepage" | trans({}, "album") }}">
                 <i class="fa logo"></i>
             </a>
         </li>
         <li class="link-top link-right">
             <a href="" data-icon="fa-picture-o" class="show-upload" title="{{ "Add photos" | trans({}, "album") }}">
                 <i class="fa fa-picture-o"></i>
+            </a>
+        </li>
+        <li class="link-bottom link-left">
+            <a href="" data-icon="fa-user" class="show-menu close" title="{{ "Menu" | trans({}, "album") }}">
+                <i class="fa fa-user"></i>
+            </a>
+        </li>
+        <li class="link-bottom link-right">
+            <a href="{{ path('logout') }}" title="{{ "Logout" | trans({}, "album") }}">
+                <i class="fa fa-sign-out"></i>
             </a>
         </li>
     </ul>
