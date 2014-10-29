@@ -40,37 +40,39 @@ class ImageRotateHelper
             //fix photos taken on cameras that have incorrect dimensions
             $exif = exif_read_data($path);
 
-            //determine what orientation the image was taken at
-            switch($exif['Orientation']) {
-                case 2: // horizontal flip
-                    $image->flipHorizontally();
-                    break;
+            if (isset($exif['Orientation'])) {
+                //determine what orientation the image was taken at
+                switch($exif['Orientation']) {
+                    case 2: // horizontal flip
+                        $image->flipHorizontally();
+                        break;
 
-                case 3: // 180 rotate left
-                    $image->rotate(180);
-                    break;
+                    case 3: // 180 rotate left
+                        $image->rotate(180);
+                        break;
 
-                case 4: // vertical flip
-                    $image->flipVertically();
-                    break;
+                    case 4: // vertical flip
+                        $image->flipVertically();
+                        break;
 
-                case 5: // vertical flip + 90 rotate right
-                    $image->flipVertically();
-                    $image->rotate(90);
-                    break;
+                    case 5: // vertical flip + 90 rotate right
+                        $image->flipVertically();
+                        $image->rotate(90);
+                        break;
 
-                case 6: // 90 rotate right
-                    $image->rotate(90);
-                    break;
+                    case 6: // 90 rotate right
+                        $image->rotate(90);
+                        break;
 
-                case 7: // horizontal flip + 90 rotate right
-                    $image->flipHorizontally();
-                    $image->rotate(90);
-                    break;
+                    case 7: // horizontal flip + 90 rotate right
+                        $image->flipHorizontally();
+                        $image->rotate(90);
+                        break;
 
-                case 8: // 90 rotate left
-                    $image->rotate(-90);
-                    break;
+                    case 8: // 90 rotate left
+                        $image->rotate(-90);
+                        break;
+                }
             }
         }
         $image->save($path);
