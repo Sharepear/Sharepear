@@ -1,21 +1,46 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    {% block header %}
+    <menu class="menu-left">
+        <ul class="unstyled ">
+            <li>
+                <a href="{{ path('homepage') }}">
+                    <img src="/logo.svg">
+                </a>
+            </li>
+            {% if app.user %}
+                <li>
+                    <a href="" data-icon="fa-picture-o" class="show-upload" title="{{ "Add photos" | trans({}, "album") }}">
+                        <i class="fa fa-plus"></i>
+                        {{ "Add" | trans({}, "album") }}
+                    </a>
+                </li>
+                <li>
+                    <a href="" data-icon="fa-user" class="show-menu close" title="{{ "Menu" | trans({}, "album") }}">
+                        <i class="fa fa-user"></i>
+                        {{ app.user }}
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </menu>
+    <main>
+        {% block header %}
         <header {% block header_attr '' %}>
             {% block header_content '' %}
         </header>
-    {% endblock %}
+        {% endblock %}
 
-    {% block section %}
+        {% block section %}
         <section {% block section_attr '' %}>
             {% block section_content '' %}
         </section>
-    {% endblock %}
+        {% endblock %}
 
-    {% block footer %}
+        {% block footer %}
         <footer {% block footer_attr '' %}>
             {% block footer_content '' %}
         </footer>
-    {% endblock %}
+        {% endblock %}
+    </main>
 {% endblock %}

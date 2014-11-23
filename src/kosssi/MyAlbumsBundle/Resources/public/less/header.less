@@ -5,7 +5,6 @@ header {
     display: block;
 
     h1 {
-        text-align: center;
         color: @writeColor;
         border-width: 0;
         background-color: transparent;
@@ -24,4 +23,16 @@ header {
     .remove-album form {
         display: none;
     }
+}
+
+@media screen and (max-width: @large-screen) {
+  header {
+    padding: @small-value @medium-value;
+  }
+}
+
+@media screen and (min-width: @large-screen) {
+  header {
+    padding: @small-value @large-value;
+  }
 }

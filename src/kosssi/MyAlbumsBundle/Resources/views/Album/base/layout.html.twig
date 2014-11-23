@@ -5,49 +5,22 @@
 {% block section_attr %}class="container"{% endblock %}
 
 {% block footer_content %}
-    <ul class="menu">
-        <li>
-            <a href="{{ path('homepage') }}">
-                <i class="fa fa-home"></i>
-                {{ "Homepage" | trans({}, "album") }}
-            </a>
-        </li>
-        <li>
-            <a class="ajax" href="{{ path('fos_user_profile_show') }}">
-                <i class="fa fa-user"></i>
-                {{ "Profile" | trans({}, "album") }}
-            </a>
-        </li>
-        <li>
-            <a href="{{ path('logout') }}">
-                <i class="fa fa-sign-out"></i>
-                {{ "Logout" | trans({}, "album") }}
-            </a>
-        </li>
-    </ul>
-
-    <ul class="links">
-        <li class="link-top link-left">
-            <a href="{{ path('homepage') }}" title="{{ "Homepage" | trans({}, "album") }}">
-                <i class="fa logo"></i>
-            </a>
-        </li>
-        <li class="link-top link-right">
-            <a href="" data-icon="fa-picture-o" class="show-upload" title="{{ "Add photos" | trans({}, "album") }}">
-                <i class="fa fa-picture-o"></i>
-            </a>
-        </li>
-        <li class="link-bottom link-left">
-            <a href="" data-icon="fa-user" class="show-menu close" title="{{ "Menu" | trans({}, "album") }}">
-                <i class="fa fa-user"></i>
-            </a>
-        </li>
-        <li class="link-bottom link-right">
-            <a href="{{ path('logout') }}" title="{{ "Logout" | trans({}, "album") }}">
-                <i class="fa fa-sign-out"></i>
-            </a>
-        </li>
-    </ul>
+    {% if app.user %}
+        <ul class="menu">
+            <li>
+                <a class="ajax" href="{{ path('fos_user_profile_show') }}">
+                    <i class="fa fa-user"></i>
+                    {{ "Profile" | trans({}, "album") }}
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('logout') }}">
+                    <i class="fa fa-sign-out"></i>
+                    {{ "Logout" | trans({}, "album") }}
+                </a>
+            </li>
+        </ul>
+    {% endif %}
 
     <ul class="links links-fullscreen visually-hidden">
         <li class="link-middle link-left">
@@ -73,7 +46,11 @@
 {% endblock %}
 
 {% block header_content %}
-    <h1>
-        <input type="text" class="users-search"/>
-    </h1>
+    <h1>{{ block('title') }}</h1>
+    {% if album is defined %}
+        <a class="btn-download" href="{{ path('album_download', {'id': album.id}) }}">
+            <i class="fa fa-archive"></i>
+            {{ "Download" | trans({}, "album") }}
+        </a>
+    {% endif %}
 {% endblock %}

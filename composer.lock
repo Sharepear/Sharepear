@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2763628c7e2f02621639365cb6d7426b",
+    "hash": "a140d7e46d74f69b93121bdd79ceb25d",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1051,9 +1051,7 @@
             },
             "type": "library",
             "extra": {
-                "branch-alias": [
-
-                ]
+                "branch-alias": []
             },
             "autoload": {
                 "psr-0": {
@@ -1781,6 +1779,39 @@
                 "upload"
             ],
             "time": "2014-03-26 07:15:19"
+        },
+        {
+            "name": "paranoiq/php-zip",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paranoiq/PHPZip.git",
+                "reference": "044a0fcefb8af58193e98f3e22f679de2fb5515d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paranoiq/PHPZip/zipball/044a0fcefb8af58193e98f3e22f679de2fb5515d",
+                "reference": "044a0fcefb8af58193e98f3e22f679de2fb5515d",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1"
+            ],
+            "authors": [
+                {
+                    "name": "A. Grandt",
+                    "email": "php@grandt.com"
+                }
+            ],
+            "description": "A pair of PHP classes to generate zip files",
+            "time": "2013-11-06 10:03:31"
         },
         {
             "name": "psr/log",
@@ -3639,21 +3670,19 @@
             "time": "2014-03-07 15:35:33"
         }
     ],
-    "aliases": [
-
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
         "doctrine/doctrine-bundle": 20,
         "doctrine/migrations": 20,
         "doctrine/doctrine-migrations-bundle": 20,
+        "paranoiq/php-zip": 20,
         "friendsofsymfony/user-bundle": 20,
         "hwi/oauth-bundle": 20
     },
+    "prefer-stable": false,
     "platform": {
         "php": ">=5.3.3"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }
