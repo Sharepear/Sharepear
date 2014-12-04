@@ -2,8 +2,10 @@
 
 namespace kosssi\MyAlbumsBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Blameable\Traits\BlameableEntity;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -15,6 +17,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Image
 {
+    use TimestampableEntity;
+    use BlameableEntity;
+
     const ORIENTATION_LANDSCAPE = "landscape";
     const ORIENTATION_PORTRAIT = "portrait";
 
@@ -46,9 +51,9 @@ class Image
     private $path;
 
     /**
-     * @var Image
+     * @var Album
      *
-     * @ORM\ManyToOne(targetEntity="Image", inversedBy="images")
+     * @ORM\ManyToOne(targetEntity="Album", inversedBy="images")
      * @ORM\JoinColumn(name="album_id", referencedColumnName="id")
      */
     private $album;
@@ -61,36 +66,6 @@ class Image
     private $orientation;
 
     /**
-     * @var ArrayCollection
-     *
-     * @ORM\OneToMany(targetEntity="Image", mappedBy="album", cascade={"remove"})
-     *
-     * @Assert\Valid()
-     */
-    private $images;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="created_at", type="datetime")
-     */
-    private $createdAt;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="updated_at", type="datetime")
-     */
-    private $updatedAt;
-
-    /**
-     * @var User
-     *
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="images")
-     */
-    private $user;
-
-    /**
      * @var bool
      *
      * @ORM\Column(type="boolean")
@@ -98,7 +73,7 @@ class Image
     private $public;
 
     /**
-     * @param mixed $album
+     * @param Album $album
      */
     public function setAlbum($album)
     {
@@ -106,7 +81,7 @@ class Image
     }
 
     /**
-     * @return Image
+     * @return Album
      */
     public function getAlbum()
     {
@@ -175,98 +150,6 @@ class Image
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * @param mixed $images
-     */
-    public function setImages($images)
-    {
-        $this->images = $images;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getImages()
-    {
-        return $this->images;
-    }
-
-    /**
-     * @param Image $image
-     *
-     * @return $this
-     */
-    public function addImage($image)
-    {
-        $this->images->add($image);
-
-        return $this;
-    }
-
-    /**
-     * @param Image $image
-     *
-     * @return $this
-     */
-    public function removeImage($image)
-    {
-        $this->images->removeElement($image);
-
-        return $this;
-    }
-
-    /**
-     * @param \DateTime $createdAt
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * @param mixed $updatedAt
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * @param \kosssi\MyAlbumsBundle\Entity\User $user
-     *
-     * @return $this
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * @return \kosssi\MyAlbumsBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
     }
 
     /**

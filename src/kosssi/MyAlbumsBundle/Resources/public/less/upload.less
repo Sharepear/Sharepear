@@ -9,18 +9,12 @@
 
 .upload {
     z-index: 100;
-    display: none;
     opacity: 0.95;
 
     &.show {
         display: block;
     }
 
-    position: fixed;
-    top: 0;
-    left: @menu-width;
-    bottom: 0;
-    right: 0;
     background-color: @backgroundColor;
     padding: @menu-width / 2;
 
@@ -29,12 +23,12 @@
         padding: 20px;
         border-radius: 20px;
         background-color: @color2;
-        height: 100%;
+        height: 50%;
     }
 
     .dropzone {
         width: 100%;
-        height: 100%;
+        height: 50%;
         background: none transparent;
         border: none;
         overflow: auto;
@@ -52,7 +46,6 @@
             left: 60px;
             right: 60px;
             pointer-events: none;
-
         }
 
         .dz-message {

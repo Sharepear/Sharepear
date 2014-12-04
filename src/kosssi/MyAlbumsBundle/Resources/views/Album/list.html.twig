@@ -1,0 +1,17 @@
+{% extends 'kosssiMyAlbumsBundle:Album/base:layout.html.twig' %}
+
+{% if shared_album is not defined %}
+    {% set shared_album = false %}
+{% endif %}
+
+{% block header '' %}
+
+{% block section_content %}
+    <ul id="albumShow" class="album"></ul>
+    <ul id="albumList" class="album">
+        {% for album in albums %}
+            {% include 'kosssiMyAlbumsBundle:Album/base:album.html.twig' with {'album': album, 'image': album.image, 'element': 'li', 'shared_album': shared_album} only %}
+        {% endfor %}
+    </ul>
+    <div id="fullscreenContent"></div>
+{% endblock %}

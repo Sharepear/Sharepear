@@ -1,20 +1,31 @@
 @import "../../app/knacss/knacss-config.less";
 
-.btn-download {
+.list-btn {
   position: absolute;
-  right: 20px;
-  text-decoration: none;
-  font-size: 1.4rem;
-  border: 2px solid @flashColor;
+  right: 0;
   top: 20px;
-  padding-top: 24px;
-  border-radius: 100%;
-  width: @menu-width;
-  height: @menu-width;
-  text-align: center;
+  padding: 0;
+  margin: 0;
 
-  i {
+  li {
+    display: inline-block;
+  }
+
+  .btn-download {
     display: block;
-    font-size: 2.8rem;
+    text-decoration: none;
+    font-size: 1.4rem;
+    border: 2px solid @flashColor;
+    padding-top: 24px;
+    border-radius: 100%;
+    width: @menu-width;
+    height: @menu-width;
+    text-align: center;
+    margin-right: 20px;
+
+    i {
+      display: block;
+      font-size: 2.8rem;
+    }
   }
 }

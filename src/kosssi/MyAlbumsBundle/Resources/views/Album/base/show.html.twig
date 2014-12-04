@@ -21,6 +21,11 @@
                     {% include 'kosssiMyAlbumsBundle:Image/base:share.html.twig' with {'image': image} only %}
                 </li>
             {% endif %}
+            <li>
+                <a class="imageFolder" title="Ajouter des photos" href="{{ path('album_show', {'id': image.id}) }}">
+                    <i class="fa fa-folder-open"></i>
+                </a>
+            </li>
             {% if not shared_album %}
                 <li>
                     <a class="imageRemove" title="Supprimer cette image" href="{{ path('image_delete', {'id': image.id}) }}">

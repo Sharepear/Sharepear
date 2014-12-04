@@ -3,6 +3,7 @@
 namespace kosssi\MyAlbumsBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use kosssi\MyAlbumsBundle\Entity\Album;
 use kosssi\MyAlbumsBundle\Entity\Image;
 
 /**
@@ -14,12 +15,12 @@ use kosssi\MyAlbumsBundle\Entity\Image;
 class ImageRepository extends EntityRepository
 {
     /**
-     * @param Image $album
+     * @param Album $album
      * @param bool  $sharedAlbum
      *
      * @return array
      */
-    public function getImages(Image $album, $sharedAlbum)
+    public function getImages(Album $album, $sharedAlbum)
     {
         $criteria = [
             'album' => $album,
@@ -29,7 +30,7 @@ class ImageRepository extends EntityRepository
             $criteria['public'] = true;
         }
 
-        return $this->findBy($criteria);
+        return $this->findBy($criteria, array('createdAt' => 'ASC'));
     }
 
     /**

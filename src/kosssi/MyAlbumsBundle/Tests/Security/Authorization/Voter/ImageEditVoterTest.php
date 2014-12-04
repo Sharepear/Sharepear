@@ -11,37 +11,18 @@ use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
  *
  * @author Simon Constans <kosssi@gmail.com>
  */
-class ImageEditVoterTest extends \PHPUnit_Framework_TestCase
+class ImageEditVoterTest extends AssertVoter
 {
-    /**
-     * @var \Symfony\Component\Security\Core\Authentication\Token\TokenInterface
-     */
-    private $token;
-
-    /**
-     * @var \kosssi\MyAlbumsBundle\Entity\Image
-     */
-    private $object;
-
-    /**
-     * @var array
-     */
-    private $attributes;
-
-    /**
-     * @var ImageEditVoter
-     */
-    private $imageEditVoter;
-
     /**
      * setUp
      */
     public function setUp()
     {
-        $this->token = Phake::mock('Symfony\Component\Security\Core\Authentication\Token\TokenInterface');
+        parent::setUp();
+
         $this->object = Phake::mock('kosssi\MyAlbumsBundle\Entity\Image');
         $this->attributes = ['IMAGE_EDIT'];
-        $this->imageEditVoter = new ImageEditVoter();
+        $this->voter = new ImageEditVoter();
     }
 
     /**
@@ -51,10 +32,7 @@ class ImageEditVoterTest extends \PHPUnit_Framework_TestCase
     {
         $this->attributes = ['NOT_IMAGE_EDIT'];
 
-        $this->assertEquals(
-            VoterInterface::ACCESS_DENIED,
-            $this->imageEditVoter->vote($this->token, $this->object, $this->attributes)
-        );
+        $this->assertVoter(VoterInterface::ACCESS_DENIED);
     }
 
     /**
@@ -64,10 +42,7 @@ class ImageEditVoterTest extends \PHPUnit_Framework_TestCase
     {
         $this->object = Phake::mock('Symfony\Component\Security\Core\Authentication\Token\TokenInterface');
 
-        $this->assertEquals(
-            VoterInterface::ACCESS_DENIED,
-            $this->imageEditVoter->vote($this->token, $this->object, $this->attributes)
-        );
+        $this->assertVoter(VoterInterface::ACCESS_DENIED);
     }
 
     /**
@@ -75,13 +50,7 @@ class ImageEditVoterTest extends \PHPUnit_Framework_TestCase
      */
     public function testAccessDeniedUserNotAuthorized()
     {
-        Phake::when($this->token)->getUser()->thenReturn("user1");
-        Phake::when($this->object)->getUser()->thenReturn("user2");
-
-        $this->assertEquals(
-            VoterInterface::ACCESS_DENIED,
-            $this->imageEditVoter->vote($this->token, $this->object, $this->attributes)
-        );
+        $this->assertVoter(VoterInterface::ACCESS_DENIED, 'user1', 'user2');
     }
 
     /**
@@ -89,12 +58,6 @@ class ImageEditVoterTest extends \PHPUnit_Framework_TestCase
      */
     public function testAccessGranted()
     {
-        Phake::when($this->token)->getUser()->thenReturn("user1");
-        Phake::when($this->object)->getUser()->thenReturn("user1");
-
-        $this->assertEquals(
-            VoterInterface::ACCESS_GRANTED,
-            $this->imageEditVoter->vote($this->token, $this->object, $this->attributes)
-        );
+        $this->assertVoter(VoterInterface::ACCESS_GRANTED, 'user1', 'user1');
     }
 }

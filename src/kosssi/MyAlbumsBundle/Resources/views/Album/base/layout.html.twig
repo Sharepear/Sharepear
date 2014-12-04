@@ -35,22 +35,18 @@
         </li>
     </ul>
 
-    <div class="upload">
-        <div>
-            <form action="{{ oneup_uploader_endpoint('album') }}" class="dropzone" id="my-dropzone">
-                <input type="hidden" name="album_id" value="{% if album is defined %}{{ album.id }}{% endif %}">
-                <span data-description="{{ "Drop files here to upload" | trans({}, "album") }}"></span>
-            </form>
-        </div>
-    </div>
+    <section class="ajaxFullScreen" style="display: none;">
+        <ul class="links">
+            <li class="link-top link-right">
+                <a href="" class="close" title="{{ "Close" | trans({}, "album") }}">
+                    <i class="fa fa-times"></i>
+                </a>
+            </li>
+        </ul>
+        <div class="ajaxContainer">{% block ajaxContainer '' %}</div>
+    </section>
 {% endblock %}
 
 {% block header_content %}
     <h1>{{ block('title') }}</h1>
-    {% if album is defined %}
-        <a class="btn-download" href="{{ path('album_download', {'id': album.id}) }}">
-            <i class="fa fa-archive"></i>
-            {{ "Download" | trans({}, "album") }}
-        </a>
-    {% endif %}
 {% endblock %}

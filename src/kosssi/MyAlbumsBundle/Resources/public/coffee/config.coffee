@@ -31,12 +31,6 @@ $(document).ready ->
             e.stopPropagation()
             $(".remove-album button").click()
 
-        $(".show-upload").click (e) ->
-            e.preventDefault();
-            e.stopPropagation()
-            $(".upload").toggle("show").toggleClass("show")
-            return
-
         Dropzone.options.myDropzone =
             success: (file, response) ->
                 $.ajax

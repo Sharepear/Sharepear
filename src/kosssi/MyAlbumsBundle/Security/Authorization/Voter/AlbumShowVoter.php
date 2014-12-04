@@ -2,16 +2,16 @@
 
 namespace kosssi\MyAlbumsBundle\Security\Authorization\Voter;
 
-use kosssi\MyAlbumsBundle\Entity\Image;
+use kosssi\MyAlbumsBundle\Entity\Album;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 /**
- * Class ImageEditVoter
+ * Class AlbumShowVoter
  *
  * @author Simon Constans <kosssi@gmail.com>
  */
-class ImageEditVoter implements VoterInterface
+class AlbumShowVoter implements VoterInterface
 {
     /**
      * @param string $attribute
@@ -20,7 +20,7 @@ class ImageEditVoter implements VoterInterface
      */
     public function supportsAttribute($attribute)
     {
-        return 'IMAGE_EDIT' === $attribute;
+        return 'ALBUM_SHOW' === $attribute;
     }
 
     /**
@@ -30,12 +30,12 @@ class ImageEditVoter implements VoterInterface
      */
     public function supportsClass($class)
     {
-        return $class instanceof Image;
+        return $class instanceof Album;
     }
 
     /**
      * @param TokenInterface $token
-     * @param Image          $object
+     * @param Album          $object
      * @param array          $attributes
      *
      * @return int
@@ -44,7 +44,7 @@ class ImageEditVoter implements VoterInterface
     {
         foreach ($attributes as $attribute) {
             if ($this->supportsAttribute($attribute) && $this->supportsClass($object)) {
-                if ($token->getUser()->getUsername() == $object->getCreatedBy()) {
+                if ($token->getUser()->getUsername() == $object->getCreatedBy() || $object->isPublic()) {
                     return VoterInterface::ACCESS_GRANTED;
                 }
             }

@@ -7,11 +7,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Type for update album name
+ * Type for update album
  *
  * @author Simon Constans <kosssi@gmail.com>
  */
-class AlbumNameType extends AbstractType
+class AlbumType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -20,8 +20,7 @@ class AlbumNameType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->setMethod('PATCH');
+            ->add('name', null, array('attr' => array('autofocus' => true)));
     }
 
     /**
@@ -30,7 +29,7 @@ class AlbumNameType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'kosssi\MyAlbumsBundle\Entity\Image',
+            'data_class' => 'kosssi\MyAlbumsBundle\Entity\Album',
             'validation_groups' => array('name'),
         ));
     }
@@ -40,6 +39,6 @@ class AlbumNameType extends AbstractType
      */
     public function getName()
     {
-        return 'album_name';
+        return 'album';
     }
 }

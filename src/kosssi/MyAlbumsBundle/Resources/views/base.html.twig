@@ -4,16 +4,21 @@
     <menu class="menu-left">
         <ul class="unstyled ">
             <li>
-                <a href="{{ path('homepage') }}">
+                <a title="Sharepear" href="{{ path('homepage') }}">
                     <img src="/logo.svg">
                 </a>
             </li>
             {% if app.user %}
                 <li>
-                    <a href="" data-icon="fa-picture-o" class="show-upload" title="{{ "Add photos" | trans({}, "album") }}">
+                    <a href="" class="btn-menu-item" data-icon="fa-picture-o" class="show-upload" title="{{ "Add a event" | trans({}, "album") }}">
                         <i class="fa fa-plus"></i>
                         {{ "Add" | trans({}, "album") }}
                     </a>
+                    <div class="menu-item">
+                        <form class="search" data-url="{{ path('album_new', {'albumName': '__SEARCH__'}) }}">
+                            <input type="text">
+                        </form>
+                    </div>
                 </li>
                 <li>
                     <a href="" data-icon="fa-user" class="show-menu close" title="{{ "Menu" | trans({}, "album") }}">

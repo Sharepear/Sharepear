@@ -1,28 +1,18 @@
 @import "../../app/knacss/knacss-config";
 
-form[name=album_name] {
-    position: fixed;
-    top: 0;
-    left: 50px;
+form[name=album] {
 
     label {
         display: none;
     }
 
     input[type=text] {
-        height: @headerSize;
-        line-height: @headerSize;
-        font-size: 20px;
-        display: none;
         color: @writeColor;
         border-width: 0;
-        background-color: @highlightBackgroundColor;
+        background-color: transparent;
         font-weight: bold;
         overflow: hidden;
-        width: 50%;
-    }
-
-    input {
-        display: none;
+        font-size: @h2-size * 2;
+        width: 100%;
     }
 }

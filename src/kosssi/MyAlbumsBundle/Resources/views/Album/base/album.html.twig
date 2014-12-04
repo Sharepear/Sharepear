@@ -1,0 +1,21 @@
+{% set element = element|default('article') -%}
+
+{% spaceless %}
+    <{{ element }} class="clearfix"
+    {% if image %}
+        {{ getDataFilters(image.getWebPath) }}
+        data-orientation="{{ image.orientation }}"
+    {% else %}
+        {{ getDataFilters('/uploads/sharepear/default/sharepear.png') }}
+    {% endif %}
+    title="{{ album.name }}"
+    >
+    <ul class="actions">
+        <li>
+            <a class="imageFolder" href="{{ path('album_show', {'id': album.id}) }}">
+                <i class="fa fa-folder-open"></i>
+            </a>
+        </li>
+    </ul>
+    </{{ element }}>
+{% endspaceless %}

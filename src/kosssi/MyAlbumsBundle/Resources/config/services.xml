@@ -6,7 +6,7 @@
 
     <parameters>
         <!-- Form -->
-        <parameter key="kosssi_my_albums.form.type.album_name.class">kosssi\MyAlbumsBundle\Form\Type\AlbumNameType</parameter>
+        <parameter key="kosssi_my_albums.form.type.album.class">kosssi\MyAlbumsBundle\Form\Type\AlbumType</parameter>
 
         <!-- helper -->
         <parameter key="kosssi_my_albums.helper.image_cache.class">kosssi\MyAlbumsBundle\Helper\ImageCacheHelper</parameter>
@@ -20,10 +20,13 @@
         <parameter key="kosssi_my_albums.listener.upload.class">kosssi\MyAlbumsBundle\EventListener\UploadListener</parameter>
 
         <!-- repository -->
+        <parameter key="kosssi_my_albums.repository.album.class">kosssi\MyAlbumsBundle\Repository\AlbumRepository</parameter>
         <parameter key="kosssi_my_albums.repository.image.class">kosssi\MyAlbumsBundle\Repository\ImageRepository</parameter>
         <parameter key="kosssi_my_albums.repository.user.class">kosssi\MyAlbumsBundle\Repository\UserRepository</parameter>
 
         <!-- voter -->
+        <parameter key="kosssi_my_albums.security.album.edit.class">kosssi\MyAlbumsBundle\Security\Authorization\Voter\AlbumEditVoter</parameter>
+        <parameter key="kosssi_my_albums.security.album.show.class">kosssi\MyAlbumsBundle\Security\Authorization\Voter\AlbumShowVoter</parameter>
         <parameter key="kosssi_my_albums.security.image.edit.class">kosssi\MyAlbumsBundle\Security\Authorization\Voter\ImageEditVoter</parameter>
         <parameter key="kosssi_my_albums.security.image.show.class">kosssi\MyAlbumsBundle\Security\Authorization\Voter\ImageShowVoter</parameter>
 
@@ -36,8 +39,8 @@
 
     <services>
         <!-- Form -->
-        <service id="kosssi_my_albums.form.type.album_name" class="%kosssi_my_albums.form.type.album_name.class%">
-            <tag name="form.type" alias="album_name" />
+        <service id="kosssi_my_albums.form.type.album" class="%kosssi_my_albums.form.type.album.class%">
+            <tag name="form.type" alias="album" />
         </service>
 
         <!-- helper -->
@@ -72,12 +75,18 @@
         </service>
         <service id="kosssi_my_albums.listener.upload" class="%kosssi_my_albums.listener.upload.class%">
             <argument type="service" id="doctrine.orm.entity_manager" />
-            <argument type="service" id="kosssi_my_albums.repository.image" />
+            <argument type="service" id="kosssi_my_albums.repository.album" />
             <argument type="service" id="security.context" />
             <tag name="kernel.event_listener" event="oneup_uploader.post_persist" method="onUpload" />
         </service>
 
         <!-- repository -->
+        <service id="kosssi_my_albums.repository.album" class="%kosssi_my_albums.repository.album.class%"
+                 factory-service="doctrine.orm.entity_manager"
+                 factory-method="getRepository"
+                >
+            <argument>kosssiMyAlbumsBundle:Album</argument>
+        </service>
         <service id="kosssi_my_albums.repository.image" class="%kosssi_my_albums.repository.image.class%"
                  factory-service="doctrine.orm.entity_manager"
                  factory-method="getRepository"
@@ -92,6 +101,12 @@
         </service>
 
         <!-- Voter -->
+        <service id="kosssi_my_albums.security.album.edit" class="%kosssi_my_albums.security.album.edit.class%">
+            <tag name="security.voter" />
+        </service>
+        <service id="kosssi_my_albums.security.album.show" class="%kosssi_my_albums.security.album.show.class%">
+            <tag name="security.voter" />
+        </service>
         <service id="kosssi_my_albums.security.image.edit" class="%kosssi_my_albums.security.image.edit.class%">
             <tag name="security.voter" />
         </service>

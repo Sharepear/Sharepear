@@ -19,6 +19,7 @@
       padding: 0;
       margin: @menu-space;
       text-align: center;
+      position: relative;
 
       &:first-child {
         margin-bottom: 3 * @menu-space;
@@ -45,6 +46,33 @@
         i {
           font-size: 4.8rem;
           display: block;
+        }
+      }
+
+      .menu-item {
+        position: absolute;
+        left: @menu-width - @menu-space;
+        background-color: @color3;
+        top: 0;
+        bottom: 0;
+        width: 0;
+        z-index: 100;
+        transition: width 0.5s ease;
+        overflow: hidden;
+        border-bottom-right-radius: 40px;
+        border-top-right-radius: 40px;
+
+        input[type=text] {
+          width: 80%;
+          margin: 20px auto;
+          height: 40px;
+          border-radius: 20px;
+          border-style: none;
+          padding: 0px 20px;
+        }
+
+        &.show {
+          width: 300px;
         }
       }
     }

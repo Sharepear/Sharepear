@@ -63,21 +63,7 @@ class ImageListenerTest extends \PHPUnit_Framework_TestCase
         $event = Phake::mock('Doctrine\ORM\Event\LifecycleEventArgs');
         $this->imageListener->prePersist($image, $event);
 
-        Phake::verify($image, Phake::times(1))->setCreatedAt(Phake::anyParameters());
-        Phake::verify($image, Phake::times(1))->setUpdatedAt(Phake::anyParameters());
         Phake::verify($image, Phake::times(1))->setOrientation(Phake::anyParameters());
-    }
-
-    /**
-     * test preUpdate
-     */
-    public function testPreUpdate()
-    {
-        $image = Phake::mock('kosssi\MyAlbumsBundle\Entity\Image');
-        $event = Phake::mock('Doctrine\ORM\Event\PreUpdateEventArgs');
-        $this->imageListener->preUpdate($image, $event);
-
-        Phake::verify($image, Phake::times(1))->setUpdatedAt(Phake::anyParameters());
     }
 
     /**

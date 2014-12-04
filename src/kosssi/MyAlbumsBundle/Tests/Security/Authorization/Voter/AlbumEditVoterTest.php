@@ -2,16 +2,16 @@
 
 namespace kosssi\MyAlbumsBundle\Tests\Security\Authorization\Voter;
 
-use kosssi\MyAlbumsBundle\Security\Authorization\Voter\ImageShowVoter;
+use kosssi\MyAlbumsBundle\Security\Authorization\Voter\AlbumEditVoter;
 use Phake;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 
 /**
- * Class ImageShowVoterTest
+ * Class AlbumEditVoterTest
  *
  * @author Simon Constans <kosssi@gmail.com>
  */
-class ImageShowVoterTest extends AssertVoter
+class AlbumEditVoterTest extends AssertVoter
 {
     /**
      * setUp
@@ -20,9 +20,9 @@ class ImageShowVoterTest extends AssertVoter
     {
         parent::setUp();
 
-        $this->object = Phake::mock('kosssi\MyAlbumsBundle\Entity\Image');
-        $this->attributes = ['IMAGE_SHOW'];
-        $this->voter = new ImageShowVoter();
+        $this->object = Phake::mock('kosssi\MyAlbumsBundle\Entity\Album');
+        $this->attributes = ['ALBUM_EDIT'];
+        $this->voter = new AlbumEditVoter();
     }
 
     /**
@@ -30,7 +30,7 @@ class ImageShowVoterTest extends AssertVoter
      */
     public function testAccessDeniedNoSupportAttribute()
     {
-        $this->attributes = ['NOT_IMAGE_SHOW'];
+        $this->attributes = ['NOT_ALBUM_EDIT'];
 
         $this->assertVoter(VoterInterface::ACCESS_DENIED);
     }

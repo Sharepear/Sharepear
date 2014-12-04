@@ -30,17 +30,15 @@ class HomepageController extends Controller
             );
         }
 
-        $images = $this->get('kosssi_my_albums.repository.image')->findBy(
-            array(
-                'album' => null,
-                'user' => $this->getUser(),
-            )
+        $albums = $this->get('kosssi_my_albums.repository.album')->findBy(
+            array('createdBy' => $this->getUser()->getUsername()),
+            array('createdAt' => 'DESC')
         );
 
         return $this->render(
-            'kosssiMyAlbumsBundle:Album:show.html.twig',
+            'kosssiMyAlbumsBundle:Album:list.html.twig',
             array(
-                'images' => $images,
+                'albums' => $albums,
                 'shared_album' => false,
             )
         );
@@ -65,7 +63,7 @@ class HomepageController extends Controller
                 'public' => true,
             ),
             array(
-                'createdAt'
+                'createdAt' => 'ASC'
             )
         );
 

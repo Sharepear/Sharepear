@@ -54,26 +54,13 @@ class ImageListener
     public function prePersist(Image $image, LifecycleEventArgs $event)
     {
         unset($event);
-        $now = new \Datetime();
 
         $orientation = $this->imageRotate->rotateAccordingExif($image->getPath());
         $this->imageCacheHelper->generate($image->getWebPath());
         $this->imageOptimiseHelper->optimiseCaches($image->getWebPath());
         $this->imageOptimiseHelper->optimise($image->getPath());
 
-        $image->setCreatedAt($now);
-        $image->setUpdatedAt($now);
         $image->setOrientation($orientation);
-    }
-
-    /**
-     * @param Image              $image
-     * @param PreUpdateEventArgs $event
-     */
-    public function preUpdate(Image $image, PreUpdateEventArgs $event)
-    {
-        unset($event);
-        $image->setUpdatedAt(new \Datetime());
     }
 
     /**
@@ -83,6 +70,7 @@ class ImageListener
     public function postRemove(Image $image, LifecycleEventArgs $event)
     {
         unset($event);
+
         $this->imageCacheHelper->remove($image->getWebPath());
         $this->fs->remove($image->getPath());
     }

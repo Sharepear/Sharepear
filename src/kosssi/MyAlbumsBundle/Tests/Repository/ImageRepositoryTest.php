@@ -21,14 +21,15 @@ class ImageRepositoryTest extends \PHPUnit_Framework_TestCase
         $class = Phake::mock('Doctrine\ORM\Mapping\ClassMetadata');
         $repository = Phake::partialMock('kosssi\MyAlbumsBundle\Repository\ImageRepository', $em, $class);
         Phake::when($repository)->findBy(Phake::anyParameters())->thenReturn(null);
-        $album = Phake::mock('kosssi\MyAlbumsBundle\Entity\Image');
+        $album = Phake::mock('kosssi\MyAlbumsBundle\Entity\Album');
 
         $sharedAlbum = true;
         $repository->getImages($album, $sharedAlbum);
-        Phake::verify($repository, Phake::times(1))->findBy(['album' => $album, 'public' => true]);
+        Phake::verify($repository, Phake::times(1))
+            ->findBy(['album' => $album, 'public' => true], array('createdAt' => 'ASC'));
 
         $sharedAlbum = false;
         $repository->getImages($album, $sharedAlbum);
-        Phake::verify($repository, Phake::times(1))->findBy(['album' => $album]);
+        Phake::verify($repository, Phake::times(1))->findBy(['album' => $album], array('createdAt' => 'ASC'));
     }
 }

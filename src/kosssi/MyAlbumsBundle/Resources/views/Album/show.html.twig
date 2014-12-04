@@ -4,13 +4,32 @@
     {% set shared_album = false %}
 {% endif %}
 
+
+
+{% block header_content %}
+    {{ parent() }}
+    <ul class="list-btn">
+        {% if album is defined and images is defined and images|length > 0 %}
+            <li>
+                <a class="btn-download" target="_blank" href="{{ path('album_download', {'id': album.id}) }}">
+                    <i class="fa fa-archive"></i>
+                    {{ "Download" | trans({}, "album") }}
+                </a>
+            </li>
+        {% endif %}
+        <li>
+            <a class="btn-download" href="{{ path('album_edit', {'id': album.id}) }}">
+                <i class="fa fa-pencil"></i>
+                {{ "Edit" | trans({}, "album") }}
+            </a>
+        </li>
+    </ul>
+{% endblock %}
+
 {% block section_content %}
-    {% if form is defined %}
-        {{ form(form, {'action': path('album_name_edit', {'id': album.id})}) }}
-    {% endif %}
     <ul id="albumShow" class="album"></ul>
     <ul id="albumList" class="album">
-        {% for image in images %}
+        {% for image in album.images %}
             {% include 'kosssiMyAlbumsBundle:Image/base:image.html.twig' with {'image': image, 'element': 'li', 'shared_album': shared_album} only %}
         {% endfor %}
     </ul>

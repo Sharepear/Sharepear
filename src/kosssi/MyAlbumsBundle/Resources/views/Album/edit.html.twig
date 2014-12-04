@@ -1,1 +1,34 @@
-{{ album.name }}
+{% extends 'kosssiMyAlbumsBundle:Album/base:layout.html.twig' %}
+
+{% if shared_album is not defined %}
+    {% set shared_album = false %}
+{% endif %}
+
+{% block header_content %}
+    <ul class="list-btn">
+        <li>
+            <a class="btn-download" href="{{ path('album_delete', {'id': album.id}) }}">
+                <i class="fa fa-trash-o"></i>
+                {{ "Delete" | trans({}, "album") }}
+            </a>
+        </li>
+        <li>
+            <a class="btn-download" href="{{ path('album_show', {'id': album.id}) }}">
+                <i class="fa fa-folder-open"></i>
+                {{ "Show" | trans({}, "album") }}
+            </a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block section_content %}
+    {{ form(form, {'action': path('album_edit', {'id': album.id}), 'class': 'album-edit'}) }}
+    <div class="upload">
+        <div>
+            <form action="{{ oneup_uploader_endpoint('album') }}" class="dropzone" id="my-dropzone">
+                <input type="hidden" name="album_id" value="{% if album is defined %}{{ album.id }}{% endif %}">
+                <span data-description="{{ "Drop files here to upload" | trans({}, "album") }}"></span>
+            </form>
+        </div>
+    </div>
+{% endblock %}
