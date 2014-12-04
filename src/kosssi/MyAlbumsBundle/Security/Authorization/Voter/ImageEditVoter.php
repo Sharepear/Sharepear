@@ -44,7 +44,8 @@ class ImageEditVoter implements VoterInterface
     {
         foreach ($attributes as $attribute) {
             if ($this->supportsAttribute($attribute) && $this->supportsClass($object)) {
-                if ($token->getUser()->getUsername() == $object->getCreatedBy()) {
+                if (is_object($user = $token->getUser()) && $user->getUsername() == $object->getCreatedBy()
+                    || $object->isPublic()) {
                     return VoterInterface::ACCESS_GRANTED;
                 }
             }
