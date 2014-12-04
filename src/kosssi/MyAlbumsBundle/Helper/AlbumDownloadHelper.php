@@ -2,7 +2,7 @@
 
 namespace kosssi\MyAlbumsBundle\Helper;
 
-use kosssi\MyAlbumsBundle\Entity\Image;
+use kosssi\MyAlbumsBundle\Entity\Album;
 use Symfony\Component\HttpKernel\KernelInterface;
 use ZipArchive;
 
@@ -27,23 +27,23 @@ class AlbumDownloadHelper
     }
 
     /**
-     * @param Image $album
+     * @param Album $album
      *
      * @return string
      */
-    public function zipPath(Image $album)
+    public function zipPath(Album $album)
     {
-        return $this->rootDir . '/../web/uploads/pictures/' . $album->getUser()->getUsernameCanonical() . '/' . $album->getName() . '.zip';
+        return $this->rootDir . '/../web/uploads/pictures/' . $album->getCreatedBy() . '/' . $album->getName() . '.zip';
     }
 
     /**
-     * @param Image $album
+     * @param Album $album
      */
-    public function createArchive(Image $album)
+    public function createArchive(Album $album)
     {
         $archive = new ZipArchive();
         $archive->open($this->zipPath($album), ZipArchive::CREATE);
-        /** @var Image $image */
+        /** @var \kosssi\MyAlbumsBundle\Entity\Image $image */
         foreach ($album->getImages() as $image) {
             $archive->addFile($image->getPath(), $image->getName() . '.' . pathinfo($image->getPath(), PATHINFO_EXTENSION));
         }

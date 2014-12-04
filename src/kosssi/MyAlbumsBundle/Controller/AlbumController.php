@@ -44,14 +44,14 @@ class AlbumController extends Controller
     /**
      * Download album
      *
-     * @param Image $album
+     * @param Album $album
      *
      * @Config\Route("/{id}/download", name="album_download")
-     * @Config\Security("is_granted('IMAGE_SHOW', album)")
+     * @Config\Security("is_granted('ALBUM_SHOW', album)")
      *
      * @return Response
      */
-    public function downloadAction(Image $album)
+public function downloadAction(Album $album)
     {
         $albumDownload = $this->get('kosssi_my_albums.helper.album_download');
         $albumDownload->createArchive($album);
