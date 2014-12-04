@@ -58,7 +58,6 @@ class ImageListener
         $orientation = $this->imageRotate->rotateAccordingExif($image->getPath());
         $this->imageCacheHelper->generate($image->getWebPath());
         $this->imageOptimiseHelper->optimiseCaches($image->getWebPath());
-        $this->imageOptimiseHelper->optimise($image->getPath());
 
         $image->setOrientation($orientation);
     }
