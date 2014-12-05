@@ -30,7 +30,7 @@ class ImageRepository extends EntityRepository
             $criteria['public'] = true;
         }
 
-        return $this->findBy($criteria, array('createdAt' => 'ASC'));
+        return $this->findBy($criteria, array('exifDateTime' => 'ASC', 'createdAt' => 'ASC'));
     }
 
     /**

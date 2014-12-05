@@ -29,15 +29,22 @@ class UploadListener
     protected $securityContext;
 
     /**
+     * @var \kosssi\MyAlbumsBundle\Helper\ImageExifHelper
+     */
+    private $imageExifHelper;
+
+    /**
      * @param \Doctrine\ORM\EntityManager                       $em
      * @param \kosssi\MyAlbumsBundle\Repository\AlbumRepository $albumRepository
      * @param \Symfony\Component\Security\Core\SecurityContext  $securityContext
+     * @param \kosssi\MyAlbumsBundle\Helper\ImageExifHelper     $imageExifHelper
      */
-    public function __construct($em, $albumRepository, $securityContext)
+    public function __construct($em, $albumRepository, $securityContext, $imageExifHelper)
     {
         $this->em = $em;
         $this->albumRepository = $albumRepository;
         $this->securityContext = $securityContext;
+        $this->imageExifHelper = $imageExifHelper;
     }
 
     /**
@@ -58,6 +65,7 @@ class UploadListener
             $image->setName(pathinfo($originalName, PATHINFO_FILENAME));
             $image->setPath($file->getRealPath());
             $image->setPublic(false);
+            $this->imageExifHelper->setDateTime($image);
             $this->em->persist($image);
 
             if ($album) {

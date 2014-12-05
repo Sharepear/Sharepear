@@ -13,6 +13,7 @@
         <parameter key="kosssi_my_albums.helper.image_optimise.class">kosssi\MyAlbumsBundle\Helper\ImageOptimiseHelper</parameter>
         <parameter key="kosssi_my_albums.helper.image_rotate.class">kosssi\MyAlbumsBundle\Helper\ImageRotateHelper</parameter>
         <parameter key="kosssi_my_albums.helper.album_download.class">kosssi\MyAlbumsBundle\Helper\AlbumDownloadHelper</parameter>
+        <parameter key="kosssi_my_albums.helper.image_exif.class">kosssi\MyAlbumsBundle\Helper\ImageExifHelper</parameter>
 
         <!-- listener -->
         <parameter key="kosssi_my_albums.listener.resolver.class">kosssi\MyAlbumsBundle\Entity\ListenerResolver</parameter>
@@ -62,6 +63,7 @@
         <service id="kosssi_my_albums.helper.album_download" class="%kosssi_my_albums.helper.album_download.class%">
             <argument type="service" id="kernel"/>
         </service>
+        <service id="kosssi_my_albums.helper.image_exif" class="%kosssi_my_albums.helper.image_exif.class%" />
 
         <!-- listener -->
         <service id="kosssi_my_albums.listener.resolver" class="%kosssi_my_albums.listener.resolver.class%">
@@ -77,6 +79,7 @@
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="kosssi_my_albums.repository.album" />
             <argument type="service" id="security.context" />
+            <argument type="service" id="kosssi_my_albums.helper.image_exif" />
             <tag name="kernel.event_listener" event="oneup_uploader.post_persist" method="onUpload" />
         </service>
 

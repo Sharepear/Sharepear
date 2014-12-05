@@ -73,6 +73,13 @@ class Image
     private $public;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $exifDateTime;
+
+    /**
      * @param Album $album
      */
     public function setAlbum($album)
@@ -170,6 +177,26 @@ class Image
     public function isPublic()
     {
         return $this->public === true;
+    }
+
+    /**
+     * @param \DateTime $exifDateTime
+     *
+     * @return $this
+     */
+    public function setExifDateTime($exifDateTime)
+    {
+        $this->exifDateTime = $exifDateTime;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getExifDateTime()
+    {
+        return $this->exifDateTime;
     }
 
     /**
