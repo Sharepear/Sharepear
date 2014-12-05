@@ -50,16 +50,15 @@ class HomepageController extends Controller
      * @param User $user
      *
      * @Config\Route("/{username}", name="user_homepage")
-     * @Config\Template("kosssiMyAlbumsBundle:Album:show.html.twig")
+     * @Config\Template("kosssiMyAlbumsBundle:Album:list.html.twig")
      *
      * @return array
      */
     public function userHomepageAction(User $user)
     {
-        $images = $this->get('kosssi_my_albums.repository.image')->findBy(
+        $albums = $this->get('kosssi_my_albums.repository.album')->findBy(
             array(
-                'album' => null,
-                'user' => $user,
+                'createdBy' => $user->getUsername(),
                 'public' => true,
             ),
             array(
@@ -68,7 +67,7 @@ class HomepageController extends Controller
         );
 
         return array(
-            'images' => $images,
+            'albums' => $albums,
             'shared_album' => true,
         );
     }
