@@ -11,25 +11,40 @@
     <ul class="list-btn">
         {% if album is defined and images is defined and images|length > 0 %}
             <li>
-                <a class="btn-download" target="_blank" href="{{ path('album_download', {'id': album.id}) }}">
+                <a target="_blank" href="{{ path('album_download', {'id': album.id}) }}">
                     <i class="fa fa-archive"></i>
                     {{ "Download" | trans({}, "album") }}
                 </a>
             </li>
         {% endif %}
-        <li>
-            <a class="btn-download" href="{{ path('album_edit', {'id': album.id}) }}">
-                <i class="fa fa-pencil"></i>
-                {{ "Edit" | trans({}, "album") }}
-            </a>
-        </li>
+        {% if app.user and album.createdBy == app.user.username %}
+            <li>
+                {% if album.public %}
+                    <a href="{{ path('album_unshare', {'id': album.id}) }}">
+                        <i class="fa fa-share-alt"></i>
+                        {{ "Unshare" | trans({}, "album") }}
+                    </a>
+                {% else %}
+                    <a href="{{ path('album_share', {'id': album.id}) }}">
+                        <i class="fa fa-share-alt"></i>
+                        {{ "Share" | trans({}, "album") }}
+                    </a>
+                {% endif %}
+            </li>
+            <li>
+                <a href="{{ path('album_edit', {'id': album.id}) }}">
+                    <i class="fa fa-pencil"></i>
+                    {{ "Edit" | trans({}, "album") }}
+                </a>
+            </li>
+        {% endif %}
     </ul>
 {% endblock %}
 
 {% block section_content %}
     <ul id="albumShow" class="album"></ul>
     <ul id="albumList" class="album">
-        {% for image in album.images %}
+        {% for image in images %}
             {% include 'kosssiMyAlbumsBundle:Image/base:image.html.twig' with {'image': image, 'element': 'li', 'shared_album': shared_album} only %}
         {% endfor %}
     </ul>
