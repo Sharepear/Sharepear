@@ -56,7 +56,7 @@ class ImageController extends Controller
             return new Response('ok');
         } else {
             if ($album = $image->getAlbum()) {
-                return $this->redirect($this->generateUrl('album_show', array('id' => $album->getId())));
+                return $this->redirect($this->generateUrl('album_edit', array('id' => $album->getId())));
             } else {
                 return $this->redirect($this->generateUrl('homepage'));
             }
@@ -85,16 +85,21 @@ class ImageController extends Controller
         // remove cache
         $this->get('kosssi_my_albums.helper.image_cache')->remove($image->getWebPath());
 
+        // generate new cache
+        $this->get('kosssi_my_albums.helper.image_cache')->generate($image->getWebPath());
+
         // save entity
         $em = $this->getDoctrine()->getManager();
         $em->persist($image);
         $em->flush();
 
         if ($request->isXmlHttpRequest()) {
-            return new Response('ok');
+            $this->get('templating')->renderResponse('kosssiMyAlbumsBundle:Image/base:image.html.twig', array(
+                'image' => $image,
+            ));
         } else {
             if ($album = $image->getAlbum()) {
-                return $this->redirect($this->generateUrl('album_show', array('id' => $album->getId())));
+                return $this->redirect($this->generateUrl('album_edit', array('id' => $album->getId())));
             } else {
                 return $this->redirect($this->generateUrl('homepage'));
             }
@@ -131,7 +136,7 @@ class ImageController extends Controller
             ];
         } else {
             if ($album = $image->getAlbum()) {
-                return $this->redirect($this->generateUrl('album_show', array('id' => $album->getId())));
+                return $this->redirect($this->generateUrl('album_edit', array('id' => $album->getId())));
             } else {
                 return $this->redirect($this->generateUrl('homepage'));
             }

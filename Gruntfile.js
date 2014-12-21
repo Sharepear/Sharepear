@@ -109,6 +109,9 @@ module.exports = function(grunt) {
                     // imagesloaded
                     'bower_components/imagesloaded/imagesloaded.js',
 
+                    // srcset
+                    'bower_components/picturefill/dist/picturefill.js',
+
                     // dropzone
                     'bower_components/dropzone/downloads/dropzone.js'
                 ],

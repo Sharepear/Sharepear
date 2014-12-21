@@ -1,33 +1,18 @@
-{% set element = element|default('article') -%}
+{% if name is not defined %}
+    {% set name = image.name %}
+{% endif %}
 
-{% spaceless %}
-    <{{ element }} class="clearfix" {{ getDataFilters(image.getWebPath) }}
-             data-orientation="{{ image.orientation }}"
-             title="{{ image.name }}"
-            >
-        <ul class="actions">
-            {% if not shared_album %}
-                <li>
-                    <a class="imageRotateRight" title="Tourner à gauche" href="{{ path('image_rotation_right', {'id': image.id}) }}">
-                        <i class="fa fa-rotate-left"></i>
-                    </a>
-                </li>
-                <li>
-                    <a class="imageRotateLeft" title="Tourner à droite" href="{{ path('image_rotation_left', {'id': image.id}) }}">
-                        <i class="fa fa-rotate-right"></i>
-                    </a>
-                </li>
-                <li>
-                    {% include 'kosssiMyAlbumsBundle:Image/base:share.html.twig' with {'image': image} only %}
-                </li>
-            {% endif %}
-            {% if not shared_album %}
-                <li>
-                    <a class="imageRemove" title="Supprimer cette image" href="{{ path('image_delete', {'id': image.id}) }}">
-                        <i class="fa fa-times-circle-o"></i>
-                    </a>
-                </li>
-            {% endif %}
-        </ul>
-    </{{ element }}>
-{% endspaceless %}
+{% if orientation is not defined %}
+    {% set orientation = image.orientation %}
+{% endif %}
+
+{% if path is not defined %}
+    {% set path = image.getWebPath %}
+{% endif %}
+
+<picture itemscope itemtype="http://schema.org/ImageObject" >
+    <!--[if IE 9]><video style="display: none;"><![endif]-->
+    {{ getSources(path) }}
+    <!--[if IE 9]></video><![endif]-->
+    <img draggable="true" srcset="{{ path }}" class="{{ orientation }}" alt="{{ name }}" title="{{ name }}">
+</picture>

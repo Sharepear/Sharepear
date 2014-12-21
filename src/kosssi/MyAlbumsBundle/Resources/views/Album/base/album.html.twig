@@ -1,21 +1,20 @@
-{% set element = element|default('article') -%}
-
-{% spaceless %}
-    <{{ element }} class="clearfix"
-    {% if image %}
-        {{ getDataFilters(image.getWebPath) }}
-        data-orientation="{{ image.orientation }}"
-    {% else %}
-        {{ getDataFilters('/uploads/sharepear/default/sharepear.png') }}
-    {% endif %}
-    title="{{ album.name }}"
-    >
-    <ul class="actions">
+<ul class="pictures {{ action }}{% if action != 'edit' %} zoom{% endif %}" itemscope itemtype="http://schema.org/ImageGallery">
+    {% for image in images %}
         <li>
-            <a class="imageFolder" href="{{ path('album_show', {'id': album.id}) }}">
-                <i class="fa fa-folder-open"></i>
-            </a>
+            {% include 'kosssiMyAlbumsBundle:Image/base:image.html.twig' with {'image': image} only %}
+            {% if action == 'edit' %}
+                {% include 'kosssiMyAlbumsBundle:Image/base:edit.html.twig' with {'image': image} only %}
+            {% endif %}
         </li>
-    </ul>
-    </{{ element }}>
-{% endspaceless %}
+    {% endfor %}
+    {% if action == 'edit' %}
+        <li id="upload">
+            <div>
+                <form action="{{ oneup_uploader_endpoint('album') }}" class="dropzone" id="my-dropzone">
+                    <input type="hidden" name="album_id" value="{% if album is defined %}{{ album.id }}{% endif %}">
+                    <span data-description="{{ "Drop files here to upload" | trans({}, "album") }}"></span>
+                </form>
+            </div>
+        </li>
+    {% endif %}
+</ul>

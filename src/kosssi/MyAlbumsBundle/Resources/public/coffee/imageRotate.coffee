@@ -1,14 +1,12 @@
 class ImageRotate
     selector: ''
     elements: {}
-    masonry:  {}
 
-    constructor: (@selector, @masonry) ->
+    constructor: (@selector) ->
         @elements = $ @selector
         @bindClick()
 
     rotate: ($element) ->
-        _this = this
         parent = $element.parents('[data-orientation]')
         $img = $(parent.find('img'))
 
@@ -18,10 +16,9 @@ class ImageRotate
         $.ajax
             url: $element.attr("href")
             success: (html) =>
-                if html == 'ok'
-                    $img.load ->
-                        _this.masonry.update()
-                    $img.attr 'src', $img.data('src') + '?' + new Date().getTime();
+                $li = $img.parents('ul').parents('li');
+                $li.remove('picture')
+                $li.append(html);
         return this
 
     addElement: ->
@@ -36,3 +33,6 @@ class ImageRotate
             e.stopPropagation()
             _this.rotate $(this)
         return this
+
+#imageRotateRight = new ImageRotate '.imageRotateRight'
+#imageRotateLeft  = new ImageRotate '.imageRotateLeft'

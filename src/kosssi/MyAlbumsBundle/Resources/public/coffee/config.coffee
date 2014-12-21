@@ -1,4 +1,3 @@
-myMasonry = {}
 album = {}
 editAlbum = {}
 imageResponsive = {}
@@ -12,13 +11,12 @@ showAlbum = {}
 
 $(document).ready ->
     if document.querySelectorAll('#albumShow').length > 0
-        myMasonry        = new MyMasonry '#albumShow'
         album            = new Album ".album", "> li", filters
         editAlbum        = new EditAlbum "form[name=album_name]"
         imageResponsive  = new ImageResponsive ".current", filters
         imageFullscreen  = new ImageFullscreen "#fullscreenContent", ".album > li"
         orientation      = new Orientation
-        imageRemove      = new ImageRemove '.imageRemove', myMasonry
+
         imageRotateRight = new ImageRotate '.imageRotateRight', myMasonry
         imageRotateLeft  = new ImageRotate '.imageRotateLeft', myMasonry
         imagesLoader     = new ImagesLoader '#albumList', myMasonry

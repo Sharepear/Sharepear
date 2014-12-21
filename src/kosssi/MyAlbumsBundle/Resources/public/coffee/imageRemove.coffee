@@ -1,9 +1,8 @@
 class ImageRemove
     selector: ''
     elements: {}
-    masonry:  {}
 
-    constructor: (@selector, @masonry) ->
+    constructor: (@selector) ->
         @elements = $ @selector;
         @bindClick()
 
@@ -12,8 +11,7 @@ class ImageRemove
             url: $element.attr("href")
             success: (html) =>
                 if html == 'ok'
-                    @masonry.removeElement $element.parents('[data-orientation]')
-                    @masonry.update()
+                    $element.parents('ul').parents('li').remove()
         return this
 
     addElement: ->
@@ -27,4 +25,7 @@ class ImageRemove
             e.preventDefault()
             e.stopPropagation()
             _this.remove $(this)
+            return false
         return this
+
+imageRemove = new ImageRemove '.imageRemove'

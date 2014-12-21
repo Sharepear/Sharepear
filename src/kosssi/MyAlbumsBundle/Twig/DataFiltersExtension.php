@@ -41,6 +41,9 @@ class DataFiltersExtension extends \Twig_Extension
             new \Twig_SimpleFunction('getFiltersConfiguration', array($this, 'getFiltersConfiguration'), array(
                 'is_safe' => array('html')
             )),
+            new \Twig_SimpleFunction('getSources', array($this, 'getSources'), array(
+                'is_safe' => array('html')
+            )),
         );
     }
 
@@ -58,6 +61,26 @@ class DataFiltersExtension extends \Twig_Extension
             foreach ($filters as $filterName => $value) {
                 $cachePath = $this->cacheManager->getBrowserPath($path, $filterName);
                 $dataFilters .= " data-$filterName=\"$cachePath\"";
+            }
+        }
+
+        return $dataFilters;
+    }
+
+    /**
+     * @param string $path
+     *
+     * @return string
+     */
+    public function getSources($path)
+    {
+        $filters = $this->filterConfig->all();
+
+        $dataFilters = '';
+        if (is_array($filters)) {
+            foreach ($filters as $filterName => $value) {
+                $cachePath = $this->cacheManager->getBrowserPath($path, $filterName);
+                $dataFilters .= "<source srcset=\"$cachePath\" media=\"(max-width: " . $value['filters']['relative_resize']['widen'] . "px)\">";
             }
         }
 

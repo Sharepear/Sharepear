@@ -97,9 +97,14 @@ public function downloadAction(Album $album)
             }
         }
 
+        $sharedAlbum = $this->getUser() != $album->getCreatedBy();
+        $images = $this->get('kosssi_my_albums.repository.image')->getImages($album, $sharedAlbum);
+
         return [
             'album' => $album,
             'form' => $form->createView(),
+            'images' => $images,
+            'shared_album' => $sharedAlbum,
         ];
     }
 

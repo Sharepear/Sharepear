@@ -4,8 +4,6 @@
     {% set shared_album = false %}
 {% endif %}
 
-
-
 {% block header_content %}
     {{ parent() }}
     <ul class="list-btn">
@@ -42,11 +40,5 @@
 {% endblock %}
 
 {% block section_content %}
-    <ul id="albumShow" class="album"></ul>
-    <ul id="albumList" class="album">
-        {% for image in images %}
-            {% include 'kosssiMyAlbumsBundle:Image/base:image.html.twig' with {'image': image, 'element': 'li', 'shared_album': shared_album} only %}
-        {% endfor %}
-    </ul>
-    <div id="fullscreenContent"></div>
+    {% include 'kosssiMyAlbumsBundle:Album/base:album.html.twig' with {'images': images, 'action': 'show'} only %}
 {% endblock %}

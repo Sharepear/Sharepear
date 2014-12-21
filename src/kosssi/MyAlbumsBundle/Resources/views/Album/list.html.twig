@@ -7,11 +7,17 @@
 {% block header '' %}
 
 {% block section_content %}
-    <ul id="albumShow" class="album"></ul>
-    <ul id="albumList" class="album">
+    <ul class="pictures display zoom" itemscope itemtype="http://schema.org/ImageGallery">
         {% for album in albums %}
-            {% include 'kosssiMyAlbumsBundle:Album/base:album.html.twig' with {'album': album, 'image': album.image, 'element': 'li', 'shared_album': shared_album} only %}
+            <li>
+                <a href="{{ path("album_show", {'id': album.id}) }}">
+                    {% if album.image %}
+                        {% include 'kosssiMyAlbumsBundle:Image/base:image.html.twig' with {'image': album.image, 'name': album.name} only %}
+                    {% else %}
+                        {% include 'kosssiMyAlbumsBundle:Image/base:image.html.twig' with {'path': '/uploads/sharepear/default/sharepear.png', 'orientation': 'landscape', 'name': album.name} only %}
+                    {% endif %}
+                </a>
+            </li>
         {% endfor %}
     </ul>
-    <div id="fullscreenContent"></div>
 {% endblock %}
