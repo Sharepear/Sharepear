@@ -109,9 +109,6 @@ module.exports = function(grunt) {
                     // imagesloaded
                     'bower_components/imagesloaded/imagesloaded.js',
 
-                    // srcset
-                    'bower_components/picturefill/dist/picturefill.js',
-
                     // dropzone
                     'bower_components/dropzone/downloads/dropzone.js'
                 ],
@@ -120,6 +117,7 @@ module.exports = function(grunt) {
             js: {
                 src: [
                     'web/built/bower.js',
+                    'src/kosssi/MyAlbumsBundle/Resources/public/js/picturefill.js',
                     'web/built/*/js/*.js',
                     'web/built/*/js/*/*.js'
                 ],
