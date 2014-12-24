@@ -34,6 +34,8 @@ twig:
         piwik:
             url: %piwik_url%
             id: %piwik_id%
+        uservoice:
+            id: %uservoice_id%
 
 # Assetic Configuration
 assetic:

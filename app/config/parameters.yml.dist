@@ -13,3 +13,4 @@ parameters:
 
     piwik_url: ~
     piwik_id: ~
+    uservoice_id: ~
