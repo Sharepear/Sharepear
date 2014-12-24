@@ -2,6 +2,9 @@
     <!-- Piwik -->
     <script type="text/javascript">
         var _paq = _paq || [];
+        {% if app.security.token is not null %}
+            _paq.push(['setCustomVariable', 1, "Email", "{{ app.user.email }}", "visit"]);
+        {% endif %}
         _paq.push(['trackPageView']);
         _paq.push(['enableLinkTracking']);
         (function() {
