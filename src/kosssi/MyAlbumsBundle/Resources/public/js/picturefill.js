@@ -50,7 +50,6 @@ p = (function( w, doc, image ) {
 
     pf.matchesMedia = function( media, picture ) {
         return pf.findWidthFromSourceSize(media) > picture.clientWidth;
-        return w.matchMedia && w.matchMedia( media ).matches;
     };
 
     // Shortcut method for `devicePixelRatio` ( for easy overriding in tests )
