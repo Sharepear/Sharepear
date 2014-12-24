@@ -10,3 +10,6 @@ parameters:
     secret:            aD5n5sLb2Q8q6Z39bDra23ZrzAN85ANr
 
     pictures_path: "%kernel.root_dir%/../web/uploads/pictures"
+
+    piwik_url: ~
+    piwik_id: ~

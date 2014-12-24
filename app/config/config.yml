@@ -30,6 +30,10 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        piwik:
+            url: %piwik_url%
+            id: %piwik_id%
 
 # Assetic Configuration
 assetic:
