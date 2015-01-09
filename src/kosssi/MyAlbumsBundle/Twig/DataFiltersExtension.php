@@ -49,18 +49,21 @@ class DataFiltersExtension extends \Twig_Extension
 
     /**
      * @param string $path
+     * @param string $orientation
      *
      * @return string
      */
-    public function getDataFilters($path)
+    public function getDataFilters($path, $orientation)
     {
         $filters = $this->filterConfig->all();
 
         $dataFilters = '';
         if (is_array($filters)) {
             foreach ($filters as $filterName => $value) {
-                $cachePath = $this->cacheManager->getBrowserPath($path, $filterName);
-                $dataFilters .= " data-$filterName=\"$cachePath\"";
+                if (strpos($filterName, $orientation) === 0) {
+                    $cachePath = $this->cacheManager->getBrowserPath($path, $filterName);
+                    $dataFilters .= " data-$filterName=\"$cachePath\"";
+                }
             }
         }
 
@@ -69,18 +72,22 @@ class DataFiltersExtension extends \Twig_Extension
 
     /**
      * @param string $path
+     * @param string $orientation
      *
      * @return string
      */
-    public function getSources($path)
+    public function getSources($path, $orientation)
     {
         $filters = $this->filterConfig->all();
+        $orientationName = $orientation == 'landscape' ? 'heighten' : 'widen';
 
         $dataFilters = '';
         if (is_array($filters)) {
             foreach ($filters as $filterName => $value) {
-                $cachePath = $this->cacheManager->getBrowserPath($path, $filterName);
-                $dataFilters .= "<source srcset=\"$cachePath\" media=\"(max-width: " . $value['filters']['relative_resize']['widen'] . "px)\">";
+                if (strpos($filterName, $orientation) === 0) {
+                    $cachePath = $this->cacheManager->getBrowserPath($path, $filterName);
+                    $dataFilters .= "<source srcset=\"$cachePath\" element=\"" . $value['filters']['relative_resize'][$orientationName] . "\">";
+                }
             }
         }
 
@@ -97,7 +104,7 @@ class DataFiltersExtension extends \Twig_Extension
 
         if (is_array($filters)) {
             foreach ($filters as $key => $filter) {
-                $filtersConfig[] = array('name' => $key, 'value' => $filter['filters']['relative_resize']['widen']);
+                //$filtersConfig[] = array('name' => $key, 'value' => $filter['filters']['relative_resize']['widen']);
             }
         }
 

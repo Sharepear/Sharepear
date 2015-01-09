@@ -44,6 +44,18 @@ module.exports = function(grunt) {
                 src: 'bower_components/dropzone/downloads/images/spritemap.png',
                 dest: 'web/images/spritemap.png'
             },
+            photoswipe_image_png: {
+                src: 'bower_components/photoswipe/dist/default-skin/default-skin.png',
+                dest: 'web/images/default-skin.png'
+            },
+            photoswipe_image_svg: {
+                src: 'bower_components/photoswipe/dist/default-skin/default-skin.svg',
+                dest: 'web/images/default-skin.svg'
+            },
+            photoswipe_image_gif: {
+                src: 'bower_components/photoswipe/dist/default-skin/preloader.gif',
+                dest: 'web/images/preloader.gif'
+            },
             fontawesome_font: {
                 src: 'bower_components/font-awesome/fonts/',
                 dest: 'web/fonts'
@@ -92,22 +104,9 @@ module.exports = function(grunt) {
                     // jquery
                     'bower_components/jquery/dist/jquery.js',
 
-                    // masonery
-                    'bower_components/get-style-property/get-style-property.js',
-                    'bower_components/get-size/get-size.js',
-
-                    'bower_components/eventEmitter/EventEmitter.js',
-                    'bower_components/eventie/eventie.js',
-                    'bower_components/doc-ready/doc-ready.js',
-                    'bower_components/jquery-bridget/jquery.bridget.js',
-                    'bower_components/matches-selector/matches-selector.js',
-                    'bower_components/outlayer/item.js',
-                    'bower_components/outlayer/outlayer.js',
-
-                    'bower_components/masonry/masonry.js',
-
-                    // imagesloaded
-                    'bower_components/imagesloaded/imagesloaded.js',
+                    // photoswipe
+                    'bower_components/photoswipe/dist/photoswipe.js',
+                    'bower_components/photoswipe/dist/photoswipe-ui-default.js',
 
                     // dropzone
                     'bower_components/dropzone/downloads/dropzone.js'
@@ -125,7 +124,14 @@ module.exports = function(grunt) {
             },
             bowercss: {
                 src: [
+                    // dropezone
                     'bower_components/dropzone/downloads/css/*.css',
+
+                    // photoswipe
+                    'bower_components/photoswipe/dist/photoswipe.css',
+                    'bower_components/photoswipe/dist/default-skin/default-skin.css',
+
+                    // awesome
                     'bower_components/font-awesome/css/font-awesome.css'
                 ],
                 dest: 'web/built/bower.css'

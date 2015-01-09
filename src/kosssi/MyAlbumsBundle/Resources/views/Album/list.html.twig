@@ -7,17 +7,22 @@
 {% block header '' %}
 
 {% block section_content %}
-    <ul class="pictures display zoom" itemscope itemtype="http://schema.org/ImageGallery">
+    <div class="pictures display zoom" itemscope itemtype="http://schema.org/ImageGallery">
         {% for album in albums %}
-            <li>
-                <a href="{{ path("album_show", {'id': album.id}) }}">
-                    {% if album.image %}
-                        {% include 'kosssiMyAlbumsBundle:Image/base:image.html.twig' with {'image': album.image, 'name': album.name} only %}
-                    {% else %}
-                        {% include 'kosssiMyAlbumsBundle:Image/base:image.html.twig' with {'path': '/uploads/sharepear/default/sharepear.png', 'orientation': 'landscape', 'name': album.name} only %}
-                    {% endif %}
-                </a>
-            </li>
+            {% if album.image %}
+                {% include 'kosssiMyAlbumsBundle:Image/base:image.html.twig' with {
+                    'image': album.image,
+                    'name': album.name,
+                    'link': path("album_show", {'id': album.id})
+                } only %}
+            {% else %}
+                {% include 'kosssiMyAlbumsBundle:Image/base:image.html.twig' with {
+                    'path': '/uploads/sharepear/default/sharepear.png',
+                    'orientation': constant('kosssi\\MyAlbumsBundle\\Entity\\Image::ORIENTATION_LANDSCAPE'),
+                    'name': album.name,
+                    'link': path("album_show", {'id': album.id})
+                } only %}
+            {% endif %}
         {% endfor %}
-    </ul>
+    </div>
 {% endblock %}

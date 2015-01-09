@@ -21,3 +21,5 @@ namespace :deploy do
     invoke 'symfony:console', 'doctrine:migrations:migrate', '--no-interaction'
   end
 end
+
+set :default_env, { path: "/usr/local/bin:$PATH" }

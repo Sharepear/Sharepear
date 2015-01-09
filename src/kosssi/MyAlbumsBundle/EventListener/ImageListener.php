@@ -55,11 +55,22 @@ class ImageListener
     {
         unset($event);
 
-        $orientation = $this->imageRotate->rotateAccordingExif($image->getPath());
+        $image->setOrientation($this->imageRotate->rotateAccordingExif($image->getPath()));
+        $image->setRatio($this->imageRotate->getImageRatio($image->getPath()));
+
         $this->imageCacheHelper->generate($image->getWebPath());
         $this->imageOptimiseHelper->optimiseCaches($image->getWebPath());
+    }
 
-        $image->setOrientation($orientation);
+    /**
+     * @param Image              $image
+     * @param LifecycleEventArgs $event
+     */
+    public function preUpdate(Image $image, LifecycleEventArgs $event)
+    {
+        unset($event);
+
+        $image->setRatio($this->imageRotate->getImageRatio($image->getPath()));
     }
 
     /**

@@ -1,20 +1,16 @@
-<ul class="pictures {{ action }}{% if action != 'edit' %} zoom{% endif %}" itemscope itemtype="http://schema.org/ImageGallery">
+<div class="pictures {{ action }}{% if action != 'edit' %} zoom{% endif %}" itemscope itemtype="http://schema.org/ImageGallery">
     {% for image in images %}
-        <li>
-            {% include 'kosssiMyAlbumsBundle:Image/base:image.html.twig' with {'image': image} only %}
-            {% if action == 'edit' %}
-                {% include 'kosssiMyAlbumsBundle:Image/base:edit.html.twig' with {'image': image} only %}
-            {% endif %}
-        </li>
+            {% include 'kosssiMyAlbumsBundle:Image/base:image.html.twig' with {'image': image, 'edit': action == 'edit' } only %}
     {% endfor %}
     {% if action == 'edit' %}
-        <li id="upload">
+        <div id="upload">
             <div>
                 <form action="{{ oneup_uploader_endpoint('album') }}" class="dropzone" id="my-dropzone">
                     <input type="hidden" name="album_id" value="{% if album is defined %}{{ album.id }}{% endif %}">
                     <span data-description="{{ "Drop files here to upload" | trans({}, "album") }}"></span>
                 </form>
             </div>
-        </li>
+        </div>
     {% endif %}
-</ul>
+</div>
+{% include 'kosssiMyAlbumsBundle:PhotoSwipe:photoSwipe.html.twig' %}

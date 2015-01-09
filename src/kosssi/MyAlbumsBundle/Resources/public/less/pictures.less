@@ -8,8 +8,7 @@
   text-align: left;
 
   &.zoom {
-
-    picture:hover {
+    a:hover {
       overflow: visible;
       z-index: 111;
       img {
@@ -36,12 +35,12 @@
     display: none;
   }
 
-  > li {
-
+  > figure {
+    margin: 0;
     display: inline-block;
     position: relative;
 
-    picture {
+    > a {
       top: @padding;
       left: @padding;
       right: @padding;
@@ -49,33 +48,6 @@
       position: absolute;
       overflow: hidden;
       box-shadow: @padding @padding @padding #333;
-
-      &.full {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 122;
-        text-align: center;
-        background-color: @backgroundColor;
-        border: none;
-
-        img {
-          max-width: 100%;
-          max-height: 100%;
-          width: auto;
-          height: auto;
-          position: absolute;
-          transition: none;
-
-          top: 50%;
-          border: none!important;
-          padding: 10px;
-          left: 50%;
-          transform: translateX(-50%) translateY(-50%)!important;
-        }
-      }
     }
 
     img {
@@ -97,10 +69,10 @@
   }
 }
 
-@media only screen and                         (min-width: 1601px) {.pictures > li {width: round(99.8% / 6, 1); padding-bottom: round(99.8% / 6, 1);}}
-@media only screen and (max-width: 1600px) and (min-width: 1383px) {.pictures > li {width: round(100% / 5, 1); padding-bottom: round(100% / 5, 1);}}
-@media only screen and (max-width: 1382px) and (min-width: 993px)  {.pictures > li {width: round(100% / 4, 1); padding-bottom: round(100% / 4, 1);}}
-@media only screen and (max-width: 992px)  and (min-width: 769px)  {.pictures > li {width: round(100% / 3, 1); padding-bottom: round(100% / 3, 1);}}
-@media only screen and (max-width: 768px)  and (min-width: 481px)  {.pictures > li {width: round(100% / 2, 1); padding-bottom: round(100% / 2, 1);}}
-@media only screen and (max-width: 480px)  and (min-width: 301px)  {.pictures > li {width: round(100%, 1); padding-bottom: round(100%, 1);}}
-@media only screen and (max-width: 300px)                          {.pictures > li {width: round(100%, 1); padding-bottom: round(100%, 1);}}
+@media only screen and                         (min-width: 1601px) {.pictures > figure {width: round(99.8% / 6, 1); padding-bottom: round(99.8% / 6, 1);}}
+@media only screen and (max-width: 1600px) and (min-width: 1383px) {.pictures > figure {width: round(100% / 5, 1); padding-bottom: round(100% / 5, 1);}}
+@media only screen and (max-width: 1382px) and (min-width: 993px)  {.pictures > figure {width: round(100% / 4, 1); padding-bottom: round(100% / 4, 1);}}
+@media only screen and (max-width: 992px)  and (min-width: 769px)  {.pictures > figure {width: round(100% / 3, 1); padding-bottom: round(100% / 3, 1);}}
+@media only screen and (max-width: 768px)  and (min-width: 481px)  {.pictures > figure {width: round(100% / 2, 1); padding-bottom: round(100% / 2, 1);}}
+@media only screen and (max-width: 480px)  and (min-width: 301px)  {.pictures > figure {width: round(100%, 1); padding-bottom: round(100%, 1);}}
+@media only screen and (max-width: 300px)                          {.pictures > figure {width: round(100%, 1); padding-bottom: round(100%, 1);}}

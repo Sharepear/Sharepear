@@ -1,0 +1,40 @@
+@import "../../app/knacss/knacss-config";
+
+.pswp {
+  text-align: left;
+
+  .pswp__bg {
+    background-color: @backgroundColor;
+  }
+
+  .pswp__caption__center {
+    text-align: center;
+  }
+
+  .pswp__ui--fit .pswp__caption, .pswp__ui--fit .pswp__top-bar {
+    background-color: transparent;
+  }
+
+  .pswp__button, .pswp__button--arrow--left:before, .pswp__button--arrow--right:before {
+    background-image: url(/images/default-skin.png);
+  }
+
+  .pswp__preloader--active .pswp__preloader__icn {
+    background-image: url(/images/preloader.gif);
+  }
+
+  .pswp__button--arrow--left, .pswp__button--arrow--right {
+    background: none repeat scroll 0% 0% transparent;
+  }
+
+  .pswp__button--share {
+    display: none;
+  }
+
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.1), (min-resolution: 105dpi), (min-resolution: 1.1dppx) {
+  .pswp--svg .pswp__button, .pswp--svg .pswp__button--arrow--left:before, .pswp--svg .pswp__button--arrow--right:before {
+    background-image: url(/images/default-skin.svg);
+  }
+}

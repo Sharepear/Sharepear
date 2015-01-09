@@ -80,6 +80,13 @@ class Image
     private $exifDateTime;
 
     /**
+     * @var float
+     *
+     * @ORM\Column(type="float")
+     */
+    private $ratio;
+
+    /**
      * @param Album $album
      */
     public function setAlbum($album)
@@ -207,5 +214,25 @@ class Image
         $webPath = explode('/web', $this->path);
 
         return $webPath[1];
+    }
+
+    /**
+     * @param float $ratio
+     *
+     * @return $this
+     */
+    public function setRatio($ratio)
+    {
+        $this->ratio = $ratio;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getRatio()
+    {
+        return $this->ratio;
     }
 }

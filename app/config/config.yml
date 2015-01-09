@@ -76,22 +76,40 @@ oneup_uploader:
 
 liip_imagine:
     filter_sets:
-        xs:
+        landscape_xs:
+            filters:
+                relative_resize: { heighten: 300 }
+        landscape_s:
+            filters:
+                relative_resize: { heighten: 480 }
+        landscape_m:
+            filters:
+                relative_resize: { heighten: 768 }
+        landscape_l:
+            filters:
+                relative_resize: { heighten: 992 }
+        landscape_xl:
+            filters:
+                relative_resize: { heighten: 1382 }
+        landscape_xxl:
+            filters:
+                relative_resize: { heighten: 1600 }
+        portrait_xs:
             filters:
                 relative_resize: { widen: 300 }
-        s:
+        portrait_s:
             filters:
                 relative_resize: { widen: 480 }
-        m:
+        portrait_m:
             filters:
                 relative_resize: { widen: 768 }
-        l:
+        portrait_l:
             filters:
                 relative_resize: { widen: 992 }
-        xl:
+        portrait_xl:
             filters:
                 relative_resize: { widen: 1382 }
-        xxl:
+        portrait_xxl:
             filters:
                 relative_resize: { widen: 1600 }
 

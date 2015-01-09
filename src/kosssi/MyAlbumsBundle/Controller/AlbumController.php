@@ -34,6 +34,10 @@ class AlbumController extends Controller
         $sharedAlbum = $this->getUser() != $album->getCreatedBy();
         $images = $this->get('kosssi_my_albums.repository.image')->getImages($album, $sharedAlbum);
 
+        if (count($images) == 0) {
+            return $this->redirect($this->generateUrl('album_edit', array('id' => $album->getId())));
+        }
+
         return array(
             'album' => $album,
             'images' => $images,

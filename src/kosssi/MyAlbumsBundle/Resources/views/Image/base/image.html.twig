@@ -6,13 +6,30 @@
     {% set orientation = image.orientation %}
 {% endif %}
 
+{% if image is defined %}
+    {% if orientation == constant('kosssi\\MyAlbumsBundle\\Entity\\Image::ORIENTATION_LANDSCAPE') %}
+        {% set width = 1600 * image.ratio|round(2, 'floor') %}
+        {% set height = 1600 %}
+    {% else %}
+        {% set width = 1600 %}
+        {% set height = 1600 / image.ratio|round(2, 'floor') %}
+    {% endif %}
+{% endif %}
+
 {% if path is not defined %}
     {% set path = image.getWebPath %}
 {% endif %}
 
-<picture itemscope itemtype="http://schema.org/ImageObject" >
-    <!--[if IE 9]><video style="display: none;"><![endif]-->
-    {{ getSources(path) }}
-    <!--[if IE 9]></video><![endif]-->
-    <img draggable="true" srcset="{{ path }}" class="{{ orientation }}" alt="{{ name }}" title="{{ name }}">
-</picture>
+{% if link is not defined %}
+    {% set link = path|imagine_filter(orientation ~ '_xxl') %}
+{% endif %}
+
+<figure itemscope itemtype="http://schema.org/ImageObject">
+    <a href="{{ link }}" itemprop="contentUrl"{% if image is defined %} data-size="{{ width }}x{{ height }}"{% endif %}>
+        <img src="{{ path|imagine_filter(orientation ~ '_s') }}" class="{{ orientation }}" itemprop="thumbnail" alt="{{ name }}" title="{{ name }}" />
+    </a>
+    <figcaption itemprop="caption description">{{ name }}</figcaption>
+    {% if edit is defined and edit %}
+        {% include 'kosssiMyAlbumsBundle:Image/base:edit.html.twig' with {'image': image} only %}
+    {% endif %}
+</figure>

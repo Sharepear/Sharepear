@@ -110,4 +110,17 @@ class ImageRotateHelper
             return Image::ORIENTATION_PORTRAIT;
         }
     }
+
+    /**
+     * @param string $path
+     *
+     * @return float
+     */
+    public function getImageRatio($path)
+    {
+        $image = $this->imagine->open($path);
+        $size = $image->getSize();
+
+        return round($size->getWidth() / $size->getHeight(), 2);
+    }
 }

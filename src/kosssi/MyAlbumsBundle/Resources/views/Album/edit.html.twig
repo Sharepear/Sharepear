@@ -13,7 +13,7 @@
                 {{ "Delete" | trans({}, "album") }}
             </a>
         </li>
-        <li>
+        <li{% if images|length == 0 %} class="visually-hidden"{% endif %}>
             <a class="btn-download" href="{{ path('album_show', {'id': album.id}) }}">
                 <i class="fa fa-folder-open"></i>
                 {{ "Show" | trans({}, "album") }}
