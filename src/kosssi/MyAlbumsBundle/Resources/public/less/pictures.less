@@ -7,13 +7,32 @@
   height: 0;
   text-align: left;
 
+  &.display {
+    figcaption {
+      left: @padding*2;
+      right: @padding*2;
+      bottom: @padding*2;
+      position: absolute;
+      overflow: hidden;
+      background-color: fade(@backgroundColor, 50%);
+      font-size: @h4-size;
+      font-weight: bold;
+      text-align: center;
+      color: white;
+      line-height: 100%;
+      padding: @padding;
+    }
+  }
+
   &.zoom {
-    a:hover {
-      overflow: visible;
-      z-index: 111;
-      img {
-        border: @padding solid @color3;
-        transform: scale(1.2);
+    figure:hover {
+      a {
+        overflow: visible;
+        z-index: 111;
+        img {
+          border: @padding solid @color3;
+          transform: scale(1.2);
+        }
       }
     }
   }
