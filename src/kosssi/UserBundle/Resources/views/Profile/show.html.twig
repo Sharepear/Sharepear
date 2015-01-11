@@ -1,14 +1,18 @@
-<ul>
-    <li>
-        <input id="username" type="text" maxlength="255" value="{{ user.username }}" disabled="disabled">
-    </li>
-    <li>
-        <input id="email" type="email" maxlength="255" value="{{ user.email }}" disabled="disabled">
-    </li>
-    <li>
-        <p>
-            <a class="ajax" href="{{ path('fos_user_change_password') }}">{{ 'Change password ?'|trans }}</a>
-            <a class="ajax" href="{{ path('fos_user_profile_edit') }}">{{ 'Edit'|trans }}</a>
-        </p>
-    </li>
-</ul>
+{% extends app.request.xmlHttpRequest ? 'kosssiMyAlbumsBundle::baseAjax.html.twig' : 'kosssiMyAlbumsBundle:Homepage:homepage.html.twig' %}
+
+{% block ajaxContainer %}
+    <ul>
+        <li>
+            <input id="username" type="text" maxlength="255" value="{{ user.username }}" disabled="disabled">
+        </li>
+        <li>
+            <input id="email" type="email" maxlength="255" value="{{ user.email }}" disabled="disabled">
+        </li>
+        <li>
+            <p>
+                <a class="ajax" href="{{ path('fos_user_change_password') }}">{{ 'Change password ?'|trans }}</a>
+                <a class="ajax" href="{{ path('fos_user_profile_edit') }}">{{ 'Edit'|trans }}</a>
+            </p>
+        </li>
+    </ul>
+{% endblock %}

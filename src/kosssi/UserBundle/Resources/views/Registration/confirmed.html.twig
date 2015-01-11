@@ -1,8 +1,8 @@
-{% extends '::base.html.twig' %}
+{% extends app.request.xmlHttpRequest ? 'kosssiMyAlbumsBundle::baseAjax.html.twig' : 'kosssiMyAlbumsBundle:Homepage:homepage.html.twig' %}
 
 {% block title %}{{ 'Registration confirmed' }}{% endblock %}
 
-{% block body %}
+{% block ajaxContainer %}
     <section class="checkEmail popin">
         <ul>
             <li>
@@ -10,7 +10,7 @@
             </li>
             <li class="button">
                 <p>
-                    <a class="button ajax" href="{{ path('homepage') }}">{{ 'Home'|trans }}</a>
+                    <a class="button" href="{{ path('homepage') }}">{{ 'Home'|trans }}</a>
                 </p>
             </li>
         </ul>

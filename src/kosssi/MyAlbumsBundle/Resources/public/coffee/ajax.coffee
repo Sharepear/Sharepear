@@ -9,6 +9,8 @@ class Ajax
       e.preventDefault()
       e.stopPropagation()
       $(".ajaxFullScreen").hide()
+    if $(".ajaxContainer").html() != ''
+      $(".ajaxFullScreen").show()
   open: (url) ->
     $.get url, (data) ->
       $(".ajaxContainer").html data

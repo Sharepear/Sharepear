@@ -31,7 +31,7 @@
     </section>
 
     <footer class="homepage clearfix">
-        <p class="small-hidden">Made With Fresh Pear! | {{ user_count }} {{ "users" | trans({}, "album") }} | {{ image_count }} {{ "images" | trans({}, "album") }}</p>
+        <p class="small-hidden">Made With Fresh Pear! {% if user_count is defined and image_count is defined %}| {{ user_count }} {{ "users" | trans({}, "album") }} | {{ image_count }} {{ "images" | trans({}, "album") }}{% endif %}</p>
         <ul class="unstyled pan">
             <li>
                 <a href="https://github.com/sharepear/sharepear">
