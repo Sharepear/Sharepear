@@ -17,25 +17,6 @@ use Symfony\Component\HttpFoundation\Response;
 class ImageController extends Controller
 {
     /**
-     * Show an image.
-     *
-     * @param Image $image
-     *
-     * @Config\Route("/{id}", name="image_show")
-     * @Config\template()
-     * @Config\Security("is_granted('IMAGE_SHOW', image)")
-     *
-     * @return array
-     */
-    public function showAction(Image $image)
-    {
-        return [
-            'image' => $image,
-            'shared_album' => $this->getUser() == $image->getUser(),
-        ];
-    }
-
-    /**
      * Delete an image.
      *
      * @param Request $request
