@@ -14,3 +14,7 @@ parameters:
     piwik_url: ~
     piwik_id: ~
     uservoice_id: ~
+
+    mailer_transport: gmail
+    mailer_user: ~
+    mailer_password: ~

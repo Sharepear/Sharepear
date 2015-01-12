@@ -124,3 +124,8 @@ stof_doctrine_extensions:
         default:
             blameable: true
             timestampable: true
+
+swiftmailer:
+    transport: "%mailer_transport%"
+    username: "%mailer_user%"
+    password: "%mailer_password%"

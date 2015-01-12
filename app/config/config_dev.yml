@@ -32,5 +32,9 @@ monolog:
 assetic:
     use_controller: true
 
-#swiftmailer:
-#    delivery_address: me@example.com
+swiftmailer:
+    disable_delivery: true
+
+fos_user:
+    service:
+        mailer: fos_user.mailer.noop
