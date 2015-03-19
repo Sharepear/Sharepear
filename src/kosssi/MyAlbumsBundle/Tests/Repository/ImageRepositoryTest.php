@@ -26,10 +26,11 @@ class ImageRepositoryTest extends \PHPUnit_Framework_TestCase
         $sharedAlbum = true;
         $repository->getImages($album, $sharedAlbum);
         Phake::verify($repository, Phake::times(1))
-            ->findBy(['album' => $album, 'public' => true], array('createdAt' => 'ASC'));
+            ->findBy(['album' => $album, 'public' => true], array('exifDateTime' => 'ASC', 'createdAt' => 'ASC'));
 
         $sharedAlbum = false;
         $repository->getImages($album, $sharedAlbum);
-        Phake::verify($repository, Phake::times(1))->findBy(['album' => $album], array('createdAt' => 'ASC'));
+        Phake::verify($repository, Phake::times(1))
+            ->findBy(['album' => $album], array('exifDateTime' => 'ASC', 'createdAt' => 'ASC'));
     }
 }

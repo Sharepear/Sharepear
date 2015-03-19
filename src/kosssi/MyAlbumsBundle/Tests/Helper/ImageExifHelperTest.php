@@ -25,12 +25,12 @@ class ImageExifHelperTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->image = new Image();
-        $this->image->setPath(__DIR__ . '/../Fictures/IMAG0171.jpg');
+        $this->image->setPath(__DIR__ . '/../Fixtures/IMAG0171.jpg');
 
         $this->imageExifHelper = new ImageExifHelper();
     }
 
-    public function testGestExif()
+    public function testGetExif()
     {
         $exif = $this->imageExifHelper->getExif($this->image);
 
