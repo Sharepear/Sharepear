@@ -13,6 +13,8 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
  */
 class ImageShowVoter implements VoterInterface
 {
+    const IMAGE_SHOW = 'IMAGE_SHOW';
+
     /**
      * @param string $attribute
      *
@@ -20,7 +22,7 @@ class ImageShowVoter implements VoterInterface
      */
     public function supportsAttribute($attribute)
     {
-        return 'IMAGE_SHOW' === $attribute;
+        return self::IMAGE_SHOW === $attribute;
     }
 
     /**
